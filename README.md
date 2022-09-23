@@ -1,1 +1,20 @@
-Ignore the extra files right now, its just stuff that I added when going through the creation process
+# Game Pick Up
+
+## Task List
+
+| Task | Estimated Time | Status | Who |
+|------|----------------|--------|-----|
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
+|      |                |        |     |
