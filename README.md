@@ -1,16 +1,15 @@
-# Game Pick Up
-
+# PickUpPlay
 
 ## Description
 
-+ This app will help users find pickup games, either by searching by location, or by searching by what game they want to play.
++ This app will help users find pickup games (games where anyone is welcome is join), either by searching by location, 
+or by searching by what game they want to play.
 
 + Authenticated users will be able to search for games by a number of criteria, be it location, game, level of play, etc.,
 as well as look through the game library with descriptions and details about the games they might want to play. 
 They can also select games or pickups as favorites, and view a list of said favorites.
 
 + An admin will be able to create, update, and delete pickups and games.
-
 
 
 ## Task List
@@ -65,7 +64,4 @@ They can also select games or pickups as favorites, and view a list of said favo
 | View Games                            | 2                    | Not Started |                   |
 | Debugging                             | 3                    | Not Started |                   |
 | Styling                               | 3                    | Not Started |                   |
-| Static Pages (Home, About, etc)       | 1                    | Not Started |                   |
-
-
-
+| Static Pages (Home, About, etc)       | 1                    | Not Started |                   |git a
