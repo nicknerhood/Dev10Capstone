@@ -1,23 +1,19 @@
 # Game Pick Up
 
-## Task List
 
-General Tasks:
-- Schemas and Databases
-- Create Java and dependencies
-- Models
-- Mappers
-- Data Repos and JdbcTemplates
-- Repo Tests
-- Services
-- Service Tests
-- ErrorResponse and Global Exception Handler
-- Controllers
-- Controller Tests
-- Generate React App
-- Components
-- Roles and Authentication
-- Build React App
+## Description
+
++ This app will help users find pickup games, either by searching by location, or by searching by what game they want to play.
+
++ Authenticated users will be able to search for games by a number of criteria, be it location, game, level of play, etc.,
++ as well as look through the game library with descriptions and details about the games they might want to play. They can also
++ favorite games or pickups, and view a list of said favorites.
+
++ An admin will be able to create, update, and delete pickups and games.
+
+
+
+## Task List
 
 | Task                                  | Estimated Time (hrs) | Status      | Who Working On It |
 |---------------------------------------|----------------------|-------------|-------------------|
