@@ -6,8 +6,8 @@
 + This app will help users find pickup games, either by searching by location, or by searching by what game they want to play.
 
 + Authenticated users will be able to search for games by a number of criteria, be it location, game, level of play, etc.,
-+ as well as look through the game library with descriptions and details about the games they might want to play. They can also
-+ favorite games or pickups, and view a list of said favorites.
+as well as look through the game library with descriptions and details about the games they might want to play. 
+They can also select games or pickups as favorites, and view a list of said favorites.
 
 + An admin will be able to create, update, and delete pickups and games.
 
