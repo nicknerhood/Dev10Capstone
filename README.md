@@ -16,16 +16,16 @@ They can also select games or pickups as favorites, and view a list of said favo
 
 | Task                                  | Estimated Time (hrs) | Status      | Who Working On It |
 |---------------------------------------|----------------------|-------------|-------------------|
-| Database directories                  | .5                   | Not Started | Both              |
-| DDL: User and Location                | .5                   | Not Started | Both              |
-| DDL: PickUp and Game                  | 2                    | Not Started | Both              |
-| DML: Test Data                        | 2                    | Not Started | Both              |
+| Database directories                  | .5                   | Done        | Both              |
+| DDL: User and Location                | .5                   | Done        | Both              |
+| DDL: PickUp and Game                  | 2                    | Done        | Both              |
+| DML: Test Data                        | 2                    | Done        | Both              |
 | ---BACKEND---                         |                      | Not Started |                   |
 | Models:                               |                      | Not Started |                   |
 | - User                                | 1                    | Not Started | Ethan             |
 | - Location                            | 1                    | Not Started | Ethan             |
-| - PickUp                              | 1                    | Not Started | Nick              |
-| - Game                                | 1                    | Not Started | Nick              |
+| - PickUp                              | 1                    | Done        | Nick              |
+| - Game                                | 1                    | Done        | Nick              |
 | Data Layer (Repos and JdbcTemplates): |                      | Not Started |                   |
 | - User                                | 2                    | Not Started | Ethan             |
 | - Location                            | 1                    | Not Started | Ethan             |
