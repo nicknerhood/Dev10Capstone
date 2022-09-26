@@ -61,6 +61,8 @@ class LocationJdbcTemplateRepositoryTest {
 
     @Test
     void delete() {
+        assertFalse(repository.deleteById(1));
+        assertTrue(repository.deleteById(2));
     }
 
     private Location makeLocation(){

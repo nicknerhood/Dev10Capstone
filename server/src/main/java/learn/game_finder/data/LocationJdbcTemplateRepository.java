@@ -12,11 +12,11 @@ import java.sql.Statement;
 import java.util.List;
 
 @Repository
-public class LocationJdbcTemplateRepository implements LocationRepository{
+public class LocationJdbcTemplateRepository implements LocationRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public LocationJdbcTemplateRepository(JdbcTemplate jdbcTemplate){
+    public LocationJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -44,7 +44,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository{
             return ps;
         }, keyHolder);
 
-        if (rowAffected <= 0){
+        if (rowAffected <= 0) {
             return null;
         }
         location.setLocationId(keyHolder.getKey().intValue());
@@ -53,15 +53,15 @@ public class LocationJdbcTemplateRepository implements LocationRepository{
 
     @Override
     public boolean update(Location location) {
-       final String sql = "update locations set latitude = ?, longitude = ? where location_id = ?;";
-       return jdbcTemplate.update(sql,
-               location.getLatitude(),
-               location.getLongitude(),
-               location.getLocationId()) > 0;
+        final String sql = "update locations set latitude = ?, longitude = ? where location_id = ?;";
+        return jdbcTemplate.update(sql,
+                location.getLatitude(),
+                location.getLongitude(),
+                location.getLocationId()) > 0;
     }
 
     @Override
-    public boolean delete(int locationId) {
+    public boolean deleteById(int locationId) {
         return false;
     }
 }

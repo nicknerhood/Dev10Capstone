@@ -14,5 +14,5 @@ public interface LocationRepository {
 
     boolean update(Location location);
 
-    boolean delete(int locationId);
+    boolean deleteById(int locationId);
 }
