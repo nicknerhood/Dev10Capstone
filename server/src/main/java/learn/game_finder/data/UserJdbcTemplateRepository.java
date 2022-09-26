@@ -5,11 +5,13 @@ import learn.game_finder.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
+@Repository
 public class UserJdbcTemplateRepository implements UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -20,7 +22,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        final String sql = "select user_id, username, first_name, last_name" +
+        final String sql = "select user_id, username, first_name, last_name," +
                 " email, location_id from users;";
 
         return jdbcTemplate.query(sql,new UserMapper());
@@ -47,7 +49,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
             ps.setString(2, user.getFirstName());
             ps.setString(3, user.getLastName());
             ps.setString(4, user.getEmail());
-            ps.setInt(5, user.getLocation().getLocationId());
+            ps.setInt(5, user.getLocationId());
             return ps;
         }, keyHolder);
 
@@ -63,10 +65,10 @@ public class UserJdbcTemplateRepository implements UserRepository {
     public boolean update(User user) {
        final String sql = "update users set " +
                "username = ?, " +
-               "first_name = ? " +
-               "last_name = ? " +
-               "email = ? " +
-               "location_id " +
+               "first_name = ?, " +
+               "last_name = ?, " +
+               "email = ?, " +
+               "location_id = ? " +
                "where user_id = ?;";
 
        return jdbcTemplate.update(sql,
@@ -74,7 +76,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                user.getFirstName(),
                user.getLastName(),
                user.getEmail(),
-               user.getLocation().getLocationId(),
+               user.getLocationId(),
                user.getUserId()) > 0;
     }
 

@@ -18,8 +18,8 @@ public class UserMapper implements RowMapper<User> {
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
         user.setEmail(resultSet.getString("email"));
-        LocationMapper locationMapper = new LocationMapper();
-        user.setLocation(locationMapper.mapRow(resultSet,i));
+        user.setLocationId(resultSet.getInt("location_Id"));
+
         return user;
     }
 }

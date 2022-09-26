@@ -7,7 +7,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private Location location;
+    private int locationId;
 
     public int getUserId() {
         return userId;
@@ -49,11 +49,11 @@ public class User {
         this.email = email;
     }
 
-    public Location getLocation() {
-        return location;
+    public Integer getLocationId() {
+        return locationId;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 }
