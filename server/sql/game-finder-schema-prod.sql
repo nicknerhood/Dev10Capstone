@@ -8,6 +8,14 @@ create table locations (
     longitude DECIMAL(9,6)
 );
 
+create table games (
+	game_id int primary key auto_increment,
+    name varchar(25) not null,
+    img_path varchar(100),
+    description varchar(100) not null,
+    genre varchar(25) not null
+);
+
 create table users (
 	user_id int primary key auto_increment,
     username varchar(25) not null,
@@ -17,14 +25,6 @@ create table users (
     constraint fk_user_location_id
 			foreign key (location_id)
 		references locations(location_id)
-);
-
-create table games (
-	game_id int primary key auto_increment,
-    name varchar(25) not null,
-    img_path varchar(100),
-    description varchar(100) not null,
-    genre varchar(25) not null
 );
 
 create table pickups (
