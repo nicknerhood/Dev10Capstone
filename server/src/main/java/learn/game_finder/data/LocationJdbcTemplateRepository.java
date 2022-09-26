@@ -47,7 +47,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
         if (rowAffected <= 0) {
             return null;
         }
-        location.setLocationId(keyHolder.getKey(intValue());
+        location.setLocationId(keyHolder.getKey().intValue());
         return location;
     }
 
