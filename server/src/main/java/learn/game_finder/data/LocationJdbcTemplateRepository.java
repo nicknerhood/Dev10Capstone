@@ -3,8 +3,12 @@ package learn.game_finder.data;
 import learn.game_finder.data.mappers.LocationMapper;
 import learn.game_finder.models.Location;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
@@ -31,12 +35,29 @@ public class LocationJdbcTemplateRepository implements LocationRepository{
 
     @Override
     public Location add(Location location) {
-        return null;
+        final String sql = "insert into locations (latitude, longitude) values (?, ?);";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        int rowAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, location.getLatitude());
+            ps.setDouble(2, location.getLongitude());
+            return ps;
+        }, keyHolder);
+
+        if (rowAffected <= 0){
+            return null;
+        }
+        location.setLocationId(keyHolder.getKey().intValue());
+        return location;
     }
 
     @Override
     public boolean update(Location location) {
-        return false;
+       final String sql = "update locations set latitude = ?, longitude = ? where location_id = ?;";
+       return jdbcTemplate.update(sql,
+               location.getLatitude(),
+               location.getLongitude(),
+               location.getLocationId()) > 0;
     }
 
     @Override

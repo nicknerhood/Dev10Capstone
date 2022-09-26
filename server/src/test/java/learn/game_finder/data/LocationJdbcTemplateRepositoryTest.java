@@ -43,13 +43,30 @@ class LocationJdbcTemplateRepositoryTest {
 
     @Test
     void add() {
+        Location location = makeLocation();
+        Location actual = repository.add(location);
+        assertNotNull(actual);
+        assertEquals(3, actual.getLocationId());
+        assertEquals(-78.96767, actual.getLatitude());
     }
 
     @Test
     void update() {
+        Location location = makeLocation();
+        location.setLocationId(4);
+        assertFalse(repository.update(location));
+        location.setLocationId(1);
+        assertTrue(repository.update(location));
     }
 
     @Test
     void delete() {
+    }
+
+    private Location makeLocation(){
+        Location location = new Location();
+        location.setLongitude(33.44423);
+        location.setLatitude(-78.96767);
+        return location;
     }
 }
