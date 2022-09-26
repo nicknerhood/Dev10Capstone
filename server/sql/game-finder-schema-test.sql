@@ -76,8 +76,6 @@ begin
 	insert into pickups values
 		(1, 'Yo, come play Dungeon and Dragons', '2022-10-31', 1, 3, 1);
 	
-
-
 end //
 delimiter ;
 
