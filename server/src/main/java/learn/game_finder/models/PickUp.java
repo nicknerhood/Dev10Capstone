@@ -5,15 +5,15 @@ import java.time.LocalDate;
 public class PickUp {
 
     private int pickUpId;
-    private String desc;
+    private String pickUpInfo;
     private LocalDate playDate;
     private int locationId;
     private int gameId;
     private int userId;
 
-    public PickUp(int pickUpId, String desc, LocalDate playDate, int locationId, int gameId, int userId) {
+    public PickUp(int pickUpId, String pickUpInfo, LocalDate playDate, int locationId, int gameId, int userId) {
         this.pickUpId = pickUpId;
-        this.desc = desc;
+        this.pickUpInfo = pickUpInfo;
         this.playDate = playDate;
         this.locationId = locationId;
         this.gameId = gameId;
@@ -31,12 +31,12 @@ public class PickUp {
         this.pickUpId = pickUpId;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getPickUpInfo() {
+        return pickUpInfo;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setPickUpInfo(String pickUpInfo) {
+        this.pickUpInfo = pickUpInfo;
     }
 
     public LocalDate getPlayDate() {
