@@ -19,7 +19,8 @@ create table games (
 create table users (
 	user_id int primary key auto_increment,
     username varchar(25) not null,
-    name varchar(25) not null,
+    firstname varchar(25) not null,
+    lastname varchar(25) not null,
     email varchar(50) not null,
     location_id int not null,
     constraint fk_user_location_id
