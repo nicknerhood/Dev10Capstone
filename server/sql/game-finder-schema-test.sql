@@ -64,7 +64,7 @@ begin
 		(1, 30.500120, -97.624291),
         (2, 30.494237, -97.641349);
         
-	insert into games(game_id, title, img_path, game_info, genre) values
+	insert into games values
 		(1, 'Football', null, 'Throw the old pigskin around', 'Sports'),
         (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Fighting Game'),
         (3, 'Dungeons and Dragons', null, 'Wanna be a wizard?', 'Board Game');
@@ -72,3 +72,7 @@ begin
 
 end //
 delimiter ;
+
+call set_known_good_state();
+
+select * from games;

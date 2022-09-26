@@ -1,5 +1,7 @@
 package learn.game_finder.models;
 
+import java.util.Objects;
+
 public class Game {
 
     private int gameId;
@@ -31,7 +33,7 @@ public class Game {
         return title;
     }
 
-    public void setTitle(String name) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -39,7 +41,7 @@ public class Game {
         return imagePath;
     }
 
-    public void setImagePath(String image_path) {
+    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
@@ -47,7 +49,7 @@ public class Game {
         return gameInfo;
     }
 
-    public void setGameInfo(String desc) {
+    public void setGameInfo(String gameInfo) {
         this.gameInfo = gameInfo;
     }
 
@@ -57,5 +59,29 @@ public class Game {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return gameId == game.gameId && Objects.equals(title, game.title) && Objects.equals(imagePath, game.imagePath) && Objects.equals(gameInfo, game.gameInfo) && Objects.equals(genre, game.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gameId, title, imagePath, gameInfo, genre);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", title='" + title + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", gameInfo='" + gameInfo + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
     }
 }

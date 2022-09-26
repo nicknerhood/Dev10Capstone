@@ -11,7 +11,7 @@ public interface GameRepository {
 
     Game findById(int gameId);
 
-    Game findByGenre(String genre);
+    Game findByTitle(String title);
 
     Game add(Game game);
 

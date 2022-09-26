@@ -12,10 +12,8 @@ public class GameMapper implements RowMapper<Game> {
         Game game = new Game();
         game.setGameId(resultSet.getInt("game_id"));
         game.setTitle(resultSet.getString("title"));
+        game.setImagePath(resultSet.getString("img_path"));
         game.setGameInfo(resultSet.getString("game_info"));
-        if(resultSet.getString("img_path") != null) {
-            game.setImagePath(resultSet.getString("img_path"));
-        }
         game.setGenre(resultSet.getString("genre"));
         return game;
     }
