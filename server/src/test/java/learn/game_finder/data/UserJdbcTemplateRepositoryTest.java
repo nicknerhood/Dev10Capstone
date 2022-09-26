@@ -65,7 +65,7 @@ class UserJdbcTemplateRepositoryTest {
     @Test
     void deleteById() {
         assertTrue(repository.deleteById(2));
-        assertFalse(repository.deleteById(4));
+        assertFalse(repository.deleteById(1));
     }
 
     private User makeUser() {

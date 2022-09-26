@@ -15,4 +15,6 @@ public interface LocationRepository {
     boolean update(Location location);
 
     boolean deleteById(int locationId);
+
+    boolean findIfInUse(int locationId);
 }

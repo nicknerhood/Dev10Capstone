@@ -25,7 +25,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
         final String sql = "select user_id, username, first_name, last_name," +
                 " email, location_id from users;";
 
-        return jdbcTemplate.query(sql,new UserMapper());
+        return jdbcTemplate.query(sql, new UserMapper());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
             return ps;
         }, keyHolder);
 
-        if (rowAffected <= 0){
+        if (rowAffected <= 0) {
             return null;
         }
 
@@ -63,27 +63,39 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     public boolean update(User user) {
-       final String sql = "update users set " +
-               "username = ?, " +
-               "first_name = ?, " +
-               "last_name = ?, " +
-               "email = ?, " +
-               "location_id = ? " +
-               "where user_id = ?;";
+        final String sql = "update users set " +
+                "username = ?, " +
+                "first_name = ?, " +
+                "last_name = ?, " +
+                "email = ?, " +
+                "location_id = ? " +
+                "where user_id = ?;";
 
-       return jdbcTemplate.update(sql,
-               user.getUsername(),
-               user.getFirstName(),
-               user.getLastName(),
-               user.getEmail(),
-               user.getLocationId(),
-               user.getUserId()) > 0;
+        return jdbcTemplate.update(sql,
+                user.getUsername(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getLocationId(),
+                user.getUserId()) > 0;
     }
 
     @Override
     public boolean deleteById(int userId) {
+        if (!findIfInUse(userId)) {
+            final String sql = "delete from users where user_id = ?;";
+            return jdbcTemplate.update(sql, userId) > 0;
+        }
+        return false;
+    }
 
-        final String sql = "delete from users where user_id = ?;";
-        return jdbcTemplate.update(sql, userId) > 0;
+    @Override
+    public boolean findIfInUse(int userId){
+        int count = jdbcTemplate.queryForObject(
+                "select count(*) from pickups where user_id = ?;"
+                , Integer.class
+                , userId);
+
+        return count != 0;
     }
 }

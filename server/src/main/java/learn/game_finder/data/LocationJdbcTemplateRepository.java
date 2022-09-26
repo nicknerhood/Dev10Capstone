@@ -62,6 +62,34 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
 
     @Override
     public boolean deleteById(int locationId) {
+
+        if (!findIfInUse(locationId)) {
+
+            final String sql = "delete from locations where location_id = ?;";
+            return jdbcTemplate.update(sql, locationId) > 0;
+        }
+
         return false;
     }
+
+    @Override
+    public boolean findIfInUse(int locationId){
+        int countInUser = jdbcTemplate.queryForObject(
+                "select count(*) from users where location_id = ?;"
+                , Integer.class
+                , locationId);
+
+        int countInPickups = jdbcTemplate.queryForObject(
+                "select count(*) from pickups where location_id = ?;"
+                , Integer.class
+                , locationId);
+
+
+
+        if(countInPickups != 0 && countInUser != 0){
+            return true;
+        }
+        return false;
+    }
+
 }
