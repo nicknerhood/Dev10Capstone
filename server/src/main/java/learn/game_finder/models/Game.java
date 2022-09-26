@@ -3,19 +3,19 @@ package learn.game_finder.models;
 public class Game {
 
     private int gameId;
-    private String name;
+    private String title;
     private String imagePath;
-    private String desc;
+    private String gameInfo;
     private String genre;
 
     public Game() {
     }
 
-    public Game(int gameId, String name, String imagePath, String desc, String genre) {
+    public Game(int gameId, String title, String imagePath, String gameInfo, String genre) {
         this.gameId = gameId;
-        this.name = name;
+        this.title = title;
         this.imagePath = imagePath;
-        this.desc = desc;
+        this.gameInfo = gameInfo;
         this.genre = genre;
     }
 
@@ -27,12 +27,12 @@ public class Game {
         this.gameId = gameId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String name) {
+        this.title = title;
     }
 
     public String getImagePath() {
@@ -43,12 +43,12 @@ public class Game {
         this.imagePath = imagePath;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getGameInfo() {
+        return gameInfo;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setGameInfo(String desc) {
+        this.gameInfo = gameInfo;
     }
 
     public String getGenre() {

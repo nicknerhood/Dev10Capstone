@@ -10,9 +10,9 @@ create table locations (
 
 create table games (
 	game_id int primary key auto_increment,
-    name varchar(25) not null,
+    title varchar(25) not null,
     img_path varchar(100),
-    description varchar(100) not null,
+    game_info varchar(100) not null,
     genre varchar(25) not null
 );
 
@@ -30,7 +30,7 @@ create table users (
 
 create table pickups (
 	pickup_id int primary key auto_increment,
-    description varchar(100) not null,
+    pickup_info varchar(100) not null,
     play_date date not null,
     location_id int not null,
     game_id int not null,
@@ -46,3 +46,29 @@ create table pickups (
 		references users(user_id)
 );
 
+delimiter //
+create procedure set_known_good_state()
+begin
+
+	set sql_safe_updates = 0;
+    delete from pickups;
+    alter table pickups auto_increment = 1;
+    delete from users;
+    alter table users auto_increment = 1;
+    delete from games;
+    alter table games auto_increment = 1;
+    delete from locations;
+    alter table locations auto_increment = 1;
+    
+    insert into locations(location_id, latitude, longitude) values
+		(1, 30.500120, -97.624291),
+        (2, 30.494237, -97.641349);
+        
+	insert into games(game_id, title, img_path, game_info, genre) values
+		(1, 'Football', null, 'Throw the old pigskin around', 'Sports'),
+        (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Fighting Game'),
+        (3, 'Dungeons and Dragons', null, 'Wanna be a wizard?', 'Board Game');
+
+
+end //
+delimiter ;

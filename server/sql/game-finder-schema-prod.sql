@@ -10,9 +10,9 @@ create table locations (
 
 create table games (
 	game_id int primary key auto_increment,
-    name varchar(25) not null,
+    title varchar(25) not null,
     img_path varchar(100),
-    description varchar(100) not null,
+    game_info varchar(100) not null,
     genre varchar(25) not null
 );
 
@@ -30,7 +30,7 @@ create table users (
 
 create table pickups (
 	pickup_id int primary key auto_increment,
-    description varchar(100) not null,
+    pickup_info varchar(100) not null,
     play_date date not null,
     location_id int not null,
     game_id int not null,
