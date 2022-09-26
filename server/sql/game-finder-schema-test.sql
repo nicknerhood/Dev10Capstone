@@ -68,6 +68,14 @@ begin
 		(1, 'Football', null, 'Throw the old pigskin around', 'Sports'),
         (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Fighting Game'),
         (3, 'Dungeons and Dragons', null, 'Wanna be a wizard?', 'Board Game');
+        
+	insert into users values
+		(1, 'mrcoolguy', 'Nick', 'Nerhood', 'nrnrerhood@gmail.com', 1),
+        (2, 'mrtesting', 'Mister', 'Testing', 'test@test.com', 2);
+        
+	insert into pickups values
+		(1, 'Yo, come play Dungeon and Dragons', '2022-10-31', 1, 3, 1);
+	
 
 
 end //
@@ -75,4 +83,4 @@ delimiter ;
 
 call set_known_good_state();
 
-select * from games;
+select * from pickups;
