@@ -24,10 +24,10 @@ They can also select games or pickups as favorites, and view a list of said favo
 | Models:                               |                      | Not Started |                   |
 | - User                                | 1                    | Not Started | Ethan             |
 | - Location                            | 1                    | Not Started | Ethan             |
-| - PickUp                              | 2                    | Not Started | Nick              |
+| - PickUp                              | 1                    | Not Started | Nick              |
 | - Game                                | 1                    | Not Started | Nick              |
 | Data Layer (Repos and JdbcTemplates): |                      | Not Started |                   |
-| - User                                | 1                    | Not Started | Ethan             |
+| - User                                | 2                    | Not Started | Ethan             |
 | - Location                            | 1                    | Not Started | Ethan             |
 | - PickUp                              |                      | Not Started | Nick              |
 | -- findById                           | 1                    | Not Started |                   |
@@ -43,7 +43,7 @@ They can also select games or pickups as favorites, and view a list of said favo
 | - Result and Validations              | 3                    | Not Started | Both              |
 | - User                                | 2                    | Not Started | Ethan             |
 | - Location                            | 2                    | Not Started | Ethan             |
-| - PickUp                              | 2                    | Not Started | Nick              |
+| - PickUp                              | 3                    | Not Started | Nick              |
 | - Game                                | 2                    | Not Started | Nick              |
 | - Testing                             | 3                    | Not Started | Both              |
 | Controllers:                          |                      | Not Started |                   |
@@ -74,6 +74,7 @@ They can also select games or pickups as favorites, and view a list of said favo
   - password
   - favorites
   - email
+  - user_role
 - PickUps
   - pickup_id
   - description
