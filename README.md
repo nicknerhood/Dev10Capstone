@@ -21,23 +21,23 @@ They can also select games or pickups as favorites, and view a list of said favo
 | DDL: PickUp and Game                  | 2                    | Done        | Both              |
 | DML: Test Data                        | 2                    | Done        | Both              |
 | ---BACKEND---                         |                      | Not Started |                   |
-| Models:                               |                      | Not Started |                   |
-| - User                                | 1                    | Not Started | Ethan             |
-| - Location                            | 1                    | Not Started | Ethan             |
+| Models:                               |                      | Done        |                   |
+| - User                                | 1                    | Done        | Ethan             |
+| - Location                            | 1                    | Done        | Ethan             |
 | - PickUp                              | 1                    | Done        | Nick              |
 | - Game                                | 1                    | Done        | Nick              |
 | Data Layer (Repos and JdbcTemplates): |                      | Not Started |                   |
-| - User                                | 2                    | Not Started | Ethan             |
-| - Location                            | 1                    | Not Started | Ethan             |
-| - PickUp                              |                      | Not Started | Nick              |
-| -- findById                           | 1                    | Not Started |                   |
-| -- findByGame                         | 1                    | Not Started |                   |
-| -- createPickUp                       | 1                    | Not Started |                   |
-| -- editPickUp                         | 1                    | Not Started |                   |
-| -- deletePickUp                       | 1                    | Not Started |                   |
-| - Game                                |                      | Not Started | Nick              |
-| -- findById                           | 1                    | Not Started |                   |
-| -- findByGenre                        | 1                    | Not Started |                   |
+| - User                                | 2                    | Done        | Ethan             |
+| - Location                            | 1                    | Done        | Ethan             |
+| - PickUp                              |                      | Done        | Nick              |
+| -- findById                           | 1                    | Done        |                   |
+| -- findByGame                         | 1                    | Done        |                   |
+| -- createPickUp                       | 1                    | Done        |                   |
+| -- editPickUp                         | 1                    | Done        |                   |
+| -- deletePickUp                       | 1                    | Done        |                   |
+| - Game                                |                      | Done        | Nick              |
+| -- findById                           | 1                    | Done        |                   |
+| -- findByGenre                        | 1                    | Done        |                   |
 | - Testing                             | 3                    | Not Started | Both              |
 | Domain Layer (Services):              |                      | Not Started |                   |
 | - Result and Validations              | 3                    | Not Started | Both              |
@@ -72,7 +72,6 @@ They can also select games or pickups as favorites, and view a list of said favo
   - username
   - name/alias
   - password
-  - favorites
   - email
   - user_role
 - PickUps
@@ -82,13 +81,13 @@ They can also select games or pickups as favorites, and view a list of said favo
   - date
   - location_id
   - game_id
+  - user_id
 - Games
   - game_id
   - name
   - image
   - description
   - genre
-  - rating
 - Locations
   - location_id
   - latitude

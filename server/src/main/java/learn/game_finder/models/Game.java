@@ -1,21 +1,23 @@
 package learn.game_finder.models;
 
+import java.util.Objects;
+
 public class Game {
 
     private int gameId;
-    private String name;
-    private String image_path;
-    private String desc;
+    private String title;
+    private String imagePath;
+    private String gameInfo;
     private String genre;
 
     public Game() {
     }
 
-    public Game(int gameId, String name, String image_path, String desc, String genre) {
+    public Game(int gameId, String title, String imagePath, String gameInfo, String genre) {
         this.gameId = gameId;
-        this.name = name;
-        this.image_path = image_path;
-        this.desc = desc;
+        this.title = title;
+        this.imagePath = imagePath;
+        this.gameInfo = gameInfo;
         this.genre = genre;
     }
 
@@ -27,28 +29,28 @@ public class Game {
         this.gameId = gameId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getGameInfo() {
+        return gameInfo;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setGameInfo(String gameInfo) {
+        this.gameInfo = gameInfo;
     }
 
     public String getGenre() {
@@ -57,5 +59,29 @@ public class Game {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return gameId == game.gameId && Objects.equals(title, game.title) && Objects.equals(imagePath, game.imagePath) && Objects.equals(gameInfo, game.gameInfo) && Objects.equals(genre, game.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gameId, title, imagePath, gameInfo, genre);
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId=" + gameId +
+                ", title='" + title + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", gameInfo='" + gameInfo + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
     }
 }
