@@ -66,6 +66,11 @@ public class GameJdbcTemplateRepositoryTest {
         assertTrue(repository.deleteById(2));
     }
 
+    @Test
+    void shouldFindIfInUse(){
+        assertTrue(repository.findIfInUse(3));
+    }
+
     private Game makeGame() {
         Game game = new Game();
         game.setTitle("Baseball");

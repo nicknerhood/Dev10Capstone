@@ -19,4 +19,6 @@ public interface GameRepository {
 
     @Transactional
     boolean deleteById(int gameId);
+
+    boolean findIfInUse(int gameId);
 }

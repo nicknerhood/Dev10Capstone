@@ -93,4 +93,17 @@ public class GameJdbcTemplateRepository implements GameRepository{
     public boolean deleteById(int gameId) {
         return jdbcTemplate.update("delete from games where game_id = ?;", gameId) > 0;
     }
+
+    @Override
+    public boolean findIfInUse(int gameId){
+        int count = jdbcTemplate.queryForObject(
+                "select count(*) from pickups where game_id = ?;"
+                , Integer.class
+                , gameId);
+
+        if(count != 0){
+            return true;
+        }
+        return false;
+    }
 }
