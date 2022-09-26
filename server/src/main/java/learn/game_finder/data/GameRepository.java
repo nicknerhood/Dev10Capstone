@@ -13,6 +13,8 @@ public interface GameRepository {
 
     Game findByTitle(String title);
 
+    List<Game> findByGenre(String genre);
+
     Game add(Game game);
 
     boolean update(Game game);

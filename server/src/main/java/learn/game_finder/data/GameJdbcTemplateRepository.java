@@ -49,6 +49,14 @@ public class GameJdbcTemplateRepository implements GameRepository{
     }
 
     @Override
+    public List<Game> findByGenre(String genre){
+        final String sql = "select game_id, title, img_path, game_info, genre "
+                +"from games "
+                +"where genre = ?;";
+        return jdbcTemplate.query(sql, new GameMapper());
+    }
+
+    @Override
     public Game add(Game game) {
 
         final String sql = "insert into games (title, img_path, game_info, genre) "
