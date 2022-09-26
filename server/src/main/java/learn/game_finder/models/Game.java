@@ -4,17 +4,17 @@ public class Game {
 
     private int gameId;
     private String name;
-    private String image_path;
+    private String imagePath;
     private String desc;
     private String genre;
 
     public Game() {
     }
 
-    public Game(int gameId, String name, String image_path, String desc, String genre) {
+    public Game(int gameId, String name, String imagePath, String desc, String genre) {
         this.gameId = gameId;
         this.name = name;
-        this.image_path = image_path;
+        this.imagePath = imagePath;
         this.desc = desc;
         this.genre = genre;
     }
@@ -35,12 +35,12 @@ public class Game {
         this.name = name;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImagePath(String image_path) {
+        this.imagePath = imagePath;
     }
 
     public String getDesc() {
