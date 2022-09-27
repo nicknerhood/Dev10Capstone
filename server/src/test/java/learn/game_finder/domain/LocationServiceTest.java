@@ -56,6 +56,33 @@ class LocationServiceTest {
         Location location = makeLocation();
         Result<Location> actual = service.update(location);
         assertEquals(ResultType.INVALID, actual.getType());
+        assertEquals("Id must be set for 'update' operation", actual.getMessages().get(0));
+
+        location = makeLocation();
+        location.setLocationId(1);
+        location.setLatitude(-2000.778);
+        actual = service.update(location);
+        assertEquals(ResultType.INVALID, actual.getType());
+        assertEquals("latitude must be between -90 and 90", actual.getMessages().get(0));
+
+        location = makeLocation();
+        location.setLocationId(1);
+        location.setLongitude(-333.333);
+        actual = service.update(location);
+        assertEquals(ResultType.INVALID, actual.getType());
+        assertEquals("longitude must be between -180 and 180", actual.getMessages().get(0));
+
+    }
+
+    @Test
+    void shouldUpdate(){
+        Location location = makeLocation();
+        location.setLocationId(1);
+
+        when(repository.update(location)).thenReturn(true);
+
+        Result<Location> actual = service.update(location);
+        assertEquals(ResultType.SUCCESS, actual.getType());
     }
 
 Location makeLocation() {
@@ -63,6 +90,19 @@ Location makeLocation() {
     location.setLatitude(-45.33);
     location.setLongitude(112.444);
     return location;
+}
+
+@Test
+    void shouldDeleteLocationNotInUse() {
+        when(repository.deleteById(2)).thenReturn(true);
+        assertTrue(service.deleteById(2));
+
+}
+
+@Test
+    void shouldNotDeleteLocationInUse() {
+    when(repository.deleteById(1)).thenReturn(false);
+    assertFalse(service.deleteById(1));
 }
 
 }

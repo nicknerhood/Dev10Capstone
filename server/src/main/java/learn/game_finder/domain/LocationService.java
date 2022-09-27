@@ -54,7 +54,7 @@ private final LocationRepository repository;
         }
 
         if(location.getLocationId() <= 0){
-            result.addMessage("Id must be set for 'update' opeartion", ResultType.INVALID);
+            result.addMessage("Id must be set for 'update' operation", ResultType.INVALID);
             return result;
         }
 

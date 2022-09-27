@@ -86,7 +86,7 @@ public class LocationJdbcTemplateRepository implements LocationRepository {
 
 
 
-        if(countInPickups != 0 && countInUser != 0){
+        if(countInPickups != 0 || countInUser != 0){
             return true;
         }
         return false;
