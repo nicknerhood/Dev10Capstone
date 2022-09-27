@@ -2,6 +2,7 @@ package learn.game_finder.domain;
 
 import learn.game_finder.data.LocationRepository;
 import learn.game_finder.models.Location;
+import learn.game_finder.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,12 +24,21 @@ private final LocationRepository repository;
         return repository.findById(locationId);
     }
 
-    public boolean deleteById(int locationId){
-        if(repository.findIfInUse(locationId)){
-            return false;
+    public Result<Location> deleteById(int locationId){
+        Result<Location> result = new Result<>();
+        if(locationId <= 0){
+            result.addMessage("Invalid id for deletion", ResultType.INVALID);
+            return result;
         }
-         return repository.deleteById(locationId);
-
+        if(repository.findIfInUse(locationId)){
+            result.addMessage("At this time, we cannot delete locations that are in use", ResultType.INVALID);
+            return result;
+        }
+        if(!repository.deleteById(locationId)){
+            String message = String.format("Location Id: %s not found", locationId);
+            result.addMessage(message, ResultType.NOT_FOUND);
+        }
+        return result;
     }
 
     public Result<Location> add(Location location){
