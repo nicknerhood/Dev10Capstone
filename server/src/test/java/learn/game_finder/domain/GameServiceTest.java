@@ -54,15 +54,15 @@ public class GameServiceTest {
         assertEquals(ResultType.INVALID, actual.getType());
 
         Game badTitle = new Game(0, null, null, "Test info", "Test genre");
-        actual = service.add(badId);
+        actual = service.add(badTitle);
         assertEquals(ResultType.INVALID, actual.getType());
 
         Game badInfo = new Game(0, "Test", null, null, "Test genre");
-        actual = service.add(badId);
+        actual = service.add(badInfo);
         assertEquals(ResultType.INVALID, actual.getType());
 
-        Game badGenre = new Game(9, "Test", null, "Test info", null);
-        actual = service.add(badId);
+        Game badGenre = new Game(0, "Test", null, "Test info", null);
+        actual = service.add(badGenre);
         assertEquals(ResultType.INVALID, actual.getType());
     }
 

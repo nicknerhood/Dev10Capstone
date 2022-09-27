@@ -40,10 +40,26 @@ public class PickUpJdbcTemplateRepository implements PickUpRepository{
     }
 
     @Override
-    public List findByGameId(int pickUpId) {
+    public List<PickUp> findByGameId(int gameId) {
         final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
                 +"from pickups "
                 +"where game_id = ?;";
+        return jdbcTemplate.query(sql, new PickUpMapper());
+    }
+
+    @Override
+    public List<PickUp> findByLocationId(int locationId) {
+        final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
+                +"from pickups "
+                +"where location_id = ?;";
+        return jdbcTemplate.query(sql, new PickUpMapper());
+    }
+
+    @Override
+    public List<PickUp> findByUserId(int pickUpId) {
+        final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
+                +"from pickups "
+                +"where user_id = ?;";
         return jdbcTemplate.query(sql, new PickUpMapper());
     }
 
@@ -93,4 +109,21 @@ public class PickUpJdbcTemplateRepository implements PickUpRepository{
     public boolean deleteById(int pickUpId) {
         return jdbcTemplate.update("delete from pickups where pickup_id = ?;", pickUpId) > 0;
     }
+
+    @Override
+    public int findIfGameIdExists(int gameId) {
+        Integer value = jdbcTemplate.queryForObject(
+                "select count(*) from games where game_id = ?;", Integer.class, gameId);
+        return value;
+    }
+
+    @Override
+    public int findIfUserIdExists(int userId) {
+        Integer value = jdbcTemplate.queryForObject(
+                "select count(*) from users where user_id = ?;", Integer.class, userId
+        );
+        return value;
+    }
+
+
 }
