@@ -46,7 +46,7 @@ public class UserService {
             return result;
         }
 
-        if(user.getLocationId() != 0){
+        if(user.getUserId() != 0){
             result.addMessage("Id cannot be set for 'add' operation", ResultType.INVALID);
             return result;
         }
@@ -62,13 +62,13 @@ public class UserService {
             return result;
         }
 
-        if(user.getLocationId() <= 0){
+        if(user.getUserId() <= 0){
             result.addMessage("Id must be set for 'update' operation", ResultType.INVALID);
             return result;
         }
 
         if(!repository.update(user)){
-            String msg = String.format("userId: %s, not found", user.getLocationId());
+            String msg = String.format("userId: %s, not found", user.getUserId());
             result.addMessage(msg, ResultType.NOT_FOUND);
         }
 
