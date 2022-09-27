@@ -2,9 +2,11 @@ package learn.game_finder.domain;
 
 import learn.game_finder.data.LocationRepository;
 import learn.game_finder.models.Location;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LocationService {
 
 private final LocationRepository repository;
@@ -29,6 +31,41 @@ private final LocationRepository repository;
 
     }
 
+    public Result<Location> add(Location location){
+        Result<Location> result = validate(location);
+        if(!result.isSuccess()){
+            return result;
+        }
+
+        if(location.getLocationId() != 0){
+            result.addMessage("Id cannot be set for add operation", ResultType.INVALID);
+            return result;
+        }
+
+        location = repository.add(location);
+        result.setPayload(location);
+        return result;
+    }
+
+    public Result<Location> update(Location location){
+        Result<Location> result = validate(location);
+        if(!result.isSuccess()){
+            return result;
+        }
+
+        if(location.getLocationId() <= 0){
+            result.addMessage("Id must be set for 'update' opeartion", ResultType.INVALID);
+            return result;
+        }
+
+        if(!repository.update(location)){
+            String msg = String.format("locationId: %s, not found", location.getLocationId());
+            result.addMessage(msg, ResultType.NOT_FOUND);
+        }
+
+        return result;
+    }
+
     private Result<Location> validate(Location location) {
 
         Result<Location> result = new Result<>();
@@ -42,10 +79,13 @@ private final LocationRepository repository;
         if (Validations.isNullOrBlank(String.valueOf(location.getLongitude()))) {
             result.addMessage("longitude cannot be null or empty", ResultType.INVALID);
         }
-
-        if(repository.findIfInUse(location.getLocationId())){
-            result.addMessage("Cannot delete Location that is used in a post or on a profile", ResultType.INVALID);
+        if (location.getLatitude() < -90.0 || location.getLatitude() > 90.0){
+            result.addMessage("latitude must be between -90 and 90", ResultType.INVALID);
         }
+        if (location.getLongitude() < -180 || location.getLongitude() > 180){
+            result.addMessage("longitude must be between -180 and 180", ResultType.INVALID);
+        }
+
         return result;
     }
 }
