@@ -35,6 +35,13 @@ class LocationServiceTest {
         actual = service.add(location);
         assertEquals(ResultType.INVALID, actual.getType() );
 
+        location = makeLocation();
+        location.setLatitude(null);
+        location.setLongitude(null);
+        actual = service.add(location);
+        assertEquals(ResultType.INVALID, actual.getType() );
+
+
     }
 
     @Test
@@ -88,20 +95,14 @@ class LocationServiceTest {
 
     @Test
     void shouldDelete(){
-        when(repository.deleteById(2))
-                .thenReturn(true);
-        Result<Location> result = service.deleteById(2);
-
-        assertTrue(result.isSuccess());
+        when(repository.deleteById(2)).thenReturn(true);
+        assertTrue(service.deleteById(2));
     }
 
     @Test
     void shouldNotDeleteIfInUse(){
-        when(repository.deleteById(1))
-                .thenReturn(false);
-        Result<Location> result = service.deleteById(1);
-
-        assertFalse(result.isSuccess());
+        when(repository.deleteById(1)).thenReturn(false);
+        assertFalse(service.deleteById(1));
     }
 
     Location makeLocation() {

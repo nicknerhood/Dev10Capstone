@@ -3,10 +3,16 @@ package learn.game_finder.controllers;
 import learn.game_finder.domain.LocationService;
 import learn.game_finder.domain.Result;
 import learn.game_finder.models.Location;
+import learn.game_finder.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = {"http://localhost:3000"})
+@RequestMapping("/location")
 public class LocationController {
 
     private final LocationService service;
@@ -14,6 +20,12 @@ public class LocationController {
 
     public LocationController(LocationService service) {
         this.service = service;
+    }
+
+    @GetMapping
+    public List<Location> findAll() {
+
+        return service.findAll();
     }
 
     @GetMapping("/{locationId}")
@@ -48,14 +60,23 @@ public class LocationController {
         return ErrorResponse.build(result);
     }
 
-    @DeleteMapping("/{locationId")
-    public ResponseEntity<Void> deleteById(@PathVariable int locationId){
+//    @DeleteMapping("/{locationId")
+//    public ResponseEntity<Void> deleteById(@PathVariable int locationId){
+//        Result<Location> result = service.deleteById(locationId);
+//        if(result.isSuccess()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+
+    @DeleteMapping("/{locationId}")
+    public ResponseEntity<?> update(@PathVariable int locationId){
         Result<Location> result = service.deleteById(locationId);
         if(result.isSuccess()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ErrorResponse.build(result);
     }
 
 }

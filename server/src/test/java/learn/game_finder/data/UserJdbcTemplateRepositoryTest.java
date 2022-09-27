@@ -40,7 +40,7 @@ class UserJdbcTemplateRepositoryTest {
         User user = repository.findById(2);
         assertEquals("Nick", user.getFirstName());
         User userTwo = repository.findById(1);
-        assertEquals("Sementelli", userTwo.getLastName());
+        assertEquals("Doe", userTwo.getLastName());
 
     }
 
@@ -72,7 +72,7 @@ class UserJdbcTemplateRepositoryTest {
         User user = new User();
         user.setUsername("username");
         user.setFirstName("John");
-        user.setLastName("Dow");
+        user.setLastName("Doe");
         user.setEmail("JohnDoe@gmail.com");
         user.setLocationId(2);
         return user;

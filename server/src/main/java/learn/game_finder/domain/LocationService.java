@@ -24,18 +24,27 @@ private final LocationRepository repository;
         return repository.findById(locationId);
     }
 
+
+//    public boolean deleteById(int locationId) {
+//        if (repository.findIfInUse(locationId)) {
+//            return false;
+//        } else {
+//            return repository.deleteById(locationId);
+//        }
+//    }
+
     public Result<Location> deleteById(int locationId){
         Result<Location> result = new Result<>();
         if(locationId <= 0){
             result.addMessage("Invalid id for deletion", ResultType.INVALID);
             return result;
         }
-        if(repository.findIfInUse(locationId)){
+            if(repository.findIfInUse(locationId)){
             result.addMessage("At this time, we cannot delete locations that are in use", ResultType.INVALID);
             return result;
         }
         if(!repository.deleteById(locationId)){
-            String message = String.format("Location Id: %s not found", locationId);
+            String message = String.format("location Id: %s not found", locationId);
             result.addMessage(message, ResultType.NOT_FOUND);
         }
         return result;
@@ -63,6 +72,7 @@ private final LocationRepository repository;
             return result;
         }
 
+
         if(location.getLocationId() <= 0){
             result.addMessage("Id must be set for 'update' operation", ResultType.INVALID);
             return result;
@@ -83,11 +93,13 @@ private final LocationRepository repository;
             result.addMessage("Location cannot be null", ResultType.INVALID);
             return result;
         }
-        if (Validations.isNullOrBlank(String.valueOf(location.getLatitude()))) {
+        if (location.getLatitude() == null) {
             result.addMessage("latitude cannot be null or empty", ResultType.INVALID);
+            return result;
         }
-        if (Validations.isNullOrBlank(String.valueOf(location.getLongitude()))) {
+        if (location.getLongitude() == null) {
             result.addMessage("longitude cannot be null or empty", ResultType.INVALID);
+            return result;
         }
         if (location.getLatitude() < -90.0 || location.getLatitude() > 90.0){
             result.addMessage("latitude must be between -90 and 90", ResultType.INVALID);
