@@ -13,10 +13,17 @@ public interface PickUpRepository {
 
     List<PickUp> findByGameId(int gameId);
 
+    List<PickUp> findByLocationId(int locationId);
+
+    List<PickUp> findByUserId(int userId);
+
     PickUp add(PickUp pickUp);
 
     boolean update(PickUp pickUp);
 
     @Transactional
     boolean deleteById(int pickUpId);
+
+    int findIfGameIdExists(int gameId);
+    int findIfUserIdExists(int userId);
 }
