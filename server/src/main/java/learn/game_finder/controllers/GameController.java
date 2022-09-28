@@ -51,7 +51,7 @@ public class GameController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/{gameId}")
+    @PutMapping("/edit/{gameId}")
     public ResponseEntity<?> update(@PathVariable int gameId, @RequestBody Game game){
         if(gameId != game.getGameId()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ public class GameController {
     }
 
     @DeleteMapping("/{gameId}")
-    public ResponseEntity<?> update(@PathVariable int gameId){
+    public ResponseEntity<?> deleteById(@PathVariable int gameId){
         Result<Game> result = gameService.deleteById(gameId);
         if(result.isSuccess()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
