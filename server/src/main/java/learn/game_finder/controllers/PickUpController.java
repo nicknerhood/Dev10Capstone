@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RequestMapping("/api/pickup")
+@RequestMapping("/pickup")
 public class PickUpController {
     private final PickUpService service;
 
@@ -43,7 +43,7 @@ public class PickUpController {
         return service.findByLocationId(locationId);
     }
 
-    @GetMapping("/user/userId")
+    @GetMapping("/user/{userId}")
     public List<PickUp> findByUserId(@PathVariable int userId){
         return service.findByUserId(userId);
     }

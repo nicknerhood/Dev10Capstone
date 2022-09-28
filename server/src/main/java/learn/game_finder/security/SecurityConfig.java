@@ -24,20 +24,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.authorizeRequests()
+                //casual viewer
                 .antMatchers("/authenticate").permitAll()
-                // new...
                 .antMatchers("/create_account").permitAll()
                 .antMatchers("/refresh_token").authenticated()
-                .antMatchers(HttpMethod.GET,
-                        "/order").permitAll()
-                .antMatchers(HttpMethod.GET,
-                        "/sighting", "/sighting/*").permitAll()
-                .antMatchers(HttpMethod.POST,
-                        "/sighting").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.PUT,
-                        "/sighting/*").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE,
-                        "/sighting/*").hasAnyRole("ADMIN")
+
+                // authenticated user
+                .antMatchers(HttpMethod.GET, "/location", "/location/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/game", "/game/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/user", "/user/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/pickup", "/pickup/*", "/pickup/game/*", "/pickup/location/*", "/pickup/user/*")
+                    .hasAnyRole("USER", "ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/location").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/game").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/user").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/pickup").hasAnyRole("USER", "ADMIN")
+
+                .antMatchers(HttpMethod.PUT, "/location/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT, "/game/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT, "/user/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.PUT, "/pickup/*").hasAnyRole("USER", "ADMIN")
+
+                //admin
+                .antMatchers(HttpMethod.DELETE, "/sighting/*").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/game/*").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/user/*").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/pickup/*").hasAnyRole("ADMIN")
+
                 .antMatchers("/**").denyAll()
                 .and()
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter))

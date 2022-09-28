@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 public class PickUpServiceTest {
 
     //PickUp pickUp = new PickUp(0, "Test description", "2022-10-31", 2, 2, 2);

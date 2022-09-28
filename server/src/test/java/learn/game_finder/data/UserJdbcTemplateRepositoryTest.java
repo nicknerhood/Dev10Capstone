@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 class UserJdbcTemplateRepositoryTest {
 
     @Autowired
@@ -38,9 +38,9 @@ class UserJdbcTemplateRepositoryTest {
     void findById() {
 
         User user = repository.findById(2);
-        assertEquals("Nick", user.getFirstName());
+        assertEquals("Mister", user.getFirstName());
         User userTwo = repository.findById(1);
-        assertEquals("Doe", userTwo.getLastName());
+        assertEquals("Nerhood", userTwo.getLastName());
 
     }
 

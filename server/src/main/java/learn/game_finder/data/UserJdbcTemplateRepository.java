@@ -22,7 +22,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        final String sql = "select user_id, username, first_name, last_name," +
+        final String sql = "select user_id, username, firstname, lastname," +
                 " email, location_id from users;";
 
         return jdbcTemplate.query(sql, new UserMapper());
@@ -30,7 +30,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     public User findById(int userId) {
-        final String sql = "select user_id, username, first_name, last_name, email, location_id " +
+        final String sql = "select user_id, username, firstname, lastname, email, location_id " +
                 "from users where user_id = ?;";
 
         return jdbcTemplate.query(sql, new UserMapper(), userId).stream().findAny().orElse(null);
@@ -39,7 +39,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public User add(User user) {
 
-        final String sql = "insert into users (username, first_name, last_name, email, location_id) " +
+        final String sql = "insert into users (username, firstname, lastname, email, location_id) " +
                 "values (?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -65,8 +65,8 @@ public class UserJdbcTemplateRepository implements UserRepository {
     public boolean update(User user) {
         final String sql = "update users set " +
                 "username = ?, " +
-                "first_name = ?, " +
-                "last_name = ?, " +
+                "firstname = ?, " +
+                "lastname = ?, " +
                 "email = ?, " +
                 "location_id = ? " +
                 "where user_id = ?;";
