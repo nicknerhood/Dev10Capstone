@@ -2,6 +2,7 @@ package learn.game_finder.domain;
 
 import learn.game_finder.data.LocationRepository;
 import learn.game_finder.models.Location;
+import learn.game_finder.models.User;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,13 @@ class LocationServiceTest {
         location.setLatitude(115.55);
         actual = service.add(location);
         assertEquals(ResultType.INVALID, actual.getType() );
+
+        location = makeLocation();
+        location.setLatitude(null);
+        location.setLongitude(null);
+        actual = service.add(location);
+        assertEquals(ResultType.INVALID, actual.getType() );
+
 
     }
 
@@ -88,15 +96,21 @@ class LocationServiceTest {
 
     @Test
     void shouldDelete(){
-        when(repository.deleteById(2))
+//        when(repository.deleteById(2)).thenReturn(true);
+//        assertTrue(service.deleteById(2));
+
+        when(repository.deleteById(1))
                 .thenReturn(true);
-        Result<Location> result = service.deleteById(2);
+        Result<Location> result = service.deleteById(1);
 
         assertTrue(result.isSuccess());
     }
 
     @Test
     void shouldNotDeleteIfInUse(){
+//        when(repository.deleteById(1)).thenReturn(false);
+//        assertFalse(service.deleteById(1));
+
         when(repository.deleteById(1))
                 .thenReturn(false);
         Result<Location> result = service.deleteById(1);

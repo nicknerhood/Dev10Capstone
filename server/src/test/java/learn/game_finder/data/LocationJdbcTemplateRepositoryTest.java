@@ -46,7 +46,7 @@ class LocationJdbcTemplateRepositoryTest {
         Location location = makeLocation();
         Location actual = repository.add(location);
         assertNotNull(actual);
-        assertEquals(3, actual.getLocationId());
+        assertEquals(4, actual.getLocationId());
         assertEquals(-78.96767, actual.getLatitude());
     }
 
@@ -61,8 +61,10 @@ class LocationJdbcTemplateRepositoryTest {
 
     @Test
     void delete() {
-        assertFalse(repository.deleteById(1));
-        assertTrue(repository.deleteById(2));
+        Location location = makeLocation();
+        Location actual = repository.add(location);
+//        assertFalse(repository.deleteById(1));
+        assertTrue(repository.deleteById(3));
     }
 
     private Location makeLocation(){
