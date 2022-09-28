@@ -29,9 +29,9 @@ public class GameService {
         return gameRepository.findByTitle(title);
     }
 
-    public List<Game> findByGenre(String genre){
-        return gameRepository.findByGenre(genre);
-    }
+//    public List<Game> findByGenre(String genre){
+//        return gameRepository.findByGenre(genre);
+//    }
 
     public Result<Game> add(Game game){
         Result<Game> result = validate(game);
