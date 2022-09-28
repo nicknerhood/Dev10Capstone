@@ -23,14 +23,14 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public List<User> findAll() {
         final String sql = "select user_id, username, firstname, lastname," +
-                " email, location_id from users;";
+                " email, location_id, app_user_id from users;";
 
         return jdbcTemplate.query(sql, new UserMapper());
     }
 
     @Override
     public User findById(int userId) {
-        final String sql = "select user_id, username, firstname, lastname, email, location_id " +
+        final String sql = "select user_id, username, firstname, lastname, email, location_id, app_user_id " +
                 "from users where user_id = ?;";
 
         return jdbcTemplate.query(sql, new UserMapper(), userId).stream().findAny().orElse(null);
@@ -39,8 +39,8 @@ public class UserJdbcTemplateRepository implements UserRepository {
     @Override
     public User add(User user) {
 
-        final String sql = "insert into users (username, firstname, lastname, email, location_id) " +
-                "values (?,?,?,?,?);";
+        final String sql = "insert into users (username, firstname, lastname, email, location_id, app_user_id) " +
+                "values (?,?,?,?,?,?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowAffected = jdbcTemplate.update(connection -> {
@@ -50,6 +50,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
             ps.setString(3, user.getLastName());
             ps.setString(4, user.getEmail());
             ps.setInt(5, user.getLocationId());
+            ps.setInt(6, user.getAppUserId());
             return ps;
         }, keyHolder);
 
@@ -68,7 +69,8 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 "firstname = ?, " +
                 "lastname = ?, " +
                 "email = ?, " +
-                "location_id = ? " +
+                "location_id = ?, " +
+                "app_user_id = ? " +
                 "where user_id = ?;";
 
         return jdbcTemplate.update(sql,
@@ -77,6 +79,7 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 user.getLastName(),
                 user.getEmail(),
                 user.getLocationId(),
+                user.getAppUserId(),
                 user.getUserId()) > 0;
     }
 

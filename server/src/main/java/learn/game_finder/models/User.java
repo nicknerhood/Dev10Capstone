@@ -9,6 +9,8 @@ public class User {
     private String email;
     private int locationId;
 
+    private int appUserId;
+
     public int getUserId() {
         return userId;
     }
@@ -47,6 +49,16 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+
+    public int getAppUserId() {
+        return appUserId;
+    }
+
+    public void setAppUserId(int appUserId) {
+        this.appUserId = appUserId;
     }
 
     public Integer getLocationId() {

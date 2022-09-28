@@ -95,6 +95,16 @@ public class UserService {
             result.addMessage("email cannot be null", ResultType.INVALID);
         }
 
+        List<User> all = repository.findAll();
+        for (User value : all) {
+            if (user.getAppUserId() == value.getAppUserId() &&
+                    user.getFirstName().equalsIgnoreCase(value.getFirstName()) &&
+                    user.getLastName().equalsIgnoreCase(value.getLastName()) &&
+                    user.getEmail().equals(value.getEmail())) {
+                result.addMessage("Cannot create duplicate users.", ResultType.INVALID);
+            }
+        }
+
         return result;
 
 
