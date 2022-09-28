@@ -70,12 +70,12 @@ public class PickUpController {
         return ErrorResponse.build(result);
     }
 
-    @DeleteMapping("/{gameId}")
-    public ResponseEntity<?> deleteById(@PathVariable int pickUpId){
-        Result<PickUp> result = service.deleteById(pickUpId);
-        if(result.isSuccess()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return ErrorResponse.build(result);
-    }
+//    @DeleteMapping("/{gameId}")
+//    public ResponseEntity<?> deleteById(@PathVariable int pickUpId){
+//        Result<PickUp> result = service.deleteById(pickUpId);
+//        if(result.isSuccess()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        return ErrorResponse.build(result);
+//    }
 }

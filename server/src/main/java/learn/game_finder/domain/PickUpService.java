@@ -46,14 +46,15 @@ public class PickUpService {
             return result;
         }
 
-        if(repository.findIfGameIdExists(pickUp.getGameId()) <= 0){
-            result.addMessage("Game not found. Please select a valid game", ResultType.INVALID);
-            return result;
-        }
-        if(repository.findIfUserIdExists(pickUp.getUserId()) <=0){
-            result.addMessage("User not found. Please select a valid user", ResultType.INVALID);
-            return result;
-        }
+//        if(repository.findIfGameIdExists(pickUp.getGameId()) <= 0){
+//            result.addMessage("Game not found. Please select a valid game", ResultType.INVALID);
+//            return result;
+//        }
+//
+//        if(repository.findIfUserIdExists(pickUp.getUserId()) <=0){
+//            result.addMessage("User not found. Please select a valid user", ResultType.INVALID);
+//            return result;
+//        }
 
         pickUp = repository.add(pickUp);
         result.setPayload(pickUp);
@@ -76,12 +77,8 @@ public class PickUpService {
         return result;
     }
 
-    public Result<PickUp> deleteById(int pickUpId){
-        Result<PickUp> result = new Result<>();
-        if(!repository.deleteById(pickUpId)){
-            result.addMessage("PickUp was not found", ResultType.NOT_FOUND);
-        }
-        return result;
+    public boolean deleteById(int pickUpId){
+        return repository.deleteById(pickUpId);
     }
 
     private Result<PickUp> validate(PickUp pickUp){
