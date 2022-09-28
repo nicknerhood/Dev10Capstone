@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
+import java.util.ArrayList;
 
 @Repository
 public class PickUpJdbcTemplateRepository implements PickUpRepository{
@@ -44,7 +45,7 @@ public class PickUpJdbcTemplateRepository implements PickUpRepository{
         final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
                 +"from pickups "
                 +"where game_id = ?;";
-        return jdbcTemplate.query(sql, new PickUpMapper());
+        return new ArrayList<>(jdbcTemplate.query(sql, new PickUpMapper(), gameId));
     }
 
     @Override
@@ -52,20 +53,20 @@ public class PickUpJdbcTemplateRepository implements PickUpRepository{
         final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
                 +"from pickups "
                 +"where location_id = ?;";
-        return jdbcTemplate.query(sql, new PickUpMapper());
+        return new ArrayList<>(jdbcTemplate.query(sql, new PickUpMapper(), locationId));
     }
 
     @Override
-    public List<PickUp> findByUserId(int pickUpId) {
+    public List<PickUp> findByUserId(int userId) {
         final String sql = "select pickup_id, pickup_info, play_date, location_id, game_id, user_id "
                 +"from pickups "
                 +"where user_id = ?;";
-        return jdbcTemplate.query(sql, new PickUpMapper());
+        return new ArrayList<>(jdbcTemplate.query(sql, new PickUpMapper(), userId));
     }
 
     @Override
     public PickUp add(PickUp pickUp) {
-        final String sql = "insert into pickups (pickup_info, play_date, location_id, game_id, user_id "
+        final String sql = "insert into pickups (pickup_info, play_date, location_id, game_id, user_id) "
                 +" values (?,?,?,?,?);";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
