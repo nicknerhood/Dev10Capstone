@@ -20,13 +20,13 @@ They can also select games or pickups as favorites, and view a list of said favo
 | DDL: User and Location                | .5                   | Done        | Both              |
 | DDL: PickUp and Game                  | 2                    | Done        | Both              |
 | DML: Test Data                        | 2                    | Done        | Both              |
-| ---BACKEND---                         |                      | Not Started |                   |
+| ---BACKEND---                         |                      |             |                   |
 | Models:                               |                      | Done        |                   |
 | - User                                | 1                    | Done        | Ethan             |
 | - Location                            | 1                    | Done        | Ethan             |
 | - PickUp                              | 1                    | Done        | Nick              |
 | - Game                                | 1                    | Done        | Nick              |
-| Data Layer (Repos and JdbcTemplates): |                      | Not Started |                   |
+| Data Layer (Repos and JdbcTemplates): |                      |             |                   |
 | - User                                | 2                    | Done        | Ethan             |
 | - Location                            | 1                    | Done        | Ethan             |
 | - PickUp                              |                      | Done        | Nick              |
@@ -38,14 +38,14 @@ They can also select games or pickups as favorites, and view a list of said favo
 | - Game                                |                      | Done        | Nick              |
 | -- findById                           | 1                    | Done        |                   |
 | -- findByGenre                        | 1                    | Done        |                   |
-| - Testing                             | 3                    | Not Started | Both              |
-| Domain Layer (Services):              |                      | Not Started |                   |
-| - Result and Validations              | 3                    | Not Started | Both              |
-| - User                                | 2                    | Not Started | Ethan             |
-| - Location                            | 2                    | Not Started | Ethan             |
-| - PickUp                              | 3                    | Not Started | Nick              |
-| - Game                                | 2                    | Not Started | Nick              |
-| - Testing                             | 3                    | Not Started | Both              |
+| - Testing                             | 3                    | Done        | Both              |
+| Domain Layer (Services):              |                      |             |                   |
+| - Result and Validations              | 3                    | Done        | Both              |
+| - User                                | 2                    | Done        | Ethan             |
+| - Location                            | 2                    | Done        | Ethan             |
+| - PickUp                              | 3                    | Done        | Nick              |
+| - Game                                | 2                    | Done        | Nick              |
+| - Testing                             | 3                    | Done        | Both              |
 | Controllers:                          |                      | Not Started |                   |
 | - User                                | 1                    | Not Started | Ethan             |
 | - Location                            | 1                    | Not Started | Ethan             |
