@@ -66,30 +66,7 @@ They can also select games or pickups as favorites, and view a list of said favo
 | Styling                               | 3                    | Not Started | Both              |
 | Static Pages (Home, About, etc)       | 1                    | Not Started | Both              |
 
-## Database Tables:
-- Users
-  - user_id
-  - username
-  - name/alias
-  - password
-  - email
-  - user_role
-- PickUps
-  - pickup_id
-  - description
-  - level of play (intensity)
-  - date
-  - location_id
-  - game_id
-  - user_id
-- Games
-  - game_id
-  - name
-  - image
-  - description
-  - genre
-- Locations
-  - location_id
-  - latitude
-  - longitude
+## Schema Diagram
+
+![](game_finder_schema.JPG)
 
