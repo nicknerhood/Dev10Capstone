@@ -46,3 +46,19 @@ create table pickups (
 		references users(user_id)
 );
 
+insert into locations(location_id, latitude, longitude) values
+		(1, 30.500120, -97.624291),
+        (2, 30.494237, -97.641349);
+        
+	insert into games values
+		(1, 'Football', null, 'Throw the old pigskin around', 'Sports'),
+        (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Fighting Game'),
+        (3, 'Dungeons and Dragons', null, 'Wanna be a wizard?', 'Board Game');
+        
+	insert into users values
+		(1, 'mrcoolguy', 'Nick', 'Nerhood', 'nrnrerhood@gmail.com', 1),
+        (2, 'mrtesting', 'Mister', 'Testing', 'test@test.com', 2);
+        
+	insert into pickups values
+		(1, 'Yo, come play Dungeon and Dragons', '2022-10-31', 1, 3, 1);
+

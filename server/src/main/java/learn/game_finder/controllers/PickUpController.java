@@ -5,6 +5,7 @@ import learn.game_finder.domain.Result;
 import learn.game_finder.models.PickUp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class PickUpController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/{pickUpId")
+    @PutMapping("/{pickUpId}")
     public ResponseEntity<?> update(@PathVariable int pickUpId, @RequestBody PickUp pickUp){
         if(pickUpId != pickUp.getPickUpId()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,12 +71,11 @@ public class PickUpController {
         return ErrorResponse.build(result);
     }
 
-//    @DeleteMapping("/{gameId}")
-//    public ResponseEntity<?> deleteById(@PathVariable int pickUpId){
-//        Result<PickUp> result = service.deleteById(pickUpId);
-//        if(result.isSuccess()){
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return ErrorResponse.build(result);
-//    }
+    @DeleteMapping("/{pickUpId}")
+    public ResponseEntity<?> deleteById(@PathVariable int pickUpId){
+        if(service.deleteById(pickUpId)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
