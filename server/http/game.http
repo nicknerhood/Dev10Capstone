@@ -1,0 +1,61 @@
+@JWT_TOKEN_ADMIN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4NDQ2MX0.-5dnblSc2jqW2IwuplVMsIfrr5wbLp45lu12ucc42Q8
+
+
+@url = http://localhost:8080/game
+
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "esementelli@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+###
+GET {{url}} HTTP/1.1
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
+
+###
+GET {{url}}/1 HTTP/1.1
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
+
+###
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
+
+{
+    "title": "Basketball",
+    "imagePath": null,
+    "gameInfo": "Throw da ball into da hoop",
+    "genre": "Sports"
+}
+
+###
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
+
+{
+    "title": "Baseball",
+    "imagePath": null,
+    "gameInfo": "Hit the ball really hard",
+    "genre": "Sports"
+}
+
+###
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
+
+{
+    "gameId": 1,
+    "title": "Softball",
+    "imagePath": null,
+    "gameInfo": "Hit the ball really hard",
+    "genre": "Sports"
+}
+
+###
+DELETE {{url}}/1 HTTP/1.1
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}

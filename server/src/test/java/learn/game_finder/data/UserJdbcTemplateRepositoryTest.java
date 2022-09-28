@@ -40,7 +40,7 @@ class UserJdbcTemplateRepositoryTest {
         User user = repository.findById(2);
         assertEquals("Mister", user.getFirstName());
         User userTwo = repository.findById(1);
-        assertEquals("Nerhood", userTwo.getLastName());
+        assertEquals("Doe", userTwo.getLastName());
 
     }
 

@@ -33,14 +33,14 @@ public class GameController {
         return ResponseEntity.ok(game);
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<Game> findByTitle(@PathVariable String title){
-        Game game = gameService.findByTitle(title);
-        if(game == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(game);
-    }
+//    @GetMapping("/{title}")
+//    public ResponseEntity<Game> findByTitle(@PathVariable String title){
+//        Game game = gameService.findByTitle(title);
+//        if(game == null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return ResponseEntity.ok(game);
+//    }
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody Game game){
@@ -51,13 +51,13 @@ public class GameController {
         return ErrorResponse.build(result);
     }
 
-    @PutMapping("/edit/{gameId}")
+    @PutMapping("/{gameId}")
     public ResponseEntity<?> update(@PathVariable int gameId, @RequestBody Game game){
         if(gameId != game.getGameId()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Result<Game> result = gameService.add(game);
+        Result<Game> result = gameService.update(game);
         if(result.isSuccess()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

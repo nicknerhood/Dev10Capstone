@@ -28,6 +28,7 @@ public class LocationController {
         return service.findAll();
     }
 
+
     @GetMapping("/{locationId}")
     public ResponseEntity<Location> findById(@PathVariable int locationId) {
         Location location = service.findById(locationId);

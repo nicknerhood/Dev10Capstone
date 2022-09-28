@@ -1,5 +1,8 @@
-@JWT_TOKEN_ADMIN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4MDU0N30.bourUAHu-WwOv8JkSG8BcBso85z7EDsGsMLaKQuYc18
+@JWT_TOKEN_ADMIN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4NTA4Nn0.ZvzG3YuNauCa5EDIy3olQ_Q-xg3J0aMMJPhT-gETDXM
+
+
 @url = http://localhost:8080/user
+
 
 ### find By Id
 GET {{url}} HTTP/1.1
@@ -11,34 +14,27 @@ Content-Type: application/json
 Authorization: Bearer {{JWT_TOKEN_ADMIN}}
 
 {
+    "username": "esementelli",
     "firstName": "james",
     "lastName": "sementelli",
-    "username": "esementelli",
-    "email": "esementelli@gmail.com"
+    "email": "esementelli@gmail.com",
+    "locationId": 2
 }
 
 ###
-PUT {{url}} HTTP/1/1
+PUT {{url}}/6 HTTP/1/1
 Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
 
 {
-    "userId": 1,
-    "firstName": "james",
-    "lastName": "sementelli",
+    "userId": 6,
     "username": "esementelli",
-    "email": "esementelli@gmail.com"
-}
-
-
-### Update
-PUT {{url}}/15 HTTP/1.1
-Content-Type: application/json
-
-{
-    "locationId": 15,
-    "latitude": 33,
-    "longitude": -99.9992
+    "firstName": "john",
+    "lastName": "sementelli",
+    "email": "esementelli@gmail.com",
+    "locationId": 2
 }
 
 ### Delete
-DELETE {{url}}/2 HTTP/1.1
+DELETE {{url}}/6 HTTP/1.1
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}

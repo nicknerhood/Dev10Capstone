@@ -1,13 +1,21 @@
 
-
-@JWT_TOKEN_ADMIN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4MDU0N30.bourUAHu-WwOv8JkSG8BcBso85z7EDsGsMLaKQuYc18
+@JWT_TOKEN_ADMIN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4NTA4Nn0.ZvzG3YuNauCa5EDIy3olQ_Q-xg3J0aMMJPhT-gETDXM
 
 @url = http://localhost:8080/location
 
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "esementelli@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+
+
 ### find By Id
 GET {{url}} HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4MDU0N30.bourUAHu-WwOv8JkSG8BcBso85z7EDsGsMLaKQuYc18
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnYW1lX2ZpbmRlciIsInN1YiI6ImVzZW1lbnRlbGxpQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImV4cCI6MTY2NDM4MzMxNX0.ACkTS9pUch41mLgquTSN13IA7PBlFWF2nT2RUIRGvyU
 ### Add
 POST {{url}} HTTP/1/1
 Content-Type: application/json
@@ -30,12 +38,12 @@ Authorization: Bearer {{JWT_TOKEN_ADMIN}}
 
 
 ### Update
-PUT {{url}}/15 HTTP/1.1
+PUT {{url}}/1 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer {{{{JWT_TOKEN_ADMIN}}}}
+Authorization: Bearer {{JWT_TOKEN_ADMIN}}
 
 {
-    "locationId": 15,
+    "locationId": 1,
     "latitude": 33,
     "longitude": -99.9992
 }
