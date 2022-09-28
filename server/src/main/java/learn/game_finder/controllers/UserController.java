@@ -41,7 +41,7 @@ public class UserController {
         }
 
         @PostMapping
-        public ResponseEntity<Object> add(@RequestBody User user) {
+        public ResponseEntity<Object> add(@RequestBody User user, @RequestHeader  ) {
             Result<User> result = service.add(user);
             if (result.isSuccess()) {
                 return new ResponseEntity<>(result.getPayload(), HttpStatus.CREATED);
