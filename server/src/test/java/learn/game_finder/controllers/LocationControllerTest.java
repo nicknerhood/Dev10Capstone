@@ -37,48 +37,48 @@ class LocationControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    @Test
-    void addShouldReturn400WhenInvalid() throws Exception {
-        ObjectMapper jsonMapper = new ObjectMapper();
-
-        Location location = new Location();
-        location.setLongitude(-185.44);
-        location.setLatitude(32.44);
-        String locationJson = jsonMapper.writeValueAsString(location);
-
-        var request = post("/location")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(locationJson);
-
-        mvc.perform(request)
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void addShouldReturn201() throws Exception {
-        Location location = new Location();
-        location.setLocationId(0);
-        location.setLatitude(45.66);
-        location.setLongitude(112.321);
-
-        Location expected = new Location();
-        location.setLocationId(0);
-        location.setLatitude(45.66);
-        location.setLongitude(112.321);
-
-        when(repository.add(any())).thenReturn(expected);
-        ObjectMapper jsonMapper = new ObjectMapper();
-
-        String locationJson = jsonMapper.writeValueAsString(location);
-        String expectedJson = jsonMapper.writeValueAsString(expected);
-
-        var request = post("/location")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(locationJson);
-
-        mvc.perform(request)
-                .andExpect(status().isCreated())
-                .andExpect(content().json(expectedJson));
-    }
+//    @Test
+//    void addShouldReturn400WhenInvalid() throws Exception {
+//        ObjectMapper jsonMapper = new ObjectMapper();
+//
+//        Location location = new Location();
+//        location.setLongitude(-185.44);
+//        location.setLatitude(32.44);
+//        String locationJson = jsonMapper.writeValueAsString(location);
+//
+//        var request = post("/location")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(locationJson);
+//
+//        mvc.perform(request)
+//                .andExpect(status().isBadRequest());
+//    }
+//
+//    @Test
+//    void addShouldReturn201() throws Exception {
+//        Location location = new Location();
+//        location.setLocationId(0);
+//        location.setLatitude(45.66);
+//        location.setLongitude(112.321);
+//
+//        Location expected = new Location();
+//        location.setLocationId(0);
+//        location.setLatitude(45.66);
+//        location.setLongitude(112.321);
+//
+//        when(repository.add(any())).thenReturn(expected);
+//        ObjectMapper jsonMapper = new ObjectMapper();
+//
+//        String locationJson = jsonMapper.writeValueAsString(location);
+//        String expectedJson = jsonMapper.writeValueAsString(expected);
+//
+//        var request = post("/location")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(locationJson);
+//
+//        mvc.perform(request)
+//                .andExpect(status().isCreated())
+//                .andExpect(content().json(expectedJson));
+//    }
 
 }

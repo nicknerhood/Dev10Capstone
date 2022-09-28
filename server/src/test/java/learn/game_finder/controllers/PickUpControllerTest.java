@@ -20,9 +20,4 @@ class PickUpControllerTest {
     @Autowired
     MockMvc mvc;
 
-    @Test
-    void addShouldReturn400WhenEmpty() throws Exception {
-
-    }
-
 }
