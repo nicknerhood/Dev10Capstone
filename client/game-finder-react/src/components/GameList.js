@@ -11,7 +11,7 @@ function Games() {
  const [allGames, setAllGames] = useState([])
 
   const history = useHistory();
-  
+
   
 
 
@@ -40,7 +40,7 @@ function Games() {
     search.preventDefault();
     search = document.getElementById("search-box").value;
 
-    const filteredGames = games.filter(game => game.genre.toLowerCase().includes(search));
+    const filteredGames = games.filter(game => game.genre.toLowerCase()==(search.toLowerCase()));
     setGames(filteredGames);
   }
 
