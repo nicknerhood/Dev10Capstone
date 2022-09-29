@@ -41,6 +41,15 @@ class UserServiceTest {
     }
 
     @Test
+    void shouldNotAddUserWithAppUserInUse(){
+        User user = makeUser();
+        user.setAppUserId(1);
+        Result<User> actual = service.add(user);
+        assertEquals(ResultType.SUCCESS, actual.getType() );
+
+    }
+
+    @Test
     void shouldAdd(){
         User user = makeUser();
         User mockOut = makeUser();
