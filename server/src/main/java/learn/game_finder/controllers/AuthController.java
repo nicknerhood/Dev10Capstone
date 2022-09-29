@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,19 +41,25 @@ public class AuthController {
         String password = credentials.get("password");
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+       // try {
+            var authentication = authenticationManager.authenticate(token);
+            if (authentication.isAuthenticated()) {
+                User user = (User) authentication.getPrincipal();
 
-        var authentication = authenticationManager.authenticate(token);
-        if (authentication.isAuthenticated()) {
-            AppUser user = (AppUser) authentication.getPrincipal();
+                String jwtToken = converter.getTokenFromUser(user);
 
-            String jwtToken = converter.getTokenFromUser(user);
+                Map<String, String> returnMap = new HashMap<>();
+                returnMap.put("jwt_token", jwtToken); //HERE
+                return new ResponseEntity<>(returnMap, HttpStatus.OK);
+            }
 
-            Map<String, String> returnMap = new HashMap<>();
-            returnMap.put("jwt_token", jwtToken);
-            return new ResponseEntity<>(returnMap, HttpStatus.OK);
-        }
+
+//        } catch (AuthenticationException ex){
+//            System.out.println(ex);
+//        }
 
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
     }
 
 
