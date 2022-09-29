@@ -39,7 +39,8 @@ function Register() {
     fetch('http://localhost:8080/create_account', init)
     .then(resp => {
       switch (resp.status) {
-        case 200:
+        case 201:
+            return resp.json();
         case 400:
           return resp.json();
         case 403:
@@ -49,13 +50,13 @@ function Register() {
       }
     })
     .then(body => {
-      if (body && body.id) {
+      if (body && body.appUserId) {
         history.push('/login')
       } else {
         setErrors(body);
       }
     })
-    .catch(err => history.push('/error', {errorMessage: err}));
+    .catch(err => history.push('/errors', {errorMessage: err}));
     
     
   }
