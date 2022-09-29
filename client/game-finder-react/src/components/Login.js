@@ -6,11 +6,11 @@ import Errors from "./Errors";
 import UserContext from "../UserContext";
 
 const DEFAULT_LOGIN = {
-    username: "",
-    password: ""
+    username: '',
+    password: ''
 }
 
-function Login( { onSubmit}) {
+function Login( { onSubmit} ) {
 
     const [login, setLogin] = useState(DEFAULT_LOGIN);
     const [errors, setErrors] = useState([]);
@@ -41,7 +41,7 @@ function Login( { onSubmit}) {
                         return Promise.reject('Something terrible happened');
                 }
             })
-            .then(body => authManager.login(body.jwt_token))
+            .then(body => authManager.login(body.jwt_token)) // HERE
             .catch(err => history.push('/errors', {errorMessage: err}));
     }
 
