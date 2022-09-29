@@ -6,6 +6,9 @@ import jwt_decode from 'jwt-decode';
 import Login from './components/Login';
 import UserContext from './UserContext';
 import { BrowserRouter as Router, Switch, Link, Redirect, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import Register from './components/Register';
+import ServerError from './components/ServerError';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -54,12 +57,19 @@ function App() {
     <div className='App'>
       <UserContext.Provider value={authManager} >
         <Router>
+          <Nav />
           <div className='container'>
             <Switch>
               <Route path='/login'>
                 {!user ? <Login /> :<Redirect to="/" />}
               </Route>
-              <Route path='/'>
+              <Route path='/register'>
+                {!user ? <Register /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/errors">
+                <ServerError />
+              </Route>
+              <Route exact path='/'>
                 <Home />
               </Route>
             </Switch>
