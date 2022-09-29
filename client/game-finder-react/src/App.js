@@ -9,6 +9,10 @@ import { BrowserRouter as Router, Switch, Link, Redirect, Route } from 'react-ro
 import Nav from './components/Nav';
 import Register from './components/Register';
 import ServerError from './components/ServerError';
+import About from './components/About';
+import Game from './components/Game';
+import Games from './components/GameList';
+import GameForm from './components/AddGame';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -65,6 +69,15 @@ function App() {
               </Route>
               <Route path='/register'>
                 {!user ? <Register /> : <Redirect to="/" />}
+              </Route>
+              <Route path="/about">
+                <About/>
+              </Route>
+              <Route exact path="/game">
+                <Games/>
+              </Route>
+              <Route path={['/game/add', '/game/edit/:editId']}>
+                <GameForm /> 
               </Route>
               <Route exact path="/errors">
                 <ServerError />

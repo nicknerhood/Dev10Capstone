@@ -7,12 +7,18 @@ function Nav() {
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
-            <Link className="navbar-brand" to="/">Game Finder</Link>
+            <Link className="navbar-brand" to="/">GameFinder</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <Link to="/about" className='nav-link'>About</Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/game" className='nav-link'>Games</Link>
+                </li>
                     {!authManager.user ? (<>
                         <li className="nav-item">
                             <Link to="/login" className='nav-link'>Login</Link>
