@@ -75,6 +75,7 @@ class UserJdbcTemplateRepositoryTest {
         user.setLastName("Doe");
         user.setEmail("JohnDoe@gmail.com");
         user.setLocationId(2);
+        user.setAppUserId(3);
         return user;
     }
 }

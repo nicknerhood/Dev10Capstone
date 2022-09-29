@@ -9,6 +9,16 @@ public class User {
     private String email;
     private int locationId;
 
+    private int appUserId;
+
+    public int getAppUserId() {
+        return appUserId;
+    }
+
+    public void setAppUserId(int appUserId) {
+        this.appUserId = appUserId;
+    }
+
     public int getUserId() {
         return userId;
     }
