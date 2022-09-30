@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home.js'
 import { useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import Login from './components/Login';
 import UserContext from './UserContext';
-import { BrowserRouter as Router, Switch, Link, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Link, Redirect, Route, useHistory } from 'react-router-dom';
 import Nav from './components/Nav';
 import Register from './components/Register';
 import ServerError from './components/ServerError';
@@ -13,11 +12,14 @@ import About from './components/About';
 import Game from './components/Game';
 import Games from './components/GameList';
 import GameForm from './components/AddGame';
+import NotFound from './components/NotFound';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
 function App() {
   const [user, setUser] = useState(null);
+
+  const history = useHistory();
 
   const login = (token) => {
     const decodedToken = jwt_decode(token);
@@ -39,6 +41,13 @@ function App() {
   } 
 
   const logout = () => {
+    var answer = window.confirm("Are you sure you want to log out?");
+
+    if(!answer){
+      return null;
+    }
+
+
     localStorage.removeItem(LOCALSTORAGE_KEY);
     setUser(null);
   }
@@ -85,8 +94,10 @@ function App() {
               <Route exact path='/'>
                 <Home />
               </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
             </Switch>
-
           </div>
         </Router>
       </UserContext.Provider>

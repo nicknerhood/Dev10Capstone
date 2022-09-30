@@ -41,7 +41,7 @@ public class AuthController {
         String password = credentials.get("password");
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-       // try {
+       try {
             var authentication = authenticationManager.authenticate(token);
             if (authentication.isAuthenticated()) {
                 User user = (User) authentication.getPrincipal();
@@ -54,9 +54,9 @@ public class AuthController {
             }
 
 
-//        } catch (AuthenticationException ex){
-//            System.out.println(ex);
-//        }
+        } catch (AuthenticationException ex){
+            System.out.println(ex);
+        }
 
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 

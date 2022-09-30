@@ -69,27 +69,31 @@ function Register() {
     setRegister(registerCopy);
   }
 
-  return (<>
-    <h2>Register</h2>
-    {errors.length > 0 ? <Errors errors={errors} /> : null}
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">Username:</label>
-        <input name="username" type="text" className="form-control" id="username" value={register.username} onChange={handleChange} />
+  return (
+    <div className="container">
+      <h1 className="text-center">Register</h1>
+      {errors.length > 0 ? <Errors errors={errors} /> : null}
+      <div className="col-3 border m-4 mx-auto justify-self-center text-center">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input name="username" type="text" className="form-control" id="username" value={register.username} onChange={handleChange} />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input name="password" type="password" className="form-control" id="password" value={register.password} onChange={handleChange} />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input name="confirmPassword" type="password" className="form-control" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
+        </div>
+        <div>
+          <button type="submit" className="btn btn-primary m-2 mx-auto">Register</button>
+        </div>
+      </form>
       </div>
-      <div className="form-group">
-        <label htmlFor="password">Password:</label>
-        <input name="password" type="password" className="form-control" id="password" value={register.password} onChange={handleChange} />
-      </div>
-      <div className="form-group">
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input name="confirmPassword" type="password" className="form-control" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
-      </div>
-      <div className="form-group">
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </>);
+    </div>
+  );
 }
 
 export default Register;
