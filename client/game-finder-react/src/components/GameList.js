@@ -16,7 +16,7 @@ function Games() {
 
 
 
-
+function FindAllGames(){
   useEffect(() => {
     fetch('http://localhost:8080/game')
     .then(resp => {
@@ -32,6 +32,7 @@ function Games() {
     })
     .catch(err => history.push('/error', {errorMessage: err}));
   },[])
+}
   function handleAddGame(){
     return history.push('/game/add')
   }

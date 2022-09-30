@@ -14,6 +14,7 @@ import Games from './components/GameList';
 import GameForm from './components/AddGame';
 import NotFound from './components/NotFound';
 import PickUpForm from './components/AddPickUp';
+import PickUpList from './components/PickUpList';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -90,7 +91,7 @@ function App() {
                 <GameForm /> 
               </Route>
               <Route exact path='/pickup'>
-                <PickUpForm />
+                <PickUpList />
               </Route>
               <Route exact path="/errors">
                 <ServerError />

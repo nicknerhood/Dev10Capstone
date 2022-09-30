@@ -19,17 +19,24 @@ function Game({ game }) {
   }
 
   return (
-    <tr>
+
+     <tr>
       <td>{game.title}</td>
       <td>{game.gameInfo}</td>
-      <td>{game.genre}</td>
-      <td>{game.imagePath}</td>
-      <td>
+       <td>{game.genre}</td>
+       <td>{game.imagePath}</td>
+       <td>
        <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-      </td>
-    </tr>
+       </td>
+    </tr> 
   );
 }
 
+
+
+   
+
+
 export default Game;
+
