@@ -19,6 +19,9 @@ function Nav() {
                 <li className="nav-item">
                     <Link to="/game" className='nav-link'>Games</Link>
                 </li>
+                <li className="nav-item">
+                    <Link to="/pickup" className="nav-link">Pickups</Link>
+                </li>
                     {!authManager.user ? (<>
                         <li className="nav-item">
                             <Link to="/login" className='nav-link'>Login</Link>
