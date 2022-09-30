@@ -1,5 +1,6 @@
 package learn.game_finder.data;
 
+import learn.game_finder.models.Location;
 import learn.game_finder.models.PickUp;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,8 @@ public interface PickUpRepository {
 
     @Transactional
     boolean deleteById(int pickUpId);
+
+    Location getLocationFromLocationId(int locationId);
 
     int findIfGameIdExists(int gameId);
     int findIfUserIdExists(int userId);

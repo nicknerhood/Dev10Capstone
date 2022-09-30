@@ -1,6 +1,8 @@
 package learn.game_finder.data;
 
+import learn.game_finder.data.mappers.LocationMapper;
 import learn.game_finder.data.mappers.PickUpMapper;
+import learn.game_finder.models.Location;
 import learn.game_finder.models.PickUp;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -54,6 +56,15 @@ public class PickUpJdbcTemplateRepository implements PickUpRepository{
                 +"from pickups "
                 +"where location_id = ?;";
         return new ArrayList<>(jdbcTemplate.query(sql, new PickUpMapper(), locationId));
+    }
+
+    @Override
+    public Location getLocationFromLocationId(int locationId){
+        final String sql = "select location_id, latitude, longitude " +
+                " from locations " +
+                "where location_id = ?;";
+        return jdbcTemplate.query(sql, new LocationMapper(), locationId).stream()
+                .findFirst().orElse(null);
     }
 
     @Override
