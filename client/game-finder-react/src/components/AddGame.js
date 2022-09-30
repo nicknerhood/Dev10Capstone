@@ -9,6 +9,8 @@ const DEFAULT_GAME = { title: '', imagePath: '', gameInfo: '', genre: ''}
 
 function GameForm() {
 
+    
+
   const [game, setGame] = useState(DEFAULT_GAME);
   const [errors, setErrors] = useState([]);
 
