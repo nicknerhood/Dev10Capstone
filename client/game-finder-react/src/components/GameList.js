@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../gameList.css';
+
 // import UserContext from '../UserContext';
 
 import Game from './Game';
@@ -40,7 +42,7 @@ function Games() {
     search.preventDefault();
     search = document.getElementById("search-box").value;
 
-    const filteredGames = games.filter(game => game.genre.toLowerCase().includes(search));
+    const filteredGames = games.filter(game => game.genre.toLowerCase() == (search.toLowerCase()));
     setGames(filteredGames);
   }
 
@@ -49,41 +51,53 @@ function Games() {
   }
 
 
-
-
-
-
+  
 
   return (
     <>
-      <h2>Games</h2>
-     
-     <button type="button" className="btn btn-primary mb-3" onClick={handleAddGame}>Add Game</button>
-     <form onSubmit={handleSubmit} className="m-5">
-                <div className="input-group">
-                    <input id="search-box" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="submit" className="btn btn-outline-primary">Search</button>
-                    <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
-                </div>
-            </form>
-            {SearchedGames != games &&
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Game Info</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Image</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {games.map(game => <Game key={game.id} game={game} />)}
-        </tbody>
-      </table>
-}
-    </>
-  )
+          <h2>Games</h2>
+
+          <button type="button" className="btn btn-primary mb-3" onClick={handleAddGame}>Add Game</button>
+          <form onSubmit={handleSubmit} className="m-5">
+              <div className="input-group">
+                  <input id="search-box" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  <button type="submit" className="btn btn-outline-primary">Search</button>
+                  <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
+              </div>
+          </form>
+
+
+ 
+                
+               
+                
+            
+          
+
+          <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
+                
+                {games.map(game => <Game key={game.id} game={game}  />)}
+                
+            </div>
+
+    </>         
+  );
 }
 
-export default Games;
+                
+          
+        
+          
+             
+
+         
+          
+
+
+            
+  
+
+
+
+                    
+                    export default Games;
