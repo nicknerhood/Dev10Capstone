@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 
-function Game({ game }) {
+function PickUp({ pickup }) {
 
     const history = useHistory();
 
@@ -14,7 +14,7 @@ function Game({ game }) {
 
   const handleEdit = () => {
     // use history and push to the correct url
-    history.push(`/game/edit/${pickup.pickupId}`);
+    history.push(`/pickup/edit/${pickup.pickupId}`);
   }
  
   return (
@@ -22,7 +22,7 @@ function Game({ game }) {
       <td>{pickup.pickUpInfo}</td>
       <td>{pickup.playDate}</td>
       <td>{pickup.locationId}</td>
-      <td>{pickUpInfo.game}</td>
+      {/* <td>{pickUpInfo.game}</td> */}
       <td>
        <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
@@ -31,4 +31,4 @@ function Game({ game }) {
   );
 }
 
-export default Game;
+export default PickUp;
