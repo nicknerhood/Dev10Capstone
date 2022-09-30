@@ -5,73 +5,76 @@ import { useHistory, useLocation } from "react-router-dom";
 import Errors from "./Errors";
 import UserContext from "../UserContext";
 
-const DEFAULT_LOGIN = {
-    username: '',
-    password: ''
-}
-
 function Login( { onSubmit} ) {
-
-    const [login, setLogin] = useState(DEFAULT_LOGIN);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
     const history = useHistory();
     const authManager = useContext(UserContext);
 
-    const handleSubmit = (evt) => {
+    const handleSubmit =  async (evt) => {
         evt.preventDefault();
 
-        const init = {
-            method: 'POST',
+        const response = await fetch("http://localhost:8080/authenticate", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(login)
-        };
+            body: JSON.stringify({username, password,}),
+        });
 
-        fetch('http://localhost:8080/authenticate', init)
-            .then(resp => {
-                switch (resp.status){
-                    case 200:
-                        return resp.json();
-                    case 403:
-                        setErrors(['The login information is incorrect']);
-                        break;
-                    default:
-                        return Promise.reject('Something terrible happened');
-                }
-            })
-            .then(body => authManager.login(body.jwt_token)) // HERE
-            .catch(err => history.push('/errors', {errorMessage: err}));
+        if(response.status === 200){
+            const {jwt_token} = await response.json();
+            authManager.login(jwt_token);
+            history.push("/");
+        }else if(response.status === 403){
+            setErrors(["Login failed"]);
+        }else{
+            setErrors(["Unknown Error"]);
+        }
     }
 
-    const handleChange = (evt) => {
-        const loginCopy = {...login};
-
-        loginCopy[evt.target.name] = evt.target.value;
-
-        setLogin(loginCopy);
+    const handleClick = () => {
+        history.push("/register");
+      }
+    
+      return (
+        <div>
+         <h1 className="text-center">Login</h1>
+         {errors.length > 0 ? <Errors errors={errors} /> : null}
+         <div className="col-3 border m-4 mx-auto d-flex justify-self-center text-center">
+          <form  onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                onChange={(event) => setUsername(event.target.value)}
+                id="username"
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                onChange={(event) => setPassword(event.target.value)}
+                id="password"
+              />
+            </div>
+            <div>
+              <button className="btn btn-primary m-2 mx-auto" type="submit">Login</button>
+            </div>
+          </form>
+         </div>
+         <p className="text-center">New to Game-Finder?</p>
+         <div>
+              <button className="btn btn-primary m-2 mx-auto d-flex justify-self-center"
+              onClick={handleClick}>
+                Register
+              </button>
+         </div>
+        </div>
+      );
     }
-
-    return (
-        <>
-            <h2>Login</h2>
-            {errors.length > 0 ? <Errors errors={errors} /> : null}
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input name="username" type="text" className="form-control" id="username" value={login.username} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input name="password" type="password" className="form-control" id="password" value={login.password} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </>
-    );
-}
 
 export default Login;

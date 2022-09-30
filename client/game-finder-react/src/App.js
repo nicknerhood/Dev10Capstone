@@ -4,7 +4,7 @@ import { useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import Login from './components/Login';
 import UserContext from './UserContext';
-import { BrowserRouter as Router, Switch, Link, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Link, Redirect, Route, useHistory } from 'react-router-dom';
 import Nav from './components/Nav';
 import Register from './components/Register';
 import ServerError from './components/ServerError';
@@ -18,6 +18,8 @@ const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
 function App() {
   const [user, setUser] = useState(null);
+
+  const history = useHistory();
 
   const login = (token) => {
     const decodedToken = jwt_decode(token);

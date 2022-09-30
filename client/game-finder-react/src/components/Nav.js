@@ -32,7 +32,7 @@ function Nav() {
                     </>):
                         <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Logout</button>}
                 </ul>
-                {authManager.user && <span className="navbar-text">{`Welcome ${authManager.user.username}`}</span>}
+                {authManager.user && <span className="navbar-text text-success">{`Welcome ${authManager.user.username}`}</span>}
             </div>
         </nav>
     );
