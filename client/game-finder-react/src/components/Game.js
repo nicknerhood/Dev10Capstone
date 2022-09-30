@@ -9,6 +9,7 @@ function Game({ game }) {
     const authManager = useContext(UserContext);
 
   const handleDelete = () => {
+
     history.push(`/game/delete/${game.gameId}`);
   }
 
