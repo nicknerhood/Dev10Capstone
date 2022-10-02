@@ -24,7 +24,7 @@ function Game({ game }) {
   
   
     <>
-    <div className="card text-dark bg-light" key={game.gameId}>
+    {/* <div className="card text-dark bg-light" key={game.gameId}>
                     <div className="card-header">
                         <h5 className="card-title">{game.title}</h5>
                     </div>
@@ -34,18 +34,21 @@ function Game({ game }) {
                         <p></p>
                     </div>
                     </div>
-                    </>
-  )
-    {/* // <tr>
-    //   <td>{game.title}</td>
-    //   <td>{game.gameInfo}</td>
-    //   <td>{game.genre}</td>
-    //   <td>{game.imagePath}</td>
-    //   <td>
-    //    <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
-    //     <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-    //   </td>
-    // </tr> */}
+                    </> */}
+  
+     <tr>
+       <td>{game.title}</td>
+      <td>{game.gameInfo}</td>
+       <td>{game.genre}</td>
+       <td>{game.imagePath}</td>
+       <td>
+        <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
+         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+       </td>
+     </tr>
+    
+    </>
+  );
   
 }
 
