@@ -61,7 +61,7 @@ function PickUp({ pickup, game }) {
 
   const handleEdit = () => {
     // use history and push to the correct url
-    history.push(`/pickup/edit/${pickup.pickupId}`);
+    history.push(`/pickup/edit/${pickup.pickUpId}`);
   }
 
   const filteredGames = games.filter(game => game.gameId == pickup.gameId);
@@ -75,9 +75,11 @@ function PickUp({ pickup, game }) {
                     <div className="card-header">
                       {filteredGames.map(game => 
                         <h5 className="card-title" key= {pickup.gameId}>Game: {game.title}</h5>
+                        
   )}
                       
                     </div>
+                    <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
                     <div className="card-body">
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>
                         <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Genre: ${pickup.playDate} `}</em></p>

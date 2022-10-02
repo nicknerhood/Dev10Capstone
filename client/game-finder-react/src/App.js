@@ -92,7 +92,7 @@ function App() {
               <Route path={['/game/add', '/game/edit/:editId']}>
                 <GameForm /> 
               </Route>
-              <Route path= {['/pickup/add', '/pickup/:editId']}>
+              <Route path= {['/pickup/add', '/pickup/edit/:editId']}>
                 <PickUpForm />
               </Route>
               <Route exact path='/pickup'>

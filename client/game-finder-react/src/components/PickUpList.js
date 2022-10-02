@@ -34,6 +34,7 @@ function PickupList() {
   function handleAddPickup(){
     return history.push('/pickup/add')
   }
+  
 
   function handleSubmit(search, evt){
     search.preventDefault();
