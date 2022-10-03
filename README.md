@@ -55,16 +55,16 @@ They can also select games or pickups as favorites, and view a list of said favo
 | Create React App                      | 1                    | Done        | Both              |
 | Components                            | 3                    | In Progress | Both              |
 | Roles and Authentication              | 3                    | In Progress | Both              |
-| GoogleMaps API                        | 4                    | Not Started | Both              |
-| View PickUps                          | 2                    | Not Started | Both              |
-| Add PickUp                            | 2                    | Not Started | Both              |
-| Update PickUp                         | 2                    | Not Started | Both              |
-| Delete PickUp                         | 2                    | Not Started | Both              |
+| GoogleMaps API                        | 4                    | In Progress | Both              |
+| View PickUps                          | 2                    | In Progress | Both              |
+| Add PickUp                            | 2                    | In Progress | Both              |
+| Update PickUp                         | 2                    | In Progress | Both              |
+| Delete PickUp                         | 2                    | In Progress | Both              |
 | Game List                             | 2                    | Done        | Both              |
 | View Games                            | 2                    | Done        | Both              |
 | Debugging                             | 3                    | Not Started | Both              |
 | Styling                               | 3                    | Not Started | Both              |
-| Static Pages (Home, About, etc)       | 1                    | Not Started | Both              |
+| Static Pages (Home, About, etc)       | 1                    | Done        | Both              |
 
 ## Schema Diagram
 
