@@ -21,13 +21,8 @@ function PickupForm() {
   const [pickup, setPickup] = useState(DEFAULT_PICKUP);
   const [errors, setErrors] = useState([]);
   const [games, setGames] = useState([]);
-  const [game, setGame] = useState({
-    "bookId": 0
-});
-
-  
-
   const { editId } = useParams();
+
   const history = useHistory();
 
 
@@ -157,7 +152,7 @@ function PickupForm() {
    
   }
 
-  const handleCancel = () => history.push('/game')
+  const handleCancel = () => history.push('/pickup')
 
 
   return (
