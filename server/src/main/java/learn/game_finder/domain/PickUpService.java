@@ -36,7 +36,7 @@ public class PickUpService {
         return this.repository.findByUserId(userId);
     }
 
-    
+
 
     public Result<PickUp> add(PickUp pickUp){
         Result<PickUp> result= validate(pickUp);
