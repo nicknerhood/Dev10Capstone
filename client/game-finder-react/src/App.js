@@ -96,9 +96,6 @@ function App() {
                 <PickUpForm />
               </Route>
               <Route exact path='/pickup'>
-                <PickupList />
-              </Route>
-              <Route exact path='/pickupmap'>
                 <PickUpMapTesting />
               </Route>
               <Route exact path='/user/edit/:username'>

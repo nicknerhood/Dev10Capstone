@@ -1,7 +1,9 @@
 import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PickupForm from './AddPickUp';
 import Game from './PickUp';
+import PickupList from './PickUpList';
 
 const PickUpMapTesting = () => {
 
@@ -59,17 +61,34 @@ const PickUpMapTesting = () => {
         lat: 30.5057586, lng: -97.6169318
     }
 
+    //want to transform locations into a list formatted like this 
+    // const markerLocations = [
+    //   {
+    //     name: "test",
+    //     location: {
+    //       lat: 1,
+    //       lng: 1
+    //     }
+    //   }
+    // ]
+
   return (
-    <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
-            <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
-                {locations.map(location => 
-                  <Marker 
-                    key={location.locationId}
-                    position={{lat: location.latitude, lng: location.longitude}}
-                    />
-                )}
-            </GoogleMap>
-    </LoadScript>
+    <div>
+      <h2>Locations</h2>
+      <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
+              <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
+                  {locations.map(item => 
+                    <Marker 
+                      key={item.locationId}
+                      position={{lat: item.latitude, lng: item.longitude}}
+                      />
+                  )}
+                  
+              </GoogleMap>
+      </LoadScript>
+    <br></br>
+    <PickupList />
+    </div>
   )
 }
 

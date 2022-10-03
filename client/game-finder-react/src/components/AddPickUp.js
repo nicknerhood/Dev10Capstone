@@ -157,7 +157,7 @@ function PickupForm() {
 
   return (
     <>
-      <h2>{editId ? 'Update' : 'Add'} Game</h2>
+      <h2>{editId ? 'Update' : 'Add'} PickUp</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
         <div className="form-group">

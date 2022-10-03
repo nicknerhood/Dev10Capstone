@@ -2,6 +2,7 @@ package learn.game_finder.controllers;
 
 import learn.game_finder.domain.PickUpService;
 import learn.game_finder.domain.Result;
+import learn.game_finder.models.Location;
 import learn.game_finder.models.PickUp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +40,24 @@ public class PickUpController {
         return service.findByGameId(gameId);
     }
 
-    @GetMapping("/location/{locationId}")
-    public List<PickUp> findByLocationId(@PathVariable int locationId){
-        return service.findByLocationId(locationId);
-    }
+//    @GetMapping("/location/{locationId}")
+//    public List<PickUp> findByLocationId(@PathVariable int locationId){
+//        return service.findByLocationId(locationId);
+//    }
 
     @GetMapping("/user/{userId}")
     public List<PickUp> findByUserId(@PathVariable int userId){
         return service.findByUserId(userId);
+    }
+
+    @GetMapping("/location/{locationId}")
+    public ResponseEntity<?> getLocationFromLocationId(@PathVariable int locationId) {
+        Location location = service.getLocationFromLocationId(locationId);
+        if(location == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(location);
     }
 
     @PostMapping
