@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import UserContext from '../UserContext';
 
 import PickUp from './PickUp';
+import PickUpMapTesting from './PickUpMapTesting';
 
 function PickupList() {
   const [pickups, setPickups] = useState([]);
@@ -56,6 +57,7 @@ function PickupList() {
 
   return (
     <>
+    <PickUpMapTesting/>
       <h2>Pickups</h2>
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
      <form onSubmit={handleSubmit} className="m-5">
