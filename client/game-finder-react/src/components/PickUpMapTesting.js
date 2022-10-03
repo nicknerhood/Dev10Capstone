@@ -83,7 +83,7 @@ const PickUpMapTesting = () => {
   return (
     <div>
       <h2>Locations</h2>
-      <button type ="button" className='btn btn-primary mb-3' onClick={handleAddLocation}>Add Location</button>
+      {/* <button type ="button" className='btn btn-primary mb-3' onClick={handleAddLocation}>Add Location</button> */}
       <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
               <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter} onClick={clickMethod}>
                   {markerLocations.map(item => 

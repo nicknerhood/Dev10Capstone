@@ -57,7 +57,7 @@ function LocationForm(){
     return (
         <>
         
-        <h2>Add Location</h2>
+        <h2>Add Location (Click on Map to get coordinates)</h2>
         {errors.length > 0 ? <Errors errors={errors} /> : null}
         <form className="edit-form" onSubmit={onSubmit}>
             <div className="form-group">
