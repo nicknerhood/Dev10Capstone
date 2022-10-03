@@ -1,6 +1,7 @@
 package learn.game_finder.data;
 
 import learn.game_finder.data.mappers.PickUpMapper;
+import learn.game_finder.models.Location;
 import learn.game_finder.models.PickUp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,6 +59,14 @@ public class PickUpJdbcTemplateRepositoryTest {
     void shouldFindByUserId(){
         List<PickUp> pickUps = repository.findByUserId(1);
         assertEquals(pickUps.size(), 1);
+    }
+
+    @Test
+    void shouldGetLocation(){
+        Location location = repository.getLocationFromLocationId(1);
+        assertNotNull(location);
+        System.out.println(location.getLatitude());
+        System.out.println(location.getLongitude());
     }
 
     @Test
