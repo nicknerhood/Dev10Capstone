@@ -1,6 +1,8 @@
 package learn.game_finder.controllers;
 
+import learn.game_finder.App;
 import learn.game_finder.models.AppUser;
+import learn.game_finder.models.Game;
 import learn.game_finder.security.AppUserService;
 import learn.game_finder.security.JwtConverter;
 import org.springframework.dao.DuplicateKeyException;
@@ -10,9 +12,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
 import java.util.HashMap;
@@ -84,5 +85,14 @@ public class AuthController {
         map.put("appUserId", appUser.getAppUserId());
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/appuser/{username}")
+    public ResponseEntity<AppUser> findByUsername(@PathVariable String username){
+        AppUser user = (AppUser) appUserService.loadUserByUsername(username);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(user);
     }
 }

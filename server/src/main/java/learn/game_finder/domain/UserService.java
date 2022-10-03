@@ -1,6 +1,8 @@
 package learn.game_finder.domain;
 
+import learn.game_finder.data.AppUserRepository;
 import learn.game_finder.data.UserRepository;
+import learn.game_finder.models.AppUser;
 import learn.game_finder.models.User;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository repository;
+    private final AppUserRepository appUserRepository;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, AppUserRepository appUserRepository) {
         this.repository = repository;
+        this.appUserRepository = appUserRepository;
     }
 
     public List<User> findAll() {
@@ -94,14 +98,15 @@ public class UserService {
         if(Validations.isNullOrBlank(user.getEmail())){
             result.addMessage("email cannot be null", ResultType.INVALID);
         }
-
+//        List<AppUser> appUsers = (List<AppUser>) appUserRepository.findByUsername(user.getUsername());
         List<User> all = repository.findAll();
         for(User value : all){
-            if(user.getAppUserId() == value.getAppUserId() &&
-                    user.getFirstName().equalsIgnoreCase(value.getFirstName()) &&
-                    user.getLastName().equalsIgnoreCase(value.getLastName()) &&
-                    user.getEmail().equals(value.getEmail())) {
-                result.addMessage("Cannot create duplicate users.", ResultType.INVALID);
+            if(user.getAppUserId() == value.getAppUserId() )
+//                    user.getFirstName().equalsIgnoreCase(value.getFirstName()) &&
+//                    user.getLastName().equalsIgnoreCase(value.getLastName()) &&
+//                    user.getEmail().equals(value.getEmail())) {
+            {
+                result.addMessage("You Already Have a Profile", ResultType.INVALID);
             }
         }
 
