@@ -13,6 +13,22 @@ function PickUp({ pickup, game }) {
 
     const [appUser, setAppUser] = useState(DEFAULT_APP_USER);
     const [games, setGames] = useState([]);
+    const [locations, setLocations] = useState([]);
+
+    useEffect(() => {
+
+      fetch(`http://localhost:8080/location`)
+        .then(resp => {
+          if(resp.status === 200){
+            return resp.json();
+          }
+          return Promise.reject('Something terrible has gone wrong.');
+        })
+        .then(data => {
+          setLocations(data);
+        })
+        .catch(err => history.push('/error', {errorMessage: err}));
+    }, []);
 
 
 
@@ -65,6 +81,8 @@ function PickUp({ pickup, game }) {
   }
 
   const filteredGames = games.filter(game => game.gameId == pickup.gameId);
+
+  const filteredLocations = locations.filter(location => location.locationId == pickup.locationId);
   
 
   
@@ -82,8 +100,13 @@ function PickUp({ pickup, game }) {
                     <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
                     <div className="card-body">
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>
-                        <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Genre: ${pickup.playDate} `}</em></p>
+                        <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Date: ${pickup.playDate} `}</em></p>
                         <p><strong>Pickup Poster: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Username: ${authManager.user.username}  `}</em></p>
+                        {filteredLocations.map(location =>
+                        <p><strong>Pickup Latitude: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Latitude: ${location.latitude}`}</em></p>)}
+                        {filteredLocations.map(location =>
+                        <p><strong>Pickup Longitude: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Latitude: ${location.longitude}`}</em></p>)}
+
                         <p></p>
                     </div>
                     </div>
