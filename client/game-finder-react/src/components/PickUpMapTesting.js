@@ -4,10 +4,15 @@ import { useHistory } from 'react-router-dom';
 import PickupForm from './AddPickUp';
 import Game from './PickUp';
 import PickupList from './PickUpList';
+import PickUp from './PickUp';
 
-const PickUpMapTesting = () => {
+const PickUpMapTesting = (pickup) => {
 
     const [pickups, setPickups] = useState([]);
+
+    const [games, setGames] = useState([]);
+
+    const [users, setUsers] = useState([]);
 
     const [allPickups, setAllPickups] = useState([]);
 
@@ -29,6 +34,37 @@ const PickUpMapTesting = () => {
         setPickups(data);
         setAllPickups(data);
         
+      })
+      .catch(err => history.push('/error', {errorMessage: err}));
+    },[])
+
+
+    useEffect(() => {
+      fetch('http://localhost:8080/game')
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.json();
+        }
+        return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      })
+      .then(data => {
+        setGames(data);
+        
+      })
+      .catch(err => history.push('/error', {errorMessage: err}));
+    },[])
+
+
+    useEffect(() => {
+      fetch('http://localhost:8080/user')
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.json();
+        }
+        return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      })
+      .then(data => {
+        setUsers(data);
       })
       .catch(err => history.push('/error', {errorMessage: err}));
     },[])
@@ -83,6 +119,12 @@ const PickUpMapTesting = () => {
       history.push('/location', {latitude: markedLocation.latitude, longitude: markedLocation.longitude});
     }
 
+
+    const filteredPickups = pickups.filter(pickup => pickup.pickUpId == selected.name);
+    // const filteredGames = games.filter(game => game.gameId == pickup.gameId)
+    // const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
+
+
   return (
     <div>
       <h2>Locations (Click on Map to add a location)</h2>
@@ -91,6 +133,7 @@ const PickUpMapTesting = () => {
               <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter} onClick={clickMethod}>
                   {markerLocations.map(item => 
                     <Marker 
+                      label={`${item.name}`}
                       key={item.name}
                       position={item.location}
                       onClick={() => onSelect(item)}
@@ -98,14 +141,37 @@ const PickUpMapTesting = () => {
                   )}
                   {
                     selected.location && (
+                      
+                      <>
+                     {/* {filteredPickups.map(pickup => */}
                       <InfoWindow
                       position={selected.location}
                       clickable={true}
-                      onCloseClick={() => setSelected({})}>
-                        <p>{selected.name}</p>
+                      onCloseClick={() => setSelected({})}
+                      >
+                      
+                       
+                       
+                       
+                        <>
+                        {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+                       
+                      
+                        </>
+                        
+                        
+                        
+                        
+                        
                       </InfoWindow>
-                    )
-                  }
+                      {/* )} */}
+                      </>
+                      
+                      
+                      )}
+                    
+                    
+                  
                   
               </GoogleMap>
       </LoadScript>
