@@ -131,6 +131,9 @@ function GameForm() {
   const handleCancel = () => history.push('/game')
 
 
+  console.log(editId);
+
+
   return (
     <>
       <h2>{editId ? 'Update' : 'Add'} Game</h2>

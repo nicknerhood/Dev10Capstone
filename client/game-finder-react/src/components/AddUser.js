@@ -163,6 +163,9 @@ function AddUser() {
   const handleCancel = () => history.push('/user')
 
 
+  console.log(editId);
+
+
   return (
     <>
       <h2>{editId ? 'Update' : 'Add'} User</h2>

@@ -5,7 +5,7 @@ import UserContext from "../UserContext";
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
 
-function PickUp({ pickup, game }) {
+function PickUp({ pickup }) {
 
     const history = useHistory();
 
@@ -72,7 +72,7 @@ function PickUp({ pickup, game }) {
   },[])
 
   const handleDelete = () => {
-    history.push(`/pickup/delete/${pickup.pickupId}`);
+    history.push(`/pickup/delete/${pickup.pickUpId}`);
   }
 
   const handleEdit = () => {
@@ -106,7 +106,7 @@ function PickUp({ pickup, game }) {
                         <p><strong>Pickup Latitude: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Latitude: ${location.latitude}`}</em></p>)}
                         {filteredLocations.map(location =>
                         <p><strong>Pickup Longitude: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Latitude: ${location.longitude}`}</em></p>)}
-
+                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         <p></p>
                     </div>
                     </div>

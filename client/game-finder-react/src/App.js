@@ -17,6 +17,9 @@ import PickUpForm from './components/AddPickUp';
 import PickUpMapTesting from './components/PickUpMapTesting';
 import AddUser from './components/AddUser';
 import PickupList from './components/PickUpList';
+import Profile from './components/Profile';
+import DeleteGame from './components/DeleteGame';
+import DeletePickup from './components/DeletePickup';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -92,18 +95,28 @@ function App() {
               <Route path={['/game/add', '/game/edit/:editId']}>
                 <GameForm /> 
               </Route>
+              <Route exact path="/game/delete/:deleteId">
+                <DeleteGame/>
+              </Route>
+              
               <Route path= {['/pickup/add', '/pickup/edit/:editId']}>
                 <PickUpForm />
               </Route>
               <Route exact path='/pickup'>
                 <PickupList />
               </Route>
+              <Route exact path="/pickup/delete/:deleteId">
+                <DeletePickup/>
+              </Route>
               <Route exact path='/pickupmap'>
                 <PickUpMapTesting />
               </Route>
-              <Route exact path='/user/edit/:username'>
+              <Route path={['/user/edit/:editId', '/user/add']}>
                 <AddUser />
               </Route>
+              <Route exact path = '/user'>
+                <Profile />
+                </Route>
               <Route exact path="/errors">
                 <ServerError />
               </Route>
