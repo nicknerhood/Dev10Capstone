@@ -120,7 +120,7 @@ function App() {
               <Route exact path = '/user'>
                 {user ? <Profile /> :<Redirect to="/login" />}
               </Route>
-              <Route exact path='/location/add'>
+              <Route exact path='/location'>
                 {user ? <LocationForm /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/errors">

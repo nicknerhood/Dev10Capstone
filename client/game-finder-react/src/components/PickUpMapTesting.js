@@ -73,16 +73,15 @@ const PickUpMapTesting = () => {
       // console.log(evt.latLng.lat());
       // console.log(evt.latLng.lng());
 
-      alert("Latitude: " + evt.latLng.lat() + " \nLongitude: " + evt.latLng.lng());
-    }
-
-    function handleAddLocation(){
-      return history.push('/location/add');
+      //alert("Latitude: " + evt.latLng.lat() + " \nLongitude: " + evt.latLng.lng());
+      const markedLocation = {latitude: evt.latLng.lat(), longitude: evt.latLng.lng()};
+      //console.log(markedLocation);
+      history.push('/location', {latitude: markedLocation.latitude, longitude: markedLocation.longitude});
     }
 
   return (
     <div>
-      <h2>Locations</h2>
+      <h2>Locations (Click on Map to add a location)</h2>
       {/* <button type ="button" className='btn btn-primary mb-3' onClick={handleAddLocation}>Add Location</button> */}
       <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
               <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter} onClick={clickMethod}>

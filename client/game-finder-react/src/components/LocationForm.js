@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Errors from "./Errors";
 import PickUpMapTesting from "./PickUpMapTesting";
 
@@ -11,6 +11,15 @@ function LocationForm(){
     const [errors, setErrors] = useState([]);
 
     const history = useHistory();
+
+    const markedLocation = {
+        latitude: 0,
+        longitude: 0
+    }
+
+    markedLocation.latitude = history.location.state ? history.location.state.latitude : null;
+    markedLocation.longitude = history.location.state ? history.location.state.longitude : null;
+    //console.log(markedLocation);
 
     const saveLocation = () => {
         const init = {
@@ -54,6 +63,10 @@ function LocationForm(){
 
     const handleCancel = () => history.push('/pickup');
 
+    const handleAutofill = () => {
+        setLocation(markedLocation);
+    }
+
     return (
         <>
         
@@ -70,7 +83,8 @@ function LocationForm(){
             </div>
             <div className="form-group">
                 <button type="submit" className="btn btn-success mr-3">Submit</button>
-                <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
+                <button type="button" className="btn btn-danger mr-3" onClick={handleCancel}>Cancel</button>
+                <button type="button" className="btn btn-primary mr-3" onClick={handleAutofill}>Autofill</button>
             </div>
         </form>
         <PickUpMapTesting />
