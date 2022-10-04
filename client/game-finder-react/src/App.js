@@ -21,6 +21,7 @@ import DeleteGame from './components/DeleteGame';
 import DeletePickup from './components/DeletePickup';
 import Profile from './components/Profile';
 import LocationForm from './components/LocationForm';
+import PickupForm from './components/AddPickUp';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -58,6 +59,8 @@ function App() {
 
     localStorage.removeItem(LOCALSTORAGE_KEY);
     setUser(null);
+
+    //history.push('/login');
   }
 
   const authManager = {
@@ -88,40 +91,37 @@ function App() {
                 {!user ? <Register /> : <Redirect to="/" />}
               </Route>
               <Route path="/about">
-                <About/>
+                {user ? <About /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/game">
-                <Games/>
+                {user ? <Games /> :<Redirect to="/login" />}
               </Route>
               <Route path={['/game/add', '/game/edit/:editId']}>
-                <GameForm /> 
+                {user ? <GameForm /> :<Redirect to="/login" />}
               </Route>
               <Route path= {['/pickup/add', '/pickup/edit/:editId']}>
-                <PickUpForm />
+                {user ? <PickUpForm /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/game/delete/:deleteId">
-                <DeleteGame/>
+                {user ? <DeleteGame /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickup'>
-                <PickupList />
+                {user ? <PickupList /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/pickup/delete/:deleteId">
-                <DeletePickup/>
+                {user ? <DeletePickup /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickupmap'>
-                <PickUpMapTesting />
+                {user ? <PickUpMapTesting /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/user/edit/:username'>
-                <AddUser />
+                {user ? <AddUser /> :<Redirect to="/login" />}
               </Route>
               <Route exact path = '/user'>
-                <Profile />
-                </Route>
-              <Route exact path='/user/edit/:username'>
-                <AddUser />
+                {user ? <Profile /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/location/add'>
-                <LocationForm />
+                {user ? <LocationForm /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/errors">
                 <ServerError />
