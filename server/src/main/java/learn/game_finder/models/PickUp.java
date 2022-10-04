@@ -7,6 +7,10 @@ public class PickUp {
     private int pickUpId;
     private String pickUpInfo;
     private LocalDate playDate;
+
+//    private double latitude;
+//
+//    private double longitude;
     private int locationId;
     private int gameId;
     private int userId;

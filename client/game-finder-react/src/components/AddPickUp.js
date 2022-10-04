@@ -6,6 +6,7 @@ import UserContext from '../UserContext';
 import { useHistory, useParams } from 'react-router-dom';
 
 import Errors from './Errors';
+import PickUpMapTesting from './PickUpMapTesting';
 
 
 
@@ -157,7 +158,8 @@ function PickupForm() {
 
   return (
     <>
-      <h2>{editId ? 'Update' : 'Add'} Game</h2>
+      <PickUpMapTesting />
+      <h2>{editId ? 'Update' : 'Add'} PickUp</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
         <div className="form-group">
