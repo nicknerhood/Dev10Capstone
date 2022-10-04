@@ -76,6 +76,10 @@ const PickUpMapTesting = () => {
       //alert("Latitude: " + evt.latLng.lat() + " \nLongitude: " + evt.latLng.lng());
       const markedLocation = {latitude: evt.latLng.lat(), longitude: evt.latLng.lng()};
       //console.log(markedLocation);
+      var answer = window.confirm("Would you like to add this location?");
+      if(!answer){
+        return null;
+      }
       history.push('/location', {latitude: markedLocation.latitude, longitude: markedLocation.longitude});
     }
 
