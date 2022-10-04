@@ -97,36 +97,16 @@ const authManager = useContext(UserContext);
     
 
 
-
-
-
-
-    
-
-  
-
   return (
 
     <>
-
-   
-     
-
        
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
      
 
-
-    
-  
-    
-
-
-            
-
             {filteredUser.map(user => <User key={user.userId} user={user} />)}
             
-      <div> 
+      <div > 
 
                   
        <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
@@ -141,9 +121,11 @@ const authManager = useContext(UserContext);
           </div>
           </div>
           
-
+    
 
           <>
+         
+          <h1 className mb-10>Your Pickup Posts</h1>
           {pickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
 
           <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">

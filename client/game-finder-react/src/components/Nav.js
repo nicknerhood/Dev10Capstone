@@ -22,9 +22,13 @@ function Nav() {
                 <li className="nav-item">
                     <Link to="/pickup" className="nav-link">Pickups</Link>
                 </li>
+                
                 <li className="nav-item">
                     <Link to="/about" className='nav-link'>About</Link>
                 </li>
+                <li className="nav-item">
+                            <Link to="/user" className="nav-link">{authManager.user.username}</Link>
+                        </li>
                 
                     {!authManager.user ? (<>
                         <li className="nav-item">
@@ -33,6 +37,7 @@ function Nav() {
                         <li className="nav-item">
                             <Link to="/register" className="nav-link">Register</Link>
                         </li>
+                       
                     </>):
                         <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Logout</button>}
                 </ul>
