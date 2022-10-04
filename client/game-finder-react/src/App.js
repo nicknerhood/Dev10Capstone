@@ -20,6 +20,7 @@ import PickupList from './components/PickUpList';
 import DeleteGame from './components/DeleteGame';
 import DeletePickup from './components/DeletePickup';
 import Profile from './components/Profile';
+import LocationForm from './components/LocationForm';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -116,6 +117,12 @@ function App() {
               <Route exact path = '/user'>
                 <Profile />
                 </Route>
+              <Route exact path='/user/edit/:username'>
+                <AddUser />
+              </Route>
+              <Route exact path='/location/add'>
+                <LocationForm />
+              </Route>
               <Route exact path="/errors">
                 <ServerError />
               </Route>

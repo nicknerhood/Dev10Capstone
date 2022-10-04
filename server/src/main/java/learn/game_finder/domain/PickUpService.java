@@ -32,10 +32,13 @@ public class PickUpService {
         return this.repository.findByLocationId(locationId);
     }
 
-    public List<PickUp> findByUserId(int userId){
+    public List<PickUp> findByUserId(int userId) {
         return this.repository.findByUserId(userId);
     }
 
+    public Location getLocationFromLocationId(int locationId){
+        return this.repository.getLocationFromLocationId(locationId);
+    }
 
 
     public Result<PickUp> add(PickUp pickUp){

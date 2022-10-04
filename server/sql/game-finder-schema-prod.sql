@@ -102,5 +102,6 @@ insert into locations(location_id, latitude, longitude) values
         (2, 'mrtesting', 'Mister', 'Testing', 'test@test.com', 2, 1);
         
 	insert into pickups values
-		(1, 'Yo, come play Dungeon and Dragons', '2022-10-31', 1, 3, 1);
+		(1, 'Yo, come play Dungeon and Dragons', '2022-10-31', 1, 3, 1),
+        (2, 'Flag Footbal time', '2022-11-02', 2, 1, 2)
 
