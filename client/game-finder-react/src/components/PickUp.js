@@ -142,7 +142,7 @@ function PickUp({ pickup }) {
                       
                     </div>
                     <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
-
+                    
                     <div className="card-body">
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>
                         <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Date: ${pickup.playDate} `}</em></p>
