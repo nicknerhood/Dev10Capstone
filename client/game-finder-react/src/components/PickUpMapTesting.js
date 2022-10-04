@@ -153,7 +153,7 @@ const PickUpMapTesting = (pickup) => {
                        
                        
                         <>
-                        {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+                        {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} {selected.name}
                        
                       
                         </>
