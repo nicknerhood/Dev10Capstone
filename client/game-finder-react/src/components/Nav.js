@@ -5,6 +5,8 @@ import UserContext from "../UserContext";
 function Nav() {
     const authManager = useContext(UserContext);
 
+
+
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
             <Link className="navbar-brand" to="/">GameFinder</Link>
@@ -37,10 +39,34 @@ function Nav() {
                             (<><li className="nav-item">
                                 <Link to="/user" className="nav-link">{authManager.user.username}</Link>
                             </li>
-                            <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Logout</button></>)}
+                            {/* <button type="button" className="btn btn-secondary" onClick={authManager.logout}>Logout</button> */}
+                            <button type="button" className="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Logout</button>
+                            
+                            </>
+                            )
+                            
+                            }
                             
                 </ul>
                 {authManager.user && <span className="navbar-text text-success">{`Welcome ${authManager.user.username}`}</span>}
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to log out?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onClick={authManager.logout} data-dismiss="modal">Confirm</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </nav>
     );

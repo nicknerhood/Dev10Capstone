@@ -50,11 +50,11 @@ function App() {
   } 
 
   const logout = () => {
-    var answer = window.confirm("Are you sure you want to log out?");
+    // var answer = window.confirm("Are you sure you want to log out?");
 
-    if(!answer){
-      return null;
-    }
+    // if(!answer){
+    //   return null;
+    // }
 
 
     localStorage.removeItem(LOCALSTORAGE_KEY);
