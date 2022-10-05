@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import MapWithModal from './MapWithModal';
 // import UserContext from '../UserContext';
 
 import PickUp from './PickUp';
@@ -55,7 +56,7 @@ function PickupList() {
   return (
     <>
     <h3>Add a Location by Clicking on the map</h3>
-    <PickUpMapTesting/>
+    <MapWithModal />
       <h2>Pickups</h2>
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
      <form onSubmit={handleSubmit} className="m-5">
