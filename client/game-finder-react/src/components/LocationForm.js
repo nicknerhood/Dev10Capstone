@@ -2,20 +2,22 @@ import {  useState } from "react";
 import { useHistory } from "react-router-dom";
 import Errors from "./Errors";
 import PickUpMapTesting from "./PickUpMapTesting";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const DEFAULT_LOCATION = {latitude: 0, longitude: 0};
 
 function LocationForm(){
 
-    const [location, setLocation] = useState(DEFAULT_LOCATION);
-    const [errors, setErrors] = useState([]);
-
-    const history = useHistory();
-
     const markedLocation = {
         latitude: 0,
         longitude: 0
     }
+
+    const [location, setLocation] = useState(DEFAULT_LOCATION);
+    const [errors, setErrors] = useState([]);
+
+    const history = useHistory();
 
     markedLocation.latitude = history.location.state ? history.location.state.latitude : null;
     markedLocation.longitude = history.location.state ? history.location.state.longitude : null;
@@ -70,7 +72,7 @@ function LocationForm(){
     return (
         <>
         
-        <h2>Add Location (Click on Map to get coordinates)</h2>
+        {/* <h2>Add Location (Click on Map to get coordinates)</h2> */}
         {errors.length > 0 ? <Errors errors={errors} /> : null}
         <form className="edit-form" onSubmit={onSubmit}>
             <div className="form-group">
@@ -88,6 +90,8 @@ function LocationForm(){
             </div>
         </form>
         <PickUpMapTesting />
+
+
         </>
     )
 

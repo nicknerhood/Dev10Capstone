@@ -40,7 +40,7 @@ function Game({ game }) {
        <td>{game.title}</td>
       <td>{game.gameInfo}</td>
        <td>{game.genre}</td>
-       <td>{game.imagePath}</td>
+       {/* <td>{game.imagePath}</td> */}
        <td>
         <button type="button" className="btn btn-warning mr-3" onClick={handleEdit}>Edit</button>
          <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>

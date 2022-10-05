@@ -2,6 +2,9 @@ import {GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PickUp from './PickUp';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import LocationForm from './LocationForm';
 
 const PickUpMapTesting = (pickup) => {
 
@@ -102,13 +105,19 @@ const PickUpMapTesting = (pickup) => {
       }
     }))
 
+    const [show, setShow] = useState(null);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    let markedLocation = {
+      latitude: 0,
+      longitude: 0
+    }
+
     const clickMethod = (evt) => {
-
-
-      
-
-
-      const markedLocation = {latitude: evt.latLng.lat(), longitude: evt.latLng.lng()};
+      markedLocation = {latitude: evt.latLng.lat(), longitude: evt.latLng.lng()};
+      // console.log(markedLocation);
+      // setShow(true);
       history.push('/location', {latitude: markedLocation.latitude, longitude: markedLocation.longitude});
     }
 
@@ -117,10 +126,11 @@ const PickUpMapTesting = (pickup) => {
     // const filteredGames = games.filter(game => game.gameId == pickup.gameId)
     // const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
 
+    
+
 
   return (
-    <div>
-      <h3>Locations (Click on Map to add a location)</h3>
+    <div className='App'>
       <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
         <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter} onClick={clickMethod}>
           {markerLocations.map(item => 
@@ -142,6 +152,20 @@ const PickUpMapTesting = (pickup) => {
         </GoogleMap>
       </LoadScript>
       <br></br>
+      {/* <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a Location</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><LocationForm latitude={markedLocation.latitude} longitude={markedLocation.longitude}/></Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
     </div>
   )
 }

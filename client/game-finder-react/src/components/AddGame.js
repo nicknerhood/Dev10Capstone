@@ -148,10 +148,10 @@ function GameForm() {
           <label htmlFor="genre">Genre</label>
           <input name="genre" type="text" className="form-control" id="genre" value={game.genre} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="imagePath">Image Path:</label>
           <input name="imagePath" type="text" className="form-control" id="imagePath" value={game.imagePath} onChange={handleChange} />
-        </div>
+        </div> */}
         <div className="form-group">
           <button type="submit" className="btn btn-success mr-3">Submit</button>
           <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
