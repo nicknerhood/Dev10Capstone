@@ -124,6 +124,10 @@ const PickUpMapTesting = (pickup) => {
     const filteredGames = games.filter(game => game.gameId == pickup.gameId)
     const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
 
+    const handleDeleteLocation = (evt) => {
+      
+    }
+
 
   return (
     <div>
