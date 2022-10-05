@@ -121,8 +121,8 @@ const PickUpMapTesting = (pickup) => {
 
 
     const filteredPickups = pickups.filter(pickup => pickup.pickUpId == selected.name);
-    const filteredGames = games.filter(game => game.gameId == pickup.gameId)
-    const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
+    // const filteredGames = games.filter(game => game.gameId == pickup.gameId)
+    // const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
 
     const handleDeleteLocation = (evt) => {
       
@@ -137,6 +137,7 @@ const PickUpMapTesting = (pickup) => {
               <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter} onClick={clickMethod}>
                   {markerLocations.map(item => 
                     <Marker 
+                      label={`${item.name}`}
                       key={item.name}
                       position={item.location}
                       onClick={() => onSelect(item)}
@@ -157,7 +158,7 @@ const PickUpMapTesting = (pickup) => {
                        
                        
                         <>
-                        {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} {selected.name}
+                        {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
                        
                       
                         </>

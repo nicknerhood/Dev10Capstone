@@ -94,15 +94,18 @@ const authManager = useContext(UserContext);
   function handleAddPickup(){
     return history.push('/pickup/add')
   }
+
+  const filteredPickups = pickups.filter(pickup => pickup.userId == users.userId)
+
     
 
 
   return (
 
     <>
-       
+      { filteredUser.map( user => user.appUserId !== appUsers.appUserId &&
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
-     
+      )}
 
             {filteredUser.map(user => <User key={user.userId} user={user} />)}
             
@@ -123,24 +126,7 @@ const authManager = useContext(UserContext);
           
     
 
-          <>
-         
-          <h1 className mb-10>Your Pickup Posts</h1>
-          {pickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
-
-          <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
-     
-          <div className="card text-dark bg-light" >
-     
-              <div className="card-body"> 
-                   <p></p>
-              </div>
-            
-              </div>
-          </div>
-          
-
-          </>
+        
           
 
 

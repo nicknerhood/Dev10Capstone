@@ -22,6 +22,7 @@ function PickupForm() {
   const [pickup, setPickup] = useState(DEFAULT_PICKUP);
   const [errors, setErrors] = useState([]);
   const [games, setGames] = useState([]);
+  const [users, setUsers] = useState([]);
   const { editId } = useParams();
 
   const history = useHistory();
@@ -37,6 +38,22 @@ function PickupForm() {
     })
     .then(data => {
       setGames(data);
+      
+    })
+    .catch(err => history.push('/error', {errorMessage: err}));
+  },[])
+
+  
+  useEffect(() => {
+    fetch('http://localhost:8080/game')
+    .then(resp => {
+      if (resp.status === 200) {
+        return resp.json();
+      }
+      return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+    })
+    .then(data => {
+      setUsers(data);
       
     })
     .catch(err => history.push('/error', {errorMessage: err}));
@@ -175,6 +192,13 @@ function PickupForm() {
                         <option defaultValue>Choose a Game...</option>
                         {games.map((game) => 
                             <option value={game.gameId}>Title: {game.title}</option>)}
+                    </select>
+        </div>
+        <div className="form-group">
+        <select className="form-control" id="userId" name="userId"  value={pickup.userId} onChange={handleChange}>
+                        <option defaultValue>Choose Your Username...</option>
+                        {users.map((user) => 
+                            <option value={user.userId}>Title: {user.username}</option>)}
                     </select>
         </div>
         <div className="form-group">

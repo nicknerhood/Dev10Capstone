@@ -128,7 +128,7 @@ function PickUp({ pickup }) {
   
   const filteredUser = users.filter(user => user.userId == pickup.userId)
 
-
+console.log(filteredGames)
   
   return (
     <>
@@ -141,8 +141,9 @@ function PickUp({ pickup }) {
   )}
                       
                     </div>
+                    {filteredUser.map( user => user.appUserId == appUser.appUserId &&
                     <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
-                    
+                    )}
                     <div className="card-body">
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>
                         <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Date: ${pickup.playDate} `}</em></p>
@@ -156,7 +157,9 @@ function PickUp({ pickup }) {
                         {/* {filteredLocations.map(location =>
                         <p><strong>Pickup Location: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Lat: ${location.latitude}, Lng: ${location.longitude}`}</em></p>)} */}
                         <p><strong>Location #: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`${pickup.locationId}`}</em></p>
+                        {filteredUser.map( user => user.appUserId == appUser.appUserId &&
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                        )}
 
                         <p></p>
                     </div>
