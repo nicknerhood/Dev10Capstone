@@ -133,6 +133,10 @@ function App() {
               </Route>
             </Switch>
           </div>
+
+          <footer className='footer text-center text-lg-start bg-info fixed-bottom'>
+            <div className='text-center p-3'>2022 Copyright: Game-Finder</div>
+          </footer>
         </Router>
       </UserContext.Provider>
     </div>
