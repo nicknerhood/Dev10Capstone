@@ -114,7 +114,7 @@ function App() {
               <Route exact path='/pickupmap'>
                 {user ? <PickUpMapTesting /> :<Redirect to="/login" />}
               </Route>
-              <Route exact path='/user/edit/:username'>
+              <Route exact path='/user/edit/:editId'>
                 {user ? <AddUser /> :<Redirect to="/login" />}
               </Route>
               <Route exact path = '/user'>
