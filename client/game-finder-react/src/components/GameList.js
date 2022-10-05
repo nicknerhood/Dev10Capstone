@@ -71,10 +71,10 @@ function Games() {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Title</th>
+            <th scope="col">Games</th>
             <th scope="col">Game Info</th>
             <th scope="col">Genre</th>
-            <th scope="col">Image</th>
+            {/* <th scope="col">Image</th> */}
             <th></th>
           </tr>
         </thead>
