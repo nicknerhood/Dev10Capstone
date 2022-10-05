@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import UserContext from '../UserContext';
-import Errors from './Errors';
-
-import PickUp from './PickUp';
 
 function DeleteGame() {
 

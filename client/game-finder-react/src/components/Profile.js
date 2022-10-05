@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../UserContext';
 
-import PickUp from './PickUp';
 import User from './User';
 
 

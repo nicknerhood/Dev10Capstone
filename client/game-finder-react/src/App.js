@@ -9,7 +9,6 @@ import Nav from './components/Nav';
 import Register from './components/Register';
 import ServerError from './components/ServerError';
 import About from './components/About';
-import Game from './components/Game';
 import Games from './components/GameList';
 import GameForm from './components/AddGame';
 import NotFound from './components/NotFound';
@@ -21,7 +20,6 @@ import DeleteGame from './components/DeleteGame';
 import DeletePickup from './components/DeletePickup';
 import Profile from './components/Profile';
 import LocationForm from './components/LocationForm';
-import PickupForm from './components/AddPickUp';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 

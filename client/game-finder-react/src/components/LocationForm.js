@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import {  useState } from "react";
+import { useHistory } from "react-router-dom";
 import Errors from "./Errors";
 import PickUpMapTesting from "./PickUpMapTesting";
 
