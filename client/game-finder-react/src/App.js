@@ -20,6 +20,7 @@ import DeleteGame from './components/DeleteGame';
 import DeletePickup from './components/DeletePickup';
 import Profile from './components/Profile';
 import LocationForm from './components/LocationForm';
+import MapWithModal from './components/MapWithModal';
 
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
@@ -110,7 +111,7 @@ function App() {
                 {user ? <DeletePickup /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickupmap'>
-                {user ? <PickUpMapTesting /> :<Redirect to="/login" />}
+                {user ? <MapWithModal /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/user/edit/:editId'>
                 {user ? <AddUser /> :<Redirect to="/login" />}
