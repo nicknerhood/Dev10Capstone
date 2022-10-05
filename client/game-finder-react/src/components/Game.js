@@ -30,7 +30,7 @@ function Game({ game }) {
                     </div>
                     <div className="card-body">
                         <p><strong>Game Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{game.gameInfo}</em></p>
-                        <p><strong>Game Genre: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Genre: ${game.genre} `}</em></p>
+                        <p><strong>Game Genre: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`${game.genre} `}</em></p>
                         <p></p>
                     </div>
                     </div>
