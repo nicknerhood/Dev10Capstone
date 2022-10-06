@@ -11,6 +11,7 @@ import MapWithModal from './MapWithModal';
 
 
 
+const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
 
 function PickupForm() {
@@ -24,6 +25,7 @@ function PickupForm() {
   const [errors, setErrors] = useState([]);
   const [games, setGames] = useState([]);
   const [users, setUsers] = useState([]);
+  const [appUser, setAppUser] = useState(DEFAULT_APP_USER);
   const { editId } = useParams();
 
   const history = useHistory();
@@ -153,6 +155,32 @@ function PickupForm() {
     .catch(err => history.push('/errors', {errorMessage: err}));
   }
 
+
+
+  useEffect(() => {
+    
+    fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
+      .then(resp => {
+        switch(resp.status) {
+          case 200:
+            return resp.json();
+          case 404:
+            history.push('/not-found')
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong');
+        }
+      })
+      .then(body => {
+        if (body) {
+          setAppUser(body);
+        }
+      })
+      .catch(err => history.push('/errors', {errorMessage: err}));
+  }
+
+,[])
+
   const onSubmit = (evt) => {
     evt.preventDefault();
     const fetchFunction = editId > 0 ? updatePickup : savePickup;
@@ -178,8 +206,12 @@ function PickupForm() {
   const handleCancel = () => history.push('/pickup');
 
 
-  const filteredUser = users.filter(user => user.username == authManager.user.username)
+  const filteredUser = users.filter(user => user.appUserId == appUser.appUserId)
   console.log(filteredUser)
+
+
+  const sortedGames = games.sort((a, b) => a.title.localeCompare(b.title));
+
 
 
   return (
@@ -198,8 +230,9 @@ function PickupForm() {
         </div>
         <div className="form-group">
         <select className="form-control" id="gameId" name="gameId"  value={pickup.gameId} onChange={handleChange}>
+        
                         <option defaultValue>Choose a Game...</option>
-                        {games.map((game) => 
+                        {sortedGames.map((game) => 
                             <option value={game.gameId}>Title: {game.title}</option>)}
                     </select>
         </div>

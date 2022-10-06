@@ -8,6 +8,8 @@ import PickUpMapTesting from './PickUpMapTesting';
 import UserContext from '../UserContext';
 import { useContext } from 'react';
 
+const DEFAULT_APP_USER = {appUserId: '', username: ''}
+
 
 function PickupList() {
   const [pickups, setPickups] = useState([]);
@@ -15,9 +17,37 @@ function PickupList() {
   const [allPickups, setAllPickups] = useState([]);
   const [users, setUsers] = useState([]);
   const authManager = useContext(UserContext);
+  const [appUser, setAppUser] = useState(DEFAULT_APP_USER);
+
 
 
   const history = useHistory();
+
+
+
+  useEffect(() => {
+    
+    fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
+      .then(resp => {
+        switch(resp.status) {
+          case 200:
+            return resp.json();
+          case 404:
+            history.push('/not-found')
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong');
+        }
+      })
+      .then(body => {
+        if (body) {
+          setAppUser(body);
+        }
+      })
+      .catch(err => history.push('/errors', {errorMessage: err}));
+  }
+
+,[])
 
   useEffect(() => {
     fetch('http://localhost:8080/user')
@@ -35,7 +65,7 @@ function PickupList() {
   },[])
 
 
-  const filteredUser = users.filter(user => user.username == authManager.user.username);
+  const filteredUser = users.filter(user => user.appUserId == appUser.appUserId);
   console.log(filteredUser.length)
 
 
