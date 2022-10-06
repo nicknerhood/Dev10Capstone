@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react';
 
 
 import { useHistory, useParams } from 'react-router-dom';
+import UserContext from '../UserContext';
 import Errors from './Errors';
+import { useContext } from 'react';
 
 const DEFAULT_GAME = { title: '', imagePath: '', gameInfo: '', genre: ''}
+
 
 function GameForm() {
 
@@ -13,6 +16,8 @@ function GameForm() {
 
   const [game, setGame] = useState(DEFAULT_GAME);
   const [errors, setErrors] = useState([]);
+
+  const authManager = useContext(UserContext)
 
   
 
@@ -48,7 +53,9 @@ function GameForm() {
     const init = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify({...game})
     };
@@ -76,7 +83,9 @@ function GameForm() {
     const init = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify(updateGame)
     };

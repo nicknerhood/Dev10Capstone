@@ -188,7 +188,7 @@ const MapWithModal = () => {
     }
 
     function handleAddPickup(){
-     setShow(true);
+     history.push('pickup/add');
     }
 
   return (

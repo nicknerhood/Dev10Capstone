@@ -80,7 +80,9 @@ function AddUser() {
     const init = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify({...user})
     };
@@ -108,7 +110,9 @@ function AddUser() {
     const init = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify(updateUser)
     };

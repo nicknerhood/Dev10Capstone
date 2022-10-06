@@ -36,6 +36,8 @@ function DeletePickup() {
     const init = {
       method: 'DELETE',
       headers: {
+        Authorization: `Bearer ${authManager.user.token}`
+
       }
     };
 

@@ -128,7 +128,6 @@ function PickUp({ pickup }) {
   
   const filteredUser = users.filter(user => user.userId == pickup.userId)
 
-//console.log(filteredGames)
   
   return (
     <>
