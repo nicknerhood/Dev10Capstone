@@ -66,7 +66,15 @@ function PickupList() {
     search.preventDefault();
     search = document.getElementById("search-box").value;
 
-    const filteredPickups = pickups.filter(pickup => pickup.playDate >+ search );
+    const filteredPickups = pickups.filter(pickup => pickup.playDate >= search );
+    setPickups(filteredPickups);
+  }
+
+  function handleSearchByGameId(search, evt){
+    search.preventDefault();
+    search = document.getElementById("search-box-2").value;
+
+    const filteredPickups = pickups.filter(pickup => pickup.gameId == search );
     setPickups(filteredPickups);
   }
 
@@ -87,6 +95,13 @@ function PickupList() {
      <form onSubmit={handleSubmit} className="m-5">
                 <div className="input-group">
                     <input id="search-box" type="search" className="form-control rounded" placeholder="Search by Date yyyy-mm-dd" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="submit" className="btn btn-outline-primary">Search</button>
+                    <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
+                </div>
+     </form>
+     <form onSubmit={handleSearchByGameId} className="m-5">
+                <div className="input-group">
+                    <input id="search-box-2" type="search" className="form-control rounded" placeholder="Search by gameId" aria-label="Search" aria-describedby="search-addon" />
                     <button type="submit" className="btn btn-outline-primary">Search</button>
                     <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
                 </div>

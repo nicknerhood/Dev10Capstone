@@ -177,7 +177,8 @@ function PickupForm() {
   const handleCancel = () => history.push('/pickup');
 
 
-  const filteredUser = users.filter(user => user.username == authManager.username)
+  const filteredUser = users.filter(user => user.username == authManager.user.username)
+  console.log(filteredUser)
 
 
   return (
@@ -200,6 +201,7 @@ function PickupForm() {
                             <option value={game.gameId}>Title: {game.title}</option>)}
                     </select>
         </div>
+        
         <div className="form-group">
           <label htmlFor="locationId">LocationId</label>
           <input name="locationId" type="text" className="form-control" id="locationId" value={pickup.locationId} onChange={handleChange} />
@@ -207,7 +209,7 @@ function PickupForm() {
         <div className="form-group">
         <select className="form-control" id="userId" name="userId"  value={pickup.userId} onChange={handleChange}>
                         <option defaultValue>Your Username</option>
-                        {users.map((user) => 
+                        {filteredUser.map((user) => 
                             <option value={user.userId}>Username: {user.username}</option>)}
                     </select>        </div>
         <div className="form-group">

@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import LocationForm from './LocationForm';
 import { ModalBody } from 'react-modal-bootstrap';
 import PickupForm from './AddPickUp';
+import UserContext from '../UserContext';
+import { useContext } from 'react';
 
 const DEFAULT_LOCATION = {latitude: 0, longitude: 0};
 const DEFAULT_PICKUP = {locationId: 0};
@@ -34,6 +36,9 @@ const MapWithModal = () => {
     const [markerLocations, setMarkerLocations] = useState([]);
 
     const history = useHistory();
+
+    const authManager = useContext(UserContext);
+
 
     useEffect(() => {
       fetch('http://localhost:8080/pickup')
@@ -158,7 +163,9 @@ const MapWithModal = () => {
         const init = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${authManager.user.token}`
+
             },
             body: JSON.stringify({...location})
         };
