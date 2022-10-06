@@ -122,9 +122,11 @@ const PickUpMapTesting = (pickup) => {
     }
 
 
-    const filteredPickups = pickups.filter(pickup => pickup.pickUpId == selected.name);
+    const filteredPickups = pickups.filter(pickup => pickup.locationId == selected.name);
     // const filteredGames = games.filter(game => game.gameId == pickup.gameId)
     // const filteredUsers = pickups.filter(pickup => pickup.pickUpId == selected.name)
+
+    console.log(filteredPickups);
 
     
 
@@ -142,7 +144,7 @@ const PickUpMapTesting = (pickup) => {
                 {/* {filteredPickups.map(pickup => */}
                 <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
                   <>
-                    {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+                    {filteredPickups.map(pickup => <PickUp  pickup={pickup} />)} 
                   </>
                 </InfoWindow>
                 {/* )} */}

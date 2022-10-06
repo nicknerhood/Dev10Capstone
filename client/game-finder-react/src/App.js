@@ -87,7 +87,7 @@ function App() {
                 {!user ? <Login /> :<Redirect to="/" />}
               </Route>
               <Route path='/register'>
-                {!user ? <Register /> : <Redirect to="/" />}
+                {!user  ? <Register /> : <Redirect to="/" />}
               </Route>
               <Route path="/about">
                 {user ? <About /> :<Redirect to="/login" />}
@@ -105,15 +105,15 @@ function App() {
                 {user ? <DeleteGame /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickup'>
-                {user ? <PickupList /> :<Redirect to="/login" />}
+                {user  ? <PickupList /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/pickup/delete/:deleteId">
-                {user ? <DeletePickup /> :<Redirect to="/login" />}
+                {user && user.hasRole("ROLE_ADMIN") ? <DeletePickup /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickupmap'>
                 {user ? <MapWithModal /> :<Redirect to="/login" />}
               </Route>
-              <Route exact path='/user/edit/:editId'>
+              <Route  path={['/user/edit/:editId', '/user/add']}>
                 {user ? <AddUser /> :<Redirect to="/login" />}
               </Route>
               <Route exact path = '/user'>

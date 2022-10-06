@@ -4,6 +4,9 @@ import Errors from "./Errors";
 import PickUpMapTesting from "./PickUpMapTesting";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { useContext } from "react";
+import UserContext from "../UserContext";
+
 
 const DEFAULT_LOCATION = {latitude: 0, longitude: 0};
 
@@ -16,6 +19,8 @@ function LocationForm(){
 
     const [location, setLocation] = useState(DEFAULT_LOCATION);
     const [errors, setErrors] = useState([]);
+    const authManager = useContext(UserContext);
+
 
     const history = useHistory();
 
@@ -27,7 +32,9 @@ function LocationForm(){
         const init = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${authManager.user.token}`
+
             },
             body: JSON.stringify({...location})
         };

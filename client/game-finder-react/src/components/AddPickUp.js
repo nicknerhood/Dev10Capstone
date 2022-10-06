@@ -43,9 +43,9 @@ function PickupForm() {
     .catch(err => history.push('/error', {errorMessage: err}));
   },[])
 
-  
+
   useEffect(() => {
-    fetch('http://localhost:8080/game')
+    fetch('http://localhost:8080/user')
     .then(resp => {
       if (resp.status === 200) {
         return resp.json();
@@ -90,7 +90,9 @@ function PickupForm() {
     const init = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify({...pickup})
     };
@@ -103,7 +105,7 @@ function PickupForm() {
       return Promise.reject('Something terrible has gone wrong');
     })
     .then(body => {
-      if (body.pickupId) {
+      if (body.pickUpId) {
         history.push('/pickup')
       } else if (body) {
         setErrors(body);
@@ -118,7 +120,9 @@ function PickupForm() {
     const init = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify(updatePickup)
     };
@@ -170,12 +174,15 @@ function PickupForm() {
    
   }
 
-  const handleCancel = () => history.push('/pickup')
+  const handleCancel = () => history.push('/pickup');
+
+
+  const filteredUser = users.filter(user => user.username == authManager.user.username)
+  console.log(filteredUser)
 
 
   return (
     <>
-      <PickUpMapTesting />
       <h2>{editId ? 'Update' : 'Add'} PickUp</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
@@ -194,17 +201,17 @@ function PickupForm() {
                             <option value={game.gameId}>Title: {game.title}</option>)}
                     </select>
         </div>
-        <div className="form-group">
-        <select className="form-control" id="userId" name="userId"  value={pickup.userId} onChange={handleChange}>
-                        <option defaultValue>Choose Your Username...</option>
-                        {users.map((user) => 
-                            <option value={user.userId}>Title: {user.username}</option>)}
-                    </select>
-        </div>
+        
         <div className="form-group">
           <label htmlFor="locationId">LocationId</label>
           <input name="locationId" type="text" className="form-control" id="locationId" value={pickup.locationId} onChange={handleChange} />
         </div>
+        <div className="form-group">
+        <select className="form-control" id="userId" name="userId"  value={pickup.userId} onChange={handleChange}>
+                        <option defaultValue>Your Username</option>
+                        {filteredUser.map((user) => 
+                            <option value={user.userId}>Username: {user.username}</option>)}
+                    </select>        </div>
         <div className="form-group">
           <button type="submit" className="btn btn-success mr-3">Submit</button>
           <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>

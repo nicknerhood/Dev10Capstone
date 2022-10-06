@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 
+
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
 
@@ -128,10 +129,10 @@ function PickUp({ pickup }) {
   
   const filteredUser = users.filter(user => user.userId == pickup.userId)
 
-//console.log(filteredGames)
   
   return (
     <>
+   
     <div className="card text-dark bg-light" key={pickup.pickupId}>
       
                     <div className="card-header">
@@ -157,7 +158,7 @@ function PickUp({ pickup }) {
                         {/* {filteredLocations.map(location =>
                         <p><strong>Pickup Location: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Lat: ${location.latitude}, Lng: ${location.longitude}`}</em></p>)} */}
                         <p><strong>Location #: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`${pickup.locationId}`}</em></p>
-                        {filteredUser.map( user => user.appUserId == appUser.appUserId &&
+                        { filteredUser.map( user => user.appUserId == appUser.appUserId  &&
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         )}
 

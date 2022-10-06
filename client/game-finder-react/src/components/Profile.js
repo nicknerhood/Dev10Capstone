@@ -68,7 +68,7 @@ const authManager = useContext(UserContext);
   },[])
   
   
-  function handleAddPickup(){
+  function handleAddUser(){
     return history.push('/user/add')
   }
 
@@ -90,9 +90,7 @@ const authManager = useContext(UserContext);
     })
     .catch(err => history.push('/error', {errorMessage: err}));
   },[])
-  function handleAddPickup(){
-    return history.push('/pickup/add')
-  }
+
 
   const filteredPickups = pickups.filter(pickup => pickup.userId == users.userId)
 
@@ -102,36 +100,25 @@ const authManager = useContext(UserContext);
   return (
 
     <>
-      { filteredUser.map( user => user.appUserId !== appUsers.appUserId &&
-     <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
-      )}
+      { filteredUser.length == 0 &&
+      <div>
+        <h3>Set Up Your User Profile before you can add any Pickup Listings</h3>
+             <button type="button" className="btn btn-primary mb-3" onClick={handleAddUser}>Add Profile</button>
 
-            {filteredUser.map(user => <User key={user.userId} user={user} />)}
-            
-      <div > 
+      </div>
+      }
 
-                  
-       <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
-     
-          <div className="card text-dark bg-light" >
-     
-              <div className="card-body"> 
-                   <p></p>
-              </div>
-            
-              </div>
-          </div>
-          </div>
           
-    
+            
+       
 
-        
-          
+        <div>
+      {filteredUser.map(user => <User key={user.userId} user={user} />) }
+        </div>
 
-
-
+  
 </>
-
+        
   
   );}
             

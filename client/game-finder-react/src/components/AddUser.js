@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { useHistory, useParams } from 'react-router-dom';
 import Errors from './Errors';
 
-const DEFAULT_USER = { username: '', firstName: '', lastName: '', email: '', appUserId: '', locationId: ''}
+const DEFAULT_USER = { username: '', firstName: '', lastName: '', email: '', appUserId: 0, locationId: 0}
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
 
@@ -80,7 +80,9 @@ function AddUser() {
     const init = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify({...user})
     };
@@ -108,7 +110,9 @@ function AddUser() {
     const init = {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authManager.user.token}`
+
       },
       body: JSON.stringify(updateUser)
     };
@@ -186,10 +190,10 @@ function AddUser() {
           <label htmlFor="email">email:</label>
           <input name="email" type="text" className="form-control" id="email" value={user.email} onChange={handleChange} />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="locationId">Location:</label>
           <input name="locationId" type="number" className="form-control" id="locationId" value={user.locationId} onChange={handleChange} />
-        </div>
+        </div> */}
         <div className="form-group">
         <select className="form-control" id="appUserId" name="appUserId"  value={user.appUserId} onChange={handleChange}>
                         <option defaultValue>Your App User Id</option>
