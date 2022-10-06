@@ -60,11 +60,11 @@ create table users (
     firstname varchar(25) not null,
     lastname varchar(25) not null,
     email varchar(50) not null,
-    location_id int not null,
+    location_id int,
     app_user_id int not null,
-    constraint fk_user_location_id
-			foreign key (location_id)
-		references locations(location_id),
+    -- constraint fk_user_location_id
+-- 			foreign key (location_id)
+-- 		references locations(location_id),
 	constraint fk_user_app_user_id
 		foreign key (app_user_id)
         references app_user(app_user_id)
@@ -94,8 +94,18 @@ insert into locations(location_id, latitude, longitude) values
         
 	insert into games values
 		(1, 'Football', null, 'Throw the old pigskin around', 'Sports'),
-        (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Fighting Game'),
-        (3, 'Dungeons and Dragons', null, 'Wanna be a wizard?', 'Board Game');
+        (2, 'Super Smash Brothers', null, 'Beat up your friends virtually', 'Video Game'),
+        (3, 'Dungeons and Dragons', null, 'Live out your greatest fantasy. No taxes', 'Board Game'),
+        (4, 'Basketball', null, 'Shoot some hoops', 'Sports'),
+        (5, 'Baseball', null, 'Hit a home run', 'Sports'),
+        (6, 'Golf', null, 'Practice your short game', 'Sports'),
+        (7, 'Chess', null, 'Train to beat Magnus Carlsen', 'Board Game'),
+        (8, 'Poker', null, 'Gamble your savings away', 'Card Game'),
+        (9, 'Halo', null, 'Play as a space warrior and shoot aliens', 'Video Game'),
+        (10, 'Mario Party', null, 'Play an assortment of party games', 'Video Game'),
+        (11, 'Mario Kart', null, 'Drive around with reckless abandon', 'Video Game'),
+        (12, 'Ultimate Frisbee', null, 'Its like football, but with a frisbee', 'Sport');
+        
         
 	insert into users values
 		(1, 'mrcoolguy', 'Nick', 'Nerhood', 'nrnrerhood@gmail.com', 1, 1),
