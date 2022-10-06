@@ -7,6 +7,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import Errors from './Errors';
 import PickUpMapTesting from './PickUpMapTesting';
+import MapWithModal from './MapWithModal';
 
 
 
@@ -183,6 +184,7 @@ function PickupForm() {
 
   return (
     <>
+    <MapWithModal />
       <h2>{editId ? 'Update' : 'Add'} PickUp</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
@@ -217,6 +219,8 @@ function PickupForm() {
           <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
+      <br></br>
+      <br></br>
     </>
   );
 }

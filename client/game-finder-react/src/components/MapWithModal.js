@@ -112,7 +112,7 @@ const MapWithModal = () => {
     }
 
     const mapStyles = {
-        height: "85vh",
+        height: "80vh",
         width: "100%"
     };
 

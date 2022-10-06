@@ -33,6 +33,7 @@ function DeletePickup() {
   },[])
 
   const handleDelete = () => {
+    console.log("beginning of handle");
     const init = {
       method: 'DELETE',
       headers: {
@@ -51,8 +52,8 @@ function DeletePickup() {
           history.push('/not-found', { id: pickup.pickUpId })
           break;
         case 403:
-          authManager.logout();
-          history.push('/login');
+          //authManager.logout();
+          //history.push('/login');
           break;
         default:
           return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');

@@ -8,7 +8,7 @@ function Nav() {
 
 
     return (
-        <nav className="navbar navbar-expand-lg bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link className="navbar-brand" to="/">GameFinder</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@ function Nav() {
                             }
                             
                 </ul>
-                {authManager.user && <span className="navbar-text text-success">{`Welcome ${authManager.user.username}`}</span>}
+                {authManager.user && <span className="navbar-text text-clear">{`Welcome ${authManager.user.username}`}</span>}
 
 
                 <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

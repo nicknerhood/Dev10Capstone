@@ -55,6 +55,7 @@ function App() {
     //   return null;
     // }
 
+    //console.log("testing");
 
     localStorage.removeItem(LOCALSTORAGE_KEY);
     setUser(null);
@@ -108,7 +109,7 @@ function App() {
                 {user  ? <PickupList /> :<Redirect to="/login" />}
               </Route>
               <Route exact path="/pickup/delete/:deleteId">
-                {user && user.hasRole("ROLE_ADMIN") ? <DeletePickup /> :<Redirect to="/login" />}
+                {user ? <DeletePickup /> :<Redirect to="/login" />}
               </Route>
               <Route exact path='/pickupmap'>
                 {user ? <MapWithModal /> :<Redirect to="/login" />}
