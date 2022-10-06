@@ -36,7 +36,7 @@ function PickupList() {
 
 
   const filteredUser = users.filter(user => user.username == authManager.user.username);
-  console.log(filteredUser.length)
+  //console.log(filteredUser.length)
 
 
 

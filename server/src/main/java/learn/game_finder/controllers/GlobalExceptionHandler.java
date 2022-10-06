@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(DataAccessException ex){
         System.out.println(ex);
         Result result = new Result<>();
-        result.addMessage("Something went wrong with the database, sorry", ResultType.SERVER_ERROR);
+        result.addMessage("Something went wrong with the database. We apologize for the inconvenience.", ResultType.SERVER_ERROR);
         return ErrorResponse.build(result);
     }
     

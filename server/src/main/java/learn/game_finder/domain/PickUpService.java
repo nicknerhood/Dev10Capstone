@@ -93,24 +93,24 @@ public class PickUpService {
         Result<PickUp> result = new Result<>();
 
         if(pickUp == null){
-            result.addMessage("PickUp cannot be null", ResultType.INVALID);
+            result.addMessage("Please fill in the required information", ResultType.INVALID);
             return result;
         }
 
         if(Validations.isNullOrBlank(pickUp.getPickUpInfo())){
-            result.addMessage("Pickup Information cannot be empty", ResultType.INVALID);
+            result.addMessage("A description is required", ResultType.INVALID);
         }
         if(pickUp.getPlayDate() == null){
             result.addMessage("Please enter a date", ResultType.INVALID);
         }
         if(pickUp.getPlayDate().isBefore(LocalDate.now())){
-            result.addMessage("PickUps must be in the future", ResultType.INVALID);
+            result.addMessage("Postings must be in the future", ResultType.INVALID);
         }
         if(pickUp.getLocationId()<=0){
-            result.addMessage("Location Id must be set and must be more than 0", ResultType.INVALID);
+            result.addMessage("Please select a valid location", ResultType.INVALID);
         }
         if(pickUp.getGameId()<=0){
-            result.addMessage("Game Id must be set and must be more than 0", ResultType.INVALID);
+            result.addMessage("Please select a valid game", ResultType.INVALID);
         }
         if(pickUp.getUserId()<=0){
             result.addMessage("User Id must be set and must be more than 0", ResultType.INVALID);

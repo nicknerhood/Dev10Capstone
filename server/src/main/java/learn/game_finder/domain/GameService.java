@@ -83,7 +83,7 @@ public class GameService {
     private Result<Game> validate(Game game){
         Result<Game> result = new Result<>();
         if(game == null){
-            result.addMessage("Game cannot be null", ResultType.INVALID);
+            result.addMessage("Please fill in the required information", ResultType.INVALID);
             return null;
         }
         if(Validations.isNullOrBlank(game.getTitle())){

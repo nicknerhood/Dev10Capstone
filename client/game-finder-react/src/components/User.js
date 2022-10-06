@@ -40,7 +40,7 @@ function User({ user }) {
       
       const filteredPickups = pickups.filter(pickup => pickup.userId == user.userId)
 
-      console.log(filteredPickups)
+      //console.log(filteredPickups)
 
   
 

@@ -19,11 +19,13 @@ function PickupForm() {
 
 
     const DEFAULT_PICKUP = {pickUpInfo: '', playDate: '', locationId: 0, gameId: 0, userId: 0  }
+    const DEFAULT_APP_USERS = [{appUserId: '', username: ''}];
 
   const [pickup, setPickup] = useState(DEFAULT_PICKUP);
   const [errors, setErrors] = useState([]);
   const [games, setGames] = useState([]);
   const [users, setUsers] = useState([]);
+  //const [appUsers, setAppUsers] = useState(DeEFA);
   const { editId } = useParams();
 
   const history = useHistory();
@@ -86,6 +88,30 @@ function PickupForm() {
     }
 
   }, [])
+
+//   useEffect(() => {
+    
+//     fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
+//       .then(resp => {
+//         switch(resp.status) {
+//           case 200:
+//             return resp.json();
+//           case 404:
+//             history.push('/not-found')
+//             break;
+//           default:
+//             return Promise.reject('Something terrible has gone wrong');
+//         }
+//       })
+//       .then(body => {
+//         if (body) {
+//           setAppUsers(body);
+//         }
+//       })
+//       .catch(err => history.push('/errors', {errorMessage: err}));
+//   }
+
+// ,[])
 
   const savePickup = () => {
     const init = {
@@ -178,8 +204,8 @@ function PickupForm() {
   const handleCancel = () => history.push('/pickup');
 
 
-  const filteredUser = users.filter(user => user.username == authManager.user.username)
-  console.log(filteredUser)
+  const filteredUser = users.filter(user => user.username == authManager.user.username);
+  //console.log(filteredUser)
 
 
   return (
@@ -189,7 +215,7 @@ function PickupForm() {
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="pickUpInfo">pickUpInfo:</label>
+          <label htmlFor="pickUpInfo">Description: </label>
           <input name="pickUpInfo" type="text" className="form-control" id="pickUpInfo" value={pickup.pickUpInfo} onChange={handleChange} />
         </div>
         <div className="form-group">
@@ -205,7 +231,7 @@ function PickupForm() {
         </div>
         
         <div className="form-group">
-          <label htmlFor="locationId">LocationId</label>
+          <label htmlFor="locationId">Location #: </label>
           <input name="locationId" type="text" className="form-control" id="locationId" value={pickup.locationId} onChange={handleChange} />
         </div>
         <div className="form-group">

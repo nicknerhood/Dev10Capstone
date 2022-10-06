@@ -150,11 +150,11 @@ function GameForm() {
           <input name="title" type="text" className="form-control" id="title" value={game.title} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="gameInfo">GameInfo:</label>
+          <label htmlFor="gameInfo">Description: </label>
           <input name="gameInfo" type="text" className="form-control" id="gameInfo" value={game.gameInfo} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="genre">Genre</label>
+          <label htmlFor="genre">Genre/Type</label>
           <input name="genre" type="text" className="form-control" id="genre" value={game.genre} onChange={handleChange} />
         </div>
         {/* <div className="form-group">

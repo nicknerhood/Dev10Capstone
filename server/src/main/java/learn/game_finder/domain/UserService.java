@@ -87,16 +87,16 @@ public class UserService {
         }
 
         if(Validations.isNullOrBlank(user.getFirstName())){
-            result.addMessage("First name cannot be null", ResultType.INVALID);
+            result.addMessage("Please enter a first name", ResultType.INVALID);
         }
         if(Validations.isNullOrBlank(user.getLastName())){
-            result.addMessage("Last name cannot be null", ResultType.INVALID);
+            result.addMessage("Please enter a last name", ResultType.INVALID);
         }
         if(Validations.isNullOrBlank(user.getUsername())){
-            result.addMessage("username cannot be null", ResultType.INVALID);
+            result.addMessage("Please enter a username", ResultType.INVALID);
         }
         if(Validations.isNullOrBlank(user.getEmail())){
-            result.addMessage("email cannot be null", ResultType.INVALID);
+            result.addMessage("Please enter a valid email address", ResultType.INVALID);
         }
 //        List<AppUser> appUsers = (List<AppUser>) appUserRepository.findByUsername(user.getUsername());
         List<User> all = repository.findAll();

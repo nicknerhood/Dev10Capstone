@@ -177,17 +177,20 @@ function AddUser() {
                         <option defaultValue>Your Username</option>
      
                             <option value={appUser.username}>{appUser.username}</option>
-                    </select>        </div>
+                    </select>        
+                    {/* <label htmlFor='username'>Public Username: </label>
+                    <input name='username' type="text" className="form-control" id="username" value={user.username} onChange={handleChange} /> */}
+                    </div>
         <div className="form-group">
-          <label htmlFor="firstName">first name:</label>
+          <label htmlFor="firstName">First Name:</label>
           <input name="firstName" type="text" className="form-control" id="firstName" value={user.firstName} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName">last name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input name="lastName" type="text" className="form-control" id="lastName" value={user.lastName} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label htmlFor="email">email:</label>
+          <label htmlFor="email">Email Address:</label>
           <input name="email" type="text" className="form-control" id="email" value={user.email} onChange={handleChange} />
         </div>
         {/* <div className="form-group">
@@ -196,9 +199,9 @@ function AddUser() {
         </div> */}
         <div className="form-group">
         <select className="form-control" id="appUserId" name="appUserId"  value={user.appUserId} onChange={handleChange}>
-                        <option defaultValue>Your App User Id</option>
+                        <option defaultValue>Login Username: </option>
      
-                            <option value={appUser.appUserId}>Id: {appUser.appUserId}</option>
+                         <option value={appUser.appUserId}>Username: {appUser.username}</option>
                     </select>
         </div>
         <div className="form-group">
