@@ -62,7 +62,7 @@ function Games() {
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddGame}>Add Game</button>
      <form onSubmit={handleSubmit} className="m-5">
                 <div className="input-group">
-                    <input id="search-box" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <input id="search-box" type="search" className="form-control rounded" placeholder="Search by Game Name" aria-label="Search" aria-describedby="search-addon" />
                     <button type="submit" className="btn btn-outline-primary">Search</button>
                     <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
                 </div>

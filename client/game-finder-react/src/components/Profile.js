@@ -110,14 +110,13 @@ const authManager = useContext(UserContext);
 
           
             
-      <div > 
        
 
         <div>
       {filteredUser.map(user => <User key={user.userId} user={user} />) }
         </div>
 
-  </div>
+  
 </>
         
   

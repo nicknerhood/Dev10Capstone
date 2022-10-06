@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 
+
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
 
@@ -131,6 +132,7 @@ function PickUp({ pickup }) {
   
   return (
     <>
+   
     <div className="card text-dark bg-light" key={pickup.pickupId}>
       
                     <div className="card-header">

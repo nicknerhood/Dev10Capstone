@@ -8,6 +8,7 @@ import PickUpMapTesting from './PickUpMapTesting';
 import UserContext from '../UserContext';
 import { useContext } from 'react';
 
+
 function PickupList() {
   const [pickups, setPickups] = useState([]);
   const [searchedPickups, setSearchedPickups] = useState([]);
@@ -65,7 +66,7 @@ function PickupList() {
     search.preventDefault();
     search = document.getElementById("search-box").value;
 
-    const filteredPickups = pickups.filter(pickup => pickup.playDate );
+    const filteredPickups = pickups.filter(pickup => pickup.playDate >+ search );
     setPickups(filteredPickups);
   }
 
@@ -85,7 +86,7 @@ function PickupList() {
      <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>}
      <form onSubmit={handleSubmit} className="m-5">
                 <div className="input-group">
-                    <input id="search-box" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <input id="search-box" type="search" className="form-control rounded" placeholder="Search by Date yyyy-mm-dd" aria-label="Search" aria-describedby="search-addon" />
                     <button type="submit" className="btn btn-outline-primary">Search</button>
                     <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Cancel</button>
                 </div>
@@ -93,8 +94,9 @@ function PickupList() {
             {searchedPickups != pickups &&
             <div>
              {pickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+             
       <div>
-                  
+      
       <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
      
           <div className="card text-dark bg-light" >
@@ -109,7 +111,10 @@ function PickupList() {
               </div>
           </div>
           </div>
+          
+
           </div>
+          
 }
 </>
   );}
