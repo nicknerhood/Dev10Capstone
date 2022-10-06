@@ -25,6 +25,7 @@ import MapWithModal from './components/MapWithModal';
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
 function App() {
+
   const [user, setUser] = useState(null);
 
   const history = useHistory();
@@ -136,7 +137,7 @@ function App() {
           </div>
 
           <footer className='footer text-center text-lg-start bg-success fixed-bottom'>
-            <div className='text-center p-3'>2022 Copyright: Game-Finder</div>
+            <div className='text-center p-3'> ©2022 Copyright: GameFinder</div>
           </footer>
         </Router>
       </UserContext.Provider>

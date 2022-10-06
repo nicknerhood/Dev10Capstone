@@ -82,7 +82,11 @@ function Games() {
           {games.map(game => <Game key={game.id} game={game} />)}
         </tbody>
       </table>
-}
+    }
+    <div>
+      <br></br>
+      <br></br>
+    </div>
     </>
   )
 }
