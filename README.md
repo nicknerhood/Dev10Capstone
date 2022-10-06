@@ -52,17 +52,17 @@ as well as look through the game library with descriptions and details about the
 | - Game                                | 1                    | Done        | Nick              |
 | ---FRONTEND---                        |                      |             |                   |
 | Create React App                      | 1                    | Done        | Both              |
-| Components                            | 3                    | In Progress | Both              |
-| Roles and Authentication              | 3                    | In Progress | Both              |
-| GoogleMaps API                        | 4                    | In Progress | Both              |
-| View PickUps                          | 2                    | In Progress | Both              |
-| Add PickUp                            | 2                    | In Progress | Both              |
-| Update PickUp                         | 2                    | In Progress | Both              |
-| Delete PickUp                         | 2                    | In Progress | Both              |
+| Components                            | 3                    | Done        | Both              |
+| Roles and Authentication              | 3                    | Done        | Both              |
+| GoogleMaps API                        | 4                    | Done        | Both              |
+| View PickUps                          | 2                    | Done        | Both              |
+| Add PickUp                            | 2                    | Done        | Both              |
+| Update PickUp                         | 2                    | Done        | Both              |
+| Delete PickUp                         | 2                    | Done        | Both              |
 | Game List                             | 2                    | Done        | Both              |
 | View Games                            | 2                    | Done        | Both              |
-| Debugging                             | 3                    | Not Started | Both              |
-| Styling                               | 3                    | Not Started | Both              |
+| Debugging                             | 3                    | Done        | Both              |
+| Styling                               | 3                    | Done        | Both              |
 | Static Pages (Home, About, etc)       | 1                    | Done        | Both              |
 
 ## Schema Diagram
