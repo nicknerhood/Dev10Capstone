@@ -5,10 +5,13 @@ import PickUp from './PickUp';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import LocationForm from './LocationForm';
+import { ModalBody } from 'react-modal-bootstrap';
+import PickupForm from './AddPickUp';
 
 const DEFAULT_LOCATION = {latitude: 0, longitude: 0};
+const DEFAULT_PICKUP = {locationId: 0};
 
-const MapWithModal = (pickup) => {
+const MapWithModal = () => {
 
     const [pickups, setPickups] = useState([]);
 
@@ -23,6 +26,8 @@ const MapWithModal = (pickup) => {
     const [locations, setLocations] = useState([]);
     
     const [location, setLocation] = useState(DEFAULT_LOCATION);
+
+    const [pickup, setPickup] = useState(DEFAULT_PICKUP);
 
     const [errors, setErrors] = useState([]);
 
@@ -98,6 +103,7 @@ const MapWithModal = (pickup) => {
 
     const onSelect = item => {
         setSelected(item);
+        setPickup({locationId: item.id})
     }
 
     const mapStyles = {
@@ -181,6 +187,10 @@ const MapWithModal = (pickup) => {
         setShow(false);
     }
 
+    function handleAddPickup(){
+     setShow(true);
+    }
+
   return (
     <div className='App'>
       <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
@@ -194,7 +204,13 @@ const MapWithModal = (pickup) => {
                 {/* {filteredPickups.map(pickup => */}
                 <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
                   <>
-                    {filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+                    {pickups.map(pickup => pickup.locationId == selected.name &&
+                    <PickUp key={pickup.id} pickup={pickup} />)} 
+
+                    <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
+
+
+
                   </>
                 </InfoWindow>
                 {/* )} */}
@@ -220,6 +236,7 @@ const MapWithModal = (pickup) => {
                 </div>
             </form>
         </Modal.Body>
+       
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel
@@ -229,6 +246,16 @@ const MapWithModal = (pickup) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      {/* <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+          <PickupForm/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+        </Modal> */}
     </div>
   )
 }

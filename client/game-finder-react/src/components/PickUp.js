@@ -157,7 +157,7 @@ function PickUp({ pickup }) {
                         {/* {filteredLocations.map(location =>
                         <p><strong>Pickup Location: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Lat: ${location.latitude}, Lng: ${location.longitude}`}</em></p>)} */}
                         <p><strong>Location #: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`${pickup.locationId}`}</em></p>
-                        {filteredUser.map( user => user.appUserId == appUser.appUserId &&
+                        { filteredUser.map( user => user.appUserId == appUser.appUserId  &&
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         )}
 

@@ -42,8 +42,12 @@ function Game({ game }) {
        <td>{game.genre}</td>
        {/* <td>{game.imagePath}</td> */}
        <td>
+       {authManager.user && authManager.user.hasRole('ROLE_ADMIN') &&
         <button type="button" className="btn btn-warning mr-3" onClick={handleEdit}>Edit</button>
+                  }
+        {authManager.user && authManager.user.hasRole('ROLE_ADMIN') &&
          <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                  }
        </td>
      </tr>
     

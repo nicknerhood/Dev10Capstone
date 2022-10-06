@@ -5,15 +5,38 @@ import MapWithModal from './MapWithModal';
 
 import PickUp from './PickUp';
 import PickUpMapTesting from './PickUpMapTesting';
+import UserContext from '../UserContext';
+import { useContext } from 'react';
 
 function PickupList() {
   const [pickups, setPickups] = useState([]);
   const [searchedPickups, setSearchedPickups] = useState([]);
   const [allPickups, setAllPickups] = useState([]);
+  const [users, setUsers] = useState([]);
+  const authManager = useContext(UserContext);
+
 
   const history = useHistory();
 
-  
+  useEffect(() => {
+    fetch('http://localhost:8080/user')
+    .then(resp => {
+      if (resp.status === 200) {
+        return resp.json();
+      }
+      return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+    })
+    .then(data => {
+      setUsers(data);
+      
+    })
+    .catch(err => history.push('/error', {errorMessage: err}));
+  },[])
+
+
+  const filteredUser = users.filter(user => user.username == authManager.user.username);
+  console.log(filteredUser.length)
+
 
 
 
@@ -58,7 +81,8 @@ function PickupList() {
     <h3>Add a Location by Clicking on the map</h3>
     <MapWithModal />
       <h2>Pickups</h2>
-     <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
+      {filteredUser.length !== 0 &&
+     <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>}
      <form onSubmit={handleSubmit} className="m-5">
                 <div className="input-group">
                     <input id="search-box" type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />

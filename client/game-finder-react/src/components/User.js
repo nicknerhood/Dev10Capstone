@@ -38,6 +38,8 @@ function User({ user }) {
       
       const filteredPickups = pickups.filter(pickup => pickup.userId == user.userId)
 
+      console.log(filteredPickups)
+
   
 
   
@@ -58,11 +60,17 @@ function User({ user }) {
                     </div>
                     <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit Profile Information</button>
 
-
+                    {filteredPickups.length !== 0 &&
+                    <>
                     <h1 className mb-10>Your Pickup Posts</h1>
-{filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
 
-<div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
+                   
+                    <div>
+{filteredPickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
+</div>
+</>
+}
+{/* <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
 
 <div className="card text-dark bg-light" >
 
@@ -71,15 +79,16 @@ function User({ user }) {
     </div>
   
     </div>
-</div>
-                    
-    </div>
+</div> */}
 
+    </div>
+                    
          
 
 
 
 </>
+                    
   );
 }
 
