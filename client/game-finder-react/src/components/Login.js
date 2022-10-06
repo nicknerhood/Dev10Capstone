@@ -40,7 +40,7 @@ function Login( { onSubmit} ) {
     
       return (
         <div>
-         <h1 className="text-center">Login</h1>
+         <h1 className="text-center mt-5">Login</h1>
          {errors.length > 0 ? <Errors errors={errors} /> : null}
          <div className="col-3 border m-4 mx-auto d-flex justify-self-center text-center">
           <form  onSubmit={handleSubmit}>

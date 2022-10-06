@@ -10,7 +10,7 @@ import PickUpMapTesting from './PickUpMapTesting';
 import MapWithModal from './MapWithModal';
 
 
-
+const DEFAULT_APP_USER = {appUserId: '', username: ''};
 
 
 function PickupForm() {
@@ -19,13 +19,13 @@ function PickupForm() {
 
 
     const DEFAULT_PICKUP = {pickUpInfo: '', playDate: '', locationId: 0, gameId: 0, userId: 0  }
-    const DEFAULT_APP_USERS = [{appUserId: '', username: ''}];
+
 
   const [pickup, setPickup] = useState(DEFAULT_PICKUP);
   const [errors, setErrors] = useState([]);
   const [games, setGames] = useState([]);
   const [users, setUsers] = useState([]);
-  //const [appUsers, setAppUsers] = useState(DeEFA);
+  const [appUser, setAppUser] = useState(DEFAULT_APP_USER);
   const { editId } = useParams();
 
   const history = useHistory();
@@ -89,29 +89,29 @@ function PickupForm() {
 
   }, [])
 
-//   useEffect(() => {
+  useEffect(() => {
     
-//     fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
-//       .then(resp => {
-//         switch(resp.status) {
-//           case 200:
-//             return resp.json();
-//           case 404:
-//             history.push('/not-found')
-//             break;
-//           default:
-//             return Promise.reject('Something terrible has gone wrong');
-//         }
-//       })
-//       .then(body => {
-//         if (body) {
-//           setAppUsers(body);
-//         }
-//       })
-//       .catch(err => history.push('/errors', {errorMessage: err}));
-//   }
+    fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
+      .then(resp => {
+        switch(resp.status) {
+          case 200:
+            return resp.json();
+          case 404:
+            history.push('/not-found')
+            break;
+          default:
+            return Promise.reject('Something terrible has gone wrong');
+        }
+      })
+      .then(body => {
+        if (body) {
+          setAppUser(body);
+        }
+      })
+      .catch(err => history.push('/errors', {errorMessage: err}));
+  }
 
-// ,[])
+,[])
 
   const savePickup = () => {
     const init = {
@@ -204,13 +204,15 @@ function PickupForm() {
   const handleCancel = () => history.push('/pickup');
 
 
-  const filteredUser = users.filter(user => user.username == authManager.user.username);
+  const filteredUser = users.filter(user => user.appUserId == appUser.appUserId);
   //console.log(filteredUser)
+
+  const sortedGames = games.sort((a, b) => a.title.localeCompare(b.title));
 
 
   return (
     <>
-    <MapWithModal />
+    
       <h2>{editId ? 'Update' : 'Add'} PickUp</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
@@ -225,7 +227,7 @@ function PickupForm() {
         <div className="form-group">
         <select className="form-control" id="gameId" name="gameId"  value={pickup.gameId} onChange={handleChange}>
                         <option defaultValue>Choose a Game...</option>
-                        {games.map((game) => 
+                        {sortedGames.map((game) => 
                             <option value={game.gameId}>Title: {game.title}</option>)}
                     </select>
         </div>
@@ -245,6 +247,7 @@ function PickupForm() {
           <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
+      <MapWithModal />
       <br></br>
       <br></br>
     </>

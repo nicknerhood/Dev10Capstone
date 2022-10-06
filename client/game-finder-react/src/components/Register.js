@@ -71,7 +71,7 @@ function Register() {
 
   return (
     <div className="container">
-      <h1 className="text-center">Register</h1>
+      <h1 className="text-center mt-5">Register</h1>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <div className="col-3 border m-4 mx-auto justify-self-center text-center">
       <form onSubmit={handleSubmit}>

@@ -57,9 +57,9 @@ function Games() {
 
   return (
     <>
-      <h2>Games</h2>
+      <h1>Game Library</h1>
      
-     <button type="button" className="btn btn-primary mb-3" onClick={handleAddGame}>Add Game</button>
+     <button type="button" className="btn btn-primary mt-4 mb-2" onClick={handleAddGame}>Add Game</button>
      <form onSubmit={handleSubmit} className="m-5">
                 <div className="input-group">
                     <input id="search-box" type="search" className="form-control rounded" placeholder="Search by Game Name" aria-label="Search" aria-describedby="search-addon" />
@@ -72,8 +72,8 @@ function Games() {
         <thead>
           <tr>
             <th scope="col">Games</th>
-            <th scope="col">Game Info</th>
-            <th scope="col">Genre</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">Genre/Type</th>
             {/* <th scope="col">Image</th> */}
             <th></th>
           </tr>

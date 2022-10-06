@@ -143,7 +143,7 @@ function PickUp({ pickup }) {
                       
                     </div>
                     {filteredUser.map( user => user.appUserId == appUser.appUserId &&
-                    <button type="button" className="btn btn-success mr-3" onClick={handleEdit}>Edit</button>
+                    <button type="button" className="btn btn-success" onClick={handleEdit}>Edit Posting</button>
                     )}
                     <div className="card-body">
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>

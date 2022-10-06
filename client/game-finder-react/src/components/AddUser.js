@@ -172,14 +172,15 @@ function AddUser() {
       <h2>{editId ? 'Update' : 'Add'} User</h2>
       {errors.length > 0 ? <Errors errors={errors} /> : null}
       <form className='edit-form' onSubmit={onSubmit}>
-        <div className="form-group">
-        <select className="form-control" id="username" name="username"  value={user.username} onChange={handleChange}>
+      <div className="form-group">
+        <label htmlFor="username">Public Username:</label>
+          <input name="username" type="text" className="form-control" id="username" value={user.username} onChange={handleChange} />
+
+            {/* <select className="form-control" id="username" name="username"  value={user.username} onChange={handleChange}>
                         <option defaultValue>Your Username</option>
      
                             <option value={appUser.username}>{appUser.username}</option>
-                    </select>        
-                    {/* <label htmlFor='username'>Public Username: </label>
-                    <input name='username' type="text" className="form-control" id="username" value={user.username} onChange={handleChange} /> */}
+                    </select>         */}
                     </div>
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
@@ -198,10 +199,13 @@ function AddUser() {
           <input name="locationId" type="number" className="form-control" id="locationId" value={user.locationId} onChange={handleChange} />
         </div> */}
         <div className="form-group">
-        <select className="form-control" id="appUserId" name="appUserId"  value={user.appUserId} onChange={handleChange}>
-                        <option defaultValue>Login Username: </option>
+        <label htmlFor="appUser">Username:</label>
+          {/* <input name="email" type="text" className="form-control" id="email" value={user.email} onChange={handleChange} /> */}
+
+        <select  className="form-control" id="appUserId" name="appUserId"  value={user.appUserId} onChange={handleChange}>
+                        <option defaultValue>Your Login Username</option>
      
-                         <option value={appUser.appUserId}>Username: {appUser.username}</option>
+                            <option  value={appUser.appUserId}>Login Username: {appUser.username}</option>
                     </select>
         </div>
         <div className="form-group">

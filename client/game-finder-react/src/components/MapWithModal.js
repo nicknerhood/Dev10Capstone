@@ -12,8 +12,11 @@ import { useContext } from 'react';
 
 const DEFAULT_LOCATION = {latitude: 0, longitude: 0};
 const DEFAULT_PICKUP = {locationId: 0};
+const DEFAULT_APP_USER = {appUserId: '', username: ''};
 
 const MapWithModal = () => {
+
+    const [appUser, setAppUser] = useState(DEFAULT_APP_USER);
 
     const [pickups, setPickups] = useState([]);
 
@@ -92,6 +95,30 @@ const MapWithModal = () => {
       })
       .catch(err => history.push('/error', {errorMessage: err}));
     },[])
+
+    useEffect(() => {
+    
+      fetch(`http://localhost:8080/appuser/${authManager.user.username}`)
+        .then(resp => {
+          switch(resp.status) {
+            case 200:
+              return resp.json();
+            case 404:
+              history.push('/not-found')
+              break;
+            default:
+              return Promise.reject('Something terrible has gone wrong');
+          }
+        })
+        .then(body => {
+          if (body) {
+            setAppUser(body);
+          }
+        })
+        .catch(err => history.push('/errors', {errorMessage: err}));
+    }
+
+  ,[])
 
     
 
@@ -198,6 +225,11 @@ const MapWithModal = () => {
      history.push('pickup/add');
     }
 
+
+  const filteredUser = users.filter(user => user.appUserId == appUser.appUserId);
+  
+
+
   return (
     <div className='App'>
       <LoadScript googleMapsApiKey='AIzaSyB0CymM4J0zG7roy04odflwRmwvDz5MOfg'>
@@ -214,7 +246,9 @@ const MapWithModal = () => {
                     {pickups.map(pickup => pickup.locationId == selected.name &&
                     <PickUp key={pickup.id} pickup={pickup} />)} 
 
+                    {filteredUser !== undefined &&
                     <button type="button" className="btn btn-primary mb-3" onClick={handleAddPickup}>Add Pickup</button>
+}
 
 
 

@@ -67,7 +67,7 @@ function DeletePickup() {
   return (<>
     <h2>Delete Panel {pickup.pickUpId}</h2>
     <div className="alert alert-danger">
-      <h5 className="mb-3">Are you sure you want to delete this pickup post:</h5>
+      <h5 className="mb-3">Are you sure you want to delete this pickup post?</h5>
       <div className="mb-3">
       </div>
       <div>

@@ -8,7 +8,7 @@ function Home(){
                 <div className="center-block mt-3 mb-3">
                         <img className="image" src="../images/game-finder-icon.png" width="500" height="500" alt= "" />
                 </div>
-                <h2>We help you find games</h2>
+                <h2>We help you find people to play games with.</h2>
             </div>
 
         </div>

@@ -19,14 +19,15 @@ function Nav() {
                         <img src="../images/game-finder-icon.png" width="40" height="40" alt=""/>
                     </li>
                     <li className="nav-item">
+                        <Link to="/about" className='nav-link'>About</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to="/game" className='nav-link'>Games</Link>
                     </li>
                     <li className="nav-item">
                         <Link to="/pickup" className="nav-link">Pickups</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link to="/about" className='nav-link'>About</Link>
-                    </li>
+                    
                     
                         {!authManager.user ? (<>
                             <li className="nav-item">
