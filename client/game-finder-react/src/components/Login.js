@@ -61,13 +61,13 @@ function Login( { onSubmit} ) {
               />
             </div>
             <div>
-              <button className="btn btn-primary m-2 mx-auto" type="submit">Login</button>
+              <button className="btn btn-success m-2 mx-auto" type="submit">Login</button>
             </div>
           </form>
          </div>
          <p className="text-center">New to Game-Finder?</p>
          <div>
-              <button className="btn btn-primary m-2 mx-auto d-flex justify-self-center"
+              <button className="btn btn-success m-2 mx-auto d-flex justify-self-center"
               onClick={handleClick}>
                 Register
               </button>

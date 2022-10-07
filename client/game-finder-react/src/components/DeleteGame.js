@@ -66,7 +66,7 @@ function DeleteGame() {
   const handleCancel = () => history.push('/game')
 
   return (<>
-    <h2>Delete Game {game.gameId}</h2>
+    <h2>Deleting {game.title}</h2>
     <div className="alert alert-danger">
       <h5 className="mb-3">Are you sure you want to delete this game:</h5>
       <div className="mb-3">

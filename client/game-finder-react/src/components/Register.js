@@ -88,7 +88,7 @@ function Register() {
           <input name="confirmPassword" type="password" className="form-control" id="confirmPassword" value={register.confirmPassword} onChange={handleChange} />
         </div>
         <div>
-          <button type="submit" className="btn btn-primary m-2 mx-auto">Register</button>
+          <button type="submit" className="btn btn-success m-2 mx-auto">Register</button>
         </div>
       </form>
       </div>

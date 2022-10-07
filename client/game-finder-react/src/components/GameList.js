@@ -73,7 +73,7 @@ function Games() {
           <tr>
             <th scope="col">Games</th>
             <th scope="col">Short Description</th>
-            <th scope="col">Genre/Type</th>
+            <th scope="col">Game Type</th>
             {/* <th scope="col">Image</th> */}
             <th></th>
           </tr>

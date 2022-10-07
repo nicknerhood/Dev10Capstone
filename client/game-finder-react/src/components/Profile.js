@@ -103,7 +103,7 @@ const authManager = useContext(UserContext);
       { filteredUser.length == 0 &&
       <div>
         <h3>Finish setting up your profile before you can add any Pickup Listings</h3>
-             <button type="button" className="btn btn-primary mb-3" onClick={handleAddUser}>Create Public Profile</button>
+             <button type="button" className="btn btn-success mb-3" onClick={handleAddUser}>Create Public Profile</button>
 
       </div>
       }
