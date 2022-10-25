@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
 import SignedUpList from "./SignedUpList";
+import classes from './Pickup.module.css'
 
 
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
@@ -135,19 +136,23 @@ function PickUp({ pickup }) {
   return (
     <>
    
-    <div className="card text-dark bg-light" key={pickup.pickupId}>
+    <li className={classes.pickup} key={pickup.pickupId}>
       
-                    <div className="card-header">
+                    <div >
                       {filteredGames.map(game => 
-                        <h5 className="card-title" key= {pickup.gameId}>Game: {game.title}</h5>
+                        <h1  key= {pickup.gameId}>Game: {game.title}</h1>
                         
   )}
-                      
-                    </div>
-                    {filteredUser.map( user => (user.appUserId == appUser.appUserId || authManager.user.hasRole('ROLE_ADMIN') )&&
+           {filteredUser.map( user => (user.appUserId == appUser.appUserId || authManager.user.hasRole('ROLE_ADMIN') )&&
                     <button type="button" className="btn btn-success" onClick={handleEdit}>Edit Posting</button>
-                    )}
-                    <div className="card-body">
+                    )}    
+                     { filteredUser.map( user => (user.appUserId == appUser.appUserId  || authManager.user.hasRole('ROLE_ADMIN') )&&
+                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                        )}         
+                    </div>
+                  
+                    <div className={classes.description}>
+                      <h3>Details</h3>
                         <p><strong>Pickup Description : &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{pickup.pickUpInfo}</em></p>
                         <p><strong>Pickup Date: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`Date: ${pickup.playDate} `}</em></p>
                         {filteredUser.map(user => 
@@ -160,9 +165,7 @@ function PickUp({ pickup }) {
                         {/* {filteredLocations.map(location =>
                         <p><strong>Pickup Location: &nbsp;&nbsp;&nbsp;&nbsp; </strong><em>{`Lat: ${location.latitude}, Lng: ${location.longitude}`}</em></p>)} */}
                         <p><strong>Location #: &nbsp;&nbsp;&nbsp;&nbsp;</strong> <em>{`${pickup.locationId}`}</em></p>
-                        { filteredUser.map( user => (user.appUserId == appUser.appUserId  || authManager.user.hasRole('ROLE_ADMIN') )&&
-                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                        )}
+                       
 
                         <p></p>
                     </div>
@@ -171,7 +174,7 @@ function PickUp({ pickup }) {
                       <h3>Joined Users</h3>
           <SignedUpList pickupId={pickup.pickUpId} />
         </div>
-                    </div>
+                    </li>
                     
                     </> 
   );

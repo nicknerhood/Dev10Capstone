@@ -8,6 +8,8 @@ import PickUpMapTesting from './PickUpMapTesting';
 import UserContext from '../UserContext';
 import { useContext } from 'react';
 import SignedUpList from './SignedUpList';
+import classes from './Pickup.module.css';
+import Card from './UI/Card';
 
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
@@ -134,10 +136,15 @@ function PickupList() {
                     <button type="button" className='btn btn-outline-danger' onClick={handleCancel}>Reset</button>
                 </div>
      </form>
-            {searchedPickups != pickups &&
+            {searchedPickups != pickups && 
+
+<section className={classes.meals}>
+<Card>
+  <ul>{pickups.map(pickup =>  <PickUp    key={pickup.pickUpId} pickup={pickup}/>  )}</ul>
+</Card>
+</section>}
             
-             pickups.map(pickup =>  <PickUp key={pickup.pickUpId} pickup={pickup}   /> ) 
-}
+
 </>
   );}
             
