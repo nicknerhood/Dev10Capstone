@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../UserContext";
+import SignedUpList from "./SignedUpList";
 
 
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
@@ -17,6 +18,7 @@ function PickUp({ pickup }) {
     const [locations, setLocations] = useState([]);
     const [pickups,setPickups] = useState([]);
     const [users,setUsers] = useState([]);
+    
 
 
     useEffect(() => {
@@ -164,6 +166,11 @@ function PickUp({ pickup }) {
 
                         <p></p>
                     </div>
+
+                    <div>
+                      <h3>Joined Users</h3>
+          <SignedUpList pickupId={pickup.pickUpId} />
+        </div>
                     </div>
                     
                     </> 

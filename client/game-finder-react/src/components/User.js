@@ -99,6 +99,10 @@ function User({ user }) {
       </MDBContainer>
 
       
+   
+
+    </section>  
+
     {filteredPickups.length !== 0 &&
   <div className="py-5 h-1">
                     <h1 >Your Pickup Posts</h1>
@@ -110,10 +114,7 @@ function User({ user }) {
 
 </div>
 
-
     }
-
-    </section>  
 
 </div>
 

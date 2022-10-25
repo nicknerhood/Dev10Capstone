@@ -21,7 +21,7 @@ import DeletePickup from './components/DeletePickup';
 import Profile from './components/Profile';
 import LocationForm from './components/LocationForm';
 import MapWithModal from './components/MapWithModal';
-
+import SignedUpList from './components/SignedUpList';
 const LOCALSTORAGE_KEY = 'gameFinderAppToken'
 
 function App() {
@@ -124,6 +124,10 @@ function App() {
               <Route exact path='/location'>
                 {user ? <LocationForm /> :<Redirect to="/login" />}
               </Route>
+              <Route exact path = '/signedUp'>
+                <SignedUpList />
+              </Route>
+              
               <Route exact path="/errors">
                 <ServerError />
               </Route>

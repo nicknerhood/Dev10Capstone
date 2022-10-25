@@ -7,6 +7,7 @@ import PickUp from './PickUp';
 import PickUpMapTesting from './PickUpMapTesting';
 import UserContext from '../UserContext';
 import { useContext } from 'react';
+import SignedUpList from './SignedUpList';
 
 const DEFAULT_APP_USER = {appUserId: '', username: ''}
 
@@ -134,29 +135,8 @@ function PickupList() {
                 </div>
      </form>
             {searchedPickups != pickups &&
-            <div>
-             {pickups.map(pickup => <PickUp key={pickup.id} pickup={pickup} />)} 
-             
-      <div>
-      
-      <div className="row row-cols-lg-12 row-cols-md-12 row-cols-12 mx-3 g-3">
-     
-          <div className="card text-dark bg-light" >
-     
-              {/* <div className="card-header">
-                  <h5 className="card-title">Game:</h5>
-              </div> */}
-              <div className="card-body">
-                  <p></p>
-              </div>
             
-              </div>
-          </div>
-          </div>
-          
-
-          </div>
-          
+             pickups.map(pickup =>  <PickUp key={pickup.pickUpId} pickup={pickup}   /> ) 
 }
 </>
   );}
