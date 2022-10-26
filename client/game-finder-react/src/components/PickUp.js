@@ -119,11 +119,13 @@ function PickUp({ pickup }) {
 
 
   const [signedUps, setSignedUps] = useState([]);
+  const [allSignedUps, setAllSignedUps] = useState([]);
+
 
 
   let joinedUser = users.filter(user => user.appUserId == appUser.appUserId);
   const newUser = joinedUser[0];
-  console.log("newUser :", newUser);
+ 
 
 
 
@@ -142,12 +144,26 @@ useEffect(() => {
     .catch(err => history.pushState('./error', {errorMessage: err}));
 }, [])
 
+useEffect(() => {
+  fetch(`http://localhost:8080/signedUp`)
+  .then(resp => {
+      if (resp.status === 200) {
+          return resp.json();
+      }
+      return Promise.reject('Something terrible has occurred');
+  })
+  .then(data => {
+      setAllSignedUps(data)
+  })
+  .catch(err => history.pushState('./error', {errorMessage: err}));
+}, [])
+
 const joinPickup = (signedUp) => {
 
     const init =  {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({...signedUp})
     };
@@ -157,7 +173,7 @@ const joinPickup = (signedUp) => {
         if(resp.status === 201 || resp.status === 400){
             return resp.json();
         }
-        // return Promise.reject('Something terrible has gone wrong');
+        return Promise.reject('Something terrible has gone wrong');
     })
     .then(body => {
         if (body.signedUpId){
@@ -170,11 +186,11 @@ const joinPickup = (signedUp) => {
 }
 
 const handleJoin = () => {
-
-  const signedUp = {signedUpId: signedUps.length, userId: newUser.userId, pickupId: pickup.pickUpId}
+  let puId = pickup.pickUpId;
+  const signedUp = {"pickupId": puId, "userId": newUser.userId};
+  console.log(typeof signedUp)
+  
  
-
-  console.log("joined user" ,signedUp);
     joinPickup(signedUp);
 }
 

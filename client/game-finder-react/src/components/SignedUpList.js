@@ -26,7 +26,6 @@ function SignedUpList({pickupId}){
         .catch(err => history.push('/error', {errorMessage: err}));
       },[])
 
-      console.log(signedUps);
 
       return(
         <div>
