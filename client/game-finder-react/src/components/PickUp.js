@@ -5,10 +5,12 @@ import SignedUpList from "./SignedUpList";
 import classes from './Pickup.module.css'
 
 
-const DEFAULT_APP_USER = {appUserId: '', username: ''}
+const DEFAULT_APP_USER = {appUserId: 0, username: ''}
 
 
 function PickUp({ pickup }) {
+
+
 
     const history = useHistory();
 
@@ -19,6 +21,8 @@ function PickUp({ pickup }) {
     const [locations, setLocations] = useState([]);
     const [pickups,setPickups] = useState([]);
     const [users,setUsers] = useState([]);
+    const [errors, setErrors] = useState([]);
+
     
 
 
@@ -114,6 +118,69 @@ function PickUp({ pickup }) {
   },[])
 
 
+  const [signedUps, setSignedUps] = useState([]);
+
+
+  let joinedUser = users.filter(user => user.appUserId == appUser.appUserId);
+  const newUser = joinedUser[0];
+  console.log("newUser :", newUser);
+
+
+
+
+useEffect(() => {
+    fetch(`http://localhost:8080/signedUp/${pickup.pickUpId}`)
+    .then(resp => {
+        if (resp.status === 200) {
+            return resp.json();
+        }
+        return Promise.reject('Something terrible has occurred');
+    })
+    .then(data => {
+        setSignedUps(data)
+    })
+    .catch(err => history.pushState('./error', {errorMessage: err}));
+}, [])
+
+const joinPickup = (signedUp) => {
+
+    const init =  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...signedUp})
+    };
+
+    fetch('http://localhost:8080/signedUp', init)
+    .then(resp => {
+        if(resp.status === 201 || resp.status === 400){
+            return resp.json();
+        }
+        // return Promise.reject('Something terrible has gone wrong');
+    })
+    .then(body => {
+        if (body.signedUpId){
+            history.push('/pickup')
+        } else if (body) {
+            setErrors(body);
+        }
+    })
+    .catch(err => history.push('./errors', {errorMessage: err}));
+}
+
+const handleJoin = () => {
+
+  const signedUp = {signedUpId: signedUps.length, userId: newUser.userId, pickupId: pickup.pickUpId}
+ 
+
+  console.log("joined user" ,signedUp);
+    joinPickup(signedUp);
+}
+
+
+
+
 
 
 
@@ -126,11 +193,14 @@ function PickUp({ pickup }) {
     history.push(`/pickup/edit/${pickup.pickUpId}`);
   }
 
+
+
   const filteredGames = games.filter(game => game.gameId == pickup.gameId);
 
   const filteredLocations = locations.filter(location => location.locationId == pickup.locationId);
   
-  const filteredUser = users.filter(user => user.userId == pickup.userId)
+  const filteredUser = users.filter(user => user.userId == pickup.userId);
+
 
   
   return (
@@ -148,7 +218,10 @@ function PickUp({ pickup }) {
                     )}    
                      { filteredUser.map( user => (user.appUserId == appUser.appUserId  || authManager.user.hasRole('ROLE_ADMIN') )&&
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                        )}         
+                        )} 
+                              <button type="button" className="btn btn-primary" onClick={handleJoin}>Join</button>
+
+                               
                     </div>
                   
                     <div className={classes.description}>

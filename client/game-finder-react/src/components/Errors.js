@@ -1,7 +1,7 @@
 function Errors({ errors }) {
     return (<div className="alert alert-danger" role="alert">
              <ul>
-               {errors.map(error => <li key={error}>{error}</li>)}
+               {errors.map(error => <li key={error.id}>{error}</li>)}
              </ul>
            </div>)
      
