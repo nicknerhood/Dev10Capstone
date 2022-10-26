@@ -165,31 +165,32 @@ const joinPickup = (signedUp) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({...signedUp})
+        // body: JSON.stringify({pickupId: pickup.pickUpId, userId: newUser.userId})
+        body: JSON.stringify(signedUp)
+
     };
 
     fetch('http://localhost:8080/signedUp', init)
     .then(resp => {
         if(resp.status === 201 || resp.status === 400){
-            return resp.json();
+            return resp;
         }
         return Promise.reject('Something terrible has gone wrong');
     })
     .then(body => {
-        if (body.signedUpId){
-            history.push('/pickup')
+        if (body.ok){
+          window.location.reload(true);
         } else if (body) {
             setErrors(body);
         }
     })
     .catch(err => history.push('./errors', {errorMessage: err}));
+    
+
 }
 
 const handleJoin = () => {
-  let puId = pickup.pickUpId;
-  const signedUp = {"pickupId": puId, "userId": newUser.userId};
-  console.log(typeof signedUp)
-  
+  const signedUp = {pickupId: pickup.pickUpId, userId: newUser.userId}
  
     joinPickup(signedUp);
 }
