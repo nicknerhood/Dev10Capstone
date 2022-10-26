@@ -24,6 +24,15 @@ public class SignedUpJdbcTemplateRepository implements SignedUpRepository{
         return new ArrayList<>( jdbcTemplate.query(sql, new SignedUpMapper(), pickUpId));
     }
 
+    @Override
+    public List<SignedUp> allSignedUp(){
+
+        final String sql = "   select * from signedUp";
+
+        return new ArrayList<>( jdbcTemplate.query(sql, new SignedUpMapper()));
+
+    }
+
 
     @Override
     public boolean add(SignedUp signedUp) {

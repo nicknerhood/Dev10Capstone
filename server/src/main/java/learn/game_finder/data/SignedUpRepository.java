@@ -9,6 +9,8 @@ public interface SignedUpRepository {
 
     List<SignedUp> joinedUsers(int pickUpId);
 
+    List<SignedUp> allSignedUp();
+
     boolean add(SignedUp signedUp);
 
     boolean update(SignedUp signedUp);

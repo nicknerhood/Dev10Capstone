@@ -19,12 +19,16 @@ public class SignedUpService {
         return signedUpRepository.joinedUsers(pickupId);
     }
 
+    public List<SignedUp> findAllSignedUp(){
+        return signedUpRepository.allSignedUp();
+    }
+
     public boolean deleteSignedUp(int signedUpId) {
         return signedUpRepository.deleteById(signedUpId);
     }
 
-    public Result<Void> addSignedUp(SignedUp signedUp) {
-        Result<Void> result = new Result<>();
+    public Result<SignedUp> addSignedUp(SignedUp signedUp) {
+        Result<SignedUp> result = new Result<>();
 
         if (signedUp.getUserId() <= 0) {
             result.addMessage("User does not exist", ResultType.NOT_FOUND);
