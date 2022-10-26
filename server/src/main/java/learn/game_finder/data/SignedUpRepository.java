@@ -11,7 +11,7 @@ public interface SignedUpRepository {
 
     List<SignedUp> allSignedUp();
 
-    boolean add(SignedUp signedUp);
+    SignedUp add(SignedUp signedUp);
 
     boolean update(SignedUp signedUp);
 

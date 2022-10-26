@@ -125,6 +125,9 @@ function PickUp({ pickup }) {
 
   let joinedUser = users.filter(user => user.appUserId == appUser.appUserId);
   const newUser = joinedUser[0];
+  console.log(newUser)
+ 
+
  
 
 
@@ -190,12 +193,13 @@ const joinPickup = (signedUp) => {
 }
 
 const handleJoin = () => {
-  const signedUp = {pickupId: pickup.pickUpId, userId: newUser.userId}
+  const signedUp = {userId: newUser.userId, pickupId: pickup.pickUpId}
  
     joinPickup(signedUp);
 }
-
-
+// let leavingUsers = signedUps.filter(signedUp => signedUp.userId == newUser.userId )
+// const leftUser = leavingUsers[0];
+// console.log(leftUser);
 
 
 
@@ -218,6 +222,40 @@ const handleJoin = () => {
   
   const filteredUser = users.filter(user => user.userId == pickup.userId);
 
+  // const su = signedUps.filter(su => su.userId === newUser.userId);
+  //  const temp = su[0];
+
+  //  const handleLeave = () => {
+  //   const init = {
+  //     method: 'DELETE',
+  //     headers: {
+  //       // Authorization: `Bearer ${authManager.user.token}`
+
+  //     }
+  //   };
+
+  //   fetch(`http://localhost:8080/signedUp/${temp.signedUpId}`, init)
+  //   .then( resp => {
+  //     switch(resp.status) {
+  //       case 204:
+  //         window.location.reload(true);
+  //         break;
+  //       case 404:
+  //         history.push('/not-found', { id: temp.signedUpId })
+  //         break;
+  //       case 403:
+  //         authManager.logout();
+  //         history.push('/login');
+  //         break;
+  //       default:
+  //         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+  //     }
+  //   })
+  //   .catch(err => history.push('/error', {errorMessage: err}));
+  // }
+   
+
+
 
   
   return (
@@ -237,6 +275,7 @@ const handleJoin = () => {
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         )} 
                               <button type="button" className="btn btn-primary" onClick={handleJoin}>Join</button>
+                              {/* <button type="button" className="btn btn-secondary" onClick={handleLeave}>Leave</button> */}
 
                                
                     </div>

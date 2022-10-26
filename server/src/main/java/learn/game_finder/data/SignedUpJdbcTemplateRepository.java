@@ -3,8 +3,12 @@ package learn.game_finder.data;
 import learn.game_finder.data.mappers.SignedUpMapper;
 import learn.game_finder.models.SignedUp;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +39,22 @@ public class SignedUpJdbcTemplateRepository implements SignedUpRepository{
 
 
     @Override
-    public boolean add(SignedUp signedUp) {
-        final String sql = "insert into signedUp (signed_up_id, user_id, pickup_id) values (?,?,?)";
-        return jdbcTemplate.update(sql,
-                signedUp.getSignedUpId(),
-                signedUp.getPickupId(),
-                signedUp.getUserId()) > 0;
+    public SignedUp add(SignedUp signedUp) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        final String sql = "insert into signedUp ( user_id, pickup_id) values (?,?)";
+        int rowAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, signedUp.getUserId());
+            ps.setInt(2, signedUp.getPickupId());
+            return ps;
+        }, keyHolder);
+
+        if (rowAffected <= 0) {
+            return null;
         }
+        signedUp.setSignedUpId(keyHolder.getKey().intValue());
+        return signedUp;
+    }
 
     @Override
     public boolean update(SignedUp signedUp) {
