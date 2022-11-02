@@ -222,37 +222,53 @@ const handleJoin = () => {
   
   const filteredUser = users.filter(user => user.userId == pickup.userId);
 
-  // const su = signedUps.filter(su => su.userId === newUser.userId);
-  //  const temp = su[0];
+  const su = signedUps.filter(su => su.userId === newUser.userId);
+   const temp = su[0];
 
-  //  const handleLeave = () => {
-  //   const init = {
-  //     method: 'DELETE',
-  //     headers: {
-  //       // Authorization: `Bearer ${authManager.user.token}`
+   const handleLeave = () => {
+    const init = {
+      method: 'DELETE',
+      headers: {
+        // Authorization: `Bearer ${authManager.user.token}`
 
-  //     }
-  //   };
+      }
+    };
 
-  //   fetch(`http://localhost:8080/signedUp/${temp.signedUpId}`, init)
-  //   .then( resp => {
-  //     switch(resp.status) {
-  //       case 204:
-  //         window.location.reload(true);
-  //         break;
-  //       case 404:
-  //         history.push('/not-found', { id: temp.signedUpId })
-  //         break;
-  //       case 403:
-  //         authManager.logout();
-  //         history.push('/login');
-  //         break;
-  //       default:
-  //         return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
-  //     }
-  //   })
-  //   .catch(err => history.push('/error', {errorMessage: err}));
-  // }
+    fetch(`http://localhost:8080/signedUp/${temp.signedUpId}`, init)
+    .then( resp => {
+      switch(resp.status) {
+        case 204:
+          window.location.reload(true);
+          break;
+        case 404:
+          history.push('/not-found', { id: temp.signedUpId })
+          break;
+        case 403:
+          authManager.logout();
+          history.push('/login');
+          break;
+        default:
+          return Promise.reject('Something terrible has gone wrong.  Oh god the humanity!!!');
+      }
+    })
+    .catch(err => history.push('/error', {errorMessage: err}));
+  }
+const leaveButton = () => {
+  if(temp == null) {
+
+    return(                              <button type="button" className="btn btn-primary" onClick={handleJoin}>Join</button>
+
+      
+    );
+
+  } else if (temp !== null || undefined) {
+    return (
+      <button type="button" className="btn btn-secondary" onClick={handleLeave}>Leave</button>
+    );
+  } else {
+    return (<div>loading</div>);
+  }
+}
    
 
 
@@ -274,8 +290,10 @@ const handleJoin = () => {
                      { filteredUser.map( user => (user.appUserId == appUser.appUserId  || authManager.user.hasRole('ROLE_ADMIN') )&&
                         <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                         )} 
-                              <button type="button" className="btn btn-primary" onClick={handleJoin}>Join</button>
-                              {/* <button type="button" className="btn btn-secondary" onClick={handleLeave}>Leave</button> */}
+                              {/* <button type="button" className="btn btn-primary" onClick={handleJoin}>Join</button>
+                              <button type="button" className="btn btn-secondary" onClick={handleLeave}>Leave</button> */}
+
+                              {leaveButton()}
 
                                
                     </div>
